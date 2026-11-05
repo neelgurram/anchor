@@ -1,0 +1,975 @@
+{
+ "generated": "2026-11-05 14:54",
+ "shots": 2000,
+ "noise_model": "AerSimulator.from_backend(FakeMarrakesh) \u2014 Heron r2 calibration snapshot",
+ "instances": [
+  {
+   "case_id": "Case12",
+   "n_used": 3,
+   "seed": 9,
+   "qubits": 6,
+   "methods": {
+    "qaoa_p1": {
+     "label": "QAOA p=1",
+     "layers": 1,
+     "params": [
+      1.20275,
+      -1.31773
+     ],
+     "two_qubit_gates": 31,
+     "depth": 93,
+     "ideal": {
+      "p_feasible": 0.4775,
+      "p_optimal": 0.004,
+      "expected_ratio": 0.20829680299034814,
+      "approx_ratio": 1.0,
+      "tre": 1.44598625733824,
+      "tre_uncorrected": 19.506030964054297,
+      "tre_oracle": 1.4975001237243504,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.445,
+      "p_optimal": 0.005,
+      "expected_ratio": 0.19251302930398384,
+      "approx_ratio": 1.0,
+      "tre": 1.44598625733824,
+      "tre_uncorrected": 19.506030964054297,
+      "tre_oracle": 1.4975001237243504,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 3.85
+    },
+    "anneal_shallow": {
+     "label": "Digitized anneal p=2",
+     "layers": 2,
+     "params": [
+      0.7,
+      0.35,
+      -0.35,
+      -0.7
+     ],
+     "two_qubit_gates": 70,
+     "depth": 178,
+     "ideal": {
+      "p_feasible": 0.792,
+      "p_optimal": 0.0445,
+      "expected_ratio": 0.3582764578105517,
+      "approx_ratio": 1.0,
+      "tre": 1.44598625733824,
+      "tre_uncorrected": 19.506030964054297,
+      "tre_oracle": 1.4975001237243504,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.715,
+      "p_optimal": 0.0385,
+      "expected_ratio": 0.325049765793674,
+      "approx_ratio": 1.0,
+      "tre": 1.44598625733824,
+      "tre_uncorrected": 19.506030964054297,
+      "tre_oracle": 1.4975001237243504,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 3.68
+    },
+    "anneal_deep": {
+     "label": "Digitized anneal p=5",
+     "layers": 5,
+     "params": [
+      1.0,
+      0.8,
+      0.6,
+      0.4,
+      0.2,
+      -0.2,
+      -0.4,
+      -0.6,
+      -0.8,
+      -1.0
+     ],
+     "two_qubit_gates": 177,
+     "depth": 403,
+     "ideal": {
+      "p_feasible": 0.864,
+      "p_optimal": 0.111,
+      "expected_ratio": 0.4897601001268465,
+      "approx_ratio": 1.0,
+      "tre": 1.44598625733824,
+      "tre_uncorrected": 19.506030964054297,
+      "tre_oracle": 1.4975001237243504,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.719,
+      "p_optimal": 0.088,
+      "expected_ratio": 0.3988109602068539,
+      "approx_ratio": 1.0,
+      "tre": 1.44598625733824,
+      "tre_uncorrected": 19.506030964054297,
+      "tre_oracle": 1.4975001237243504,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 3.1
+    }
+   },
+   "random": {
+    "p_feasible": 0.179,
+    "p_optimal": 0.015,
+    "expected_ratio": 0.10239716751401386,
+    "approx_ratio": 1.0,
+    "tre": 1.44598625733824,
+    "tre_uncorrected": 19.506030964054297,
+    "tre_oracle": 1.4975001237243504,
+    "precision": 1.0
+   }
+  },
+  {
+   "case_id": "Case12",
+   "n_used": 4,
+   "seed": 9,
+   "qubits": 8,
+   "methods": {
+    "qaoa_p1": {
+     "label": "QAOA p=1",
+     "layers": 1,
+     "params": [
+      0.44318,
+      -0.68772
+     ],
+     "two_qubit_gates": 45,
+     "depth": 107,
+     "ideal": {
+      "p_feasible": 0.5555,
+      "p_optimal": 0.017,
+      "expected_ratio": 0.34209802092221653,
+      "approx_ratio": 1.0,
+      "tre": 1.1360780625334157,
+      "tre_uncorrected": 19.480714847111397,
+      "tre_oracle": 1.2688651519170577,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.505,
+      "p_optimal": 0.0145,
+      "expected_ratio": 0.3071129577815756,
+      "approx_ratio": 1.0,
+      "tre": 1.1360780625334157,
+      "tre_uncorrected": 19.480714847111397,
+      "tre_oracle": 1.2688651519170577,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 3.82
+    },
+    "anneal_shallow": {
+     "label": "Digitized anneal p=2",
+     "layers": 2,
+     "params": [
+      0.7,
+      0.35,
+      -0.35,
+      -0.7
+     ],
+     "two_qubit_gates": 107,
+     "depth": 234,
+     "ideal": {
+      "p_feasible": 0.6705,
+      "p_optimal": 0.0135,
+      "expected_ratio": 0.39096268754908853,
+      "approx_ratio": 1.0,
+      "tre": 1.1360780625334157,
+      "tre_uncorrected": 19.480714847111397,
+      "tre_oracle": 1.2688651519170577,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.5815,
+      "p_optimal": 0.0115,
+      "expected_ratio": 0.33766189844212285,
+      "approx_ratio": 1.0,
+      "tre": 1.1360780625334157,
+      "tre_uncorrected": 19.480714847111397,
+      "tre_oracle": 1.2688651519170577,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 3.22
+    },
+    "anneal_deep": {
+     "label": "Digitized anneal p=5",
+     "layers": 5,
+     "params": [
+      1.0,
+      0.8,
+      0.6,
+      0.4,
+      0.2,
+      -0.2,
+      -0.4,
+      -0.6,
+      -0.8,
+      -1.0
+     ],
+     "two_qubit_gates": 277,
+     "depth": 556,
+     "ideal": {
+      "p_feasible": 0.745,
+      "p_optimal": 0.033,
+      "expected_ratio": 0.5028417379313401,
+      "approx_ratio": 1.0,
+      "tre": 1.1360780625334157,
+      "tre_uncorrected": 19.480714847111397,
+      "tre_oracle": 1.2688651519170577,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.531,
+      "p_optimal": 0.022,
+      "expected_ratio": 0.3610968650862135,
+      "approx_ratio": 1.0,
+      "tre": 1.1360780625334157,
+      "tre_uncorrected": 19.480714847111397,
+      "tre_oracle": 1.2688651519170577,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 3.19
+    }
+   },
+   "random": {
+    "p_feasible": 0.122,
+    "p_optimal": 0.004,
+    "expected_ratio": 0.10132158144160926,
+    "approx_ratio": 1.0,
+    "tre": 1.1360780625334157,
+    "tre_uncorrected": 19.480714847111397,
+    "tre_oracle": 1.2688651519170577,
+    "precision": 1.0
+   }
+  },
+  {
+   "case_id": "Case12",
+   "n_used": 5,
+   "seed": 9,
+   "qubits": 10,
+   "methods": {
+    "qaoa_p1": {
+     "label": "QAOA p=1",
+     "layers": 1,
+     "params": [
+      0.44316,
+      -0.68887
+     ],
+     "two_qubit_gates": 106,
+     "depth": 182,
+     "ideal": {
+      "p_feasible": 0.4775,
+      "p_optimal": 0.0055,
+      "expected_ratio": 0.2849782464513868,
+      "approx_ratio": 1.0,
+      "tre": 1.4677510998971095,
+      "tre_uncorrected": 19.49929438406335,
+      "tre_oracle": 1.67426074870417,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.3885,
+      "p_optimal": 0.004,
+      "expected_ratio": 0.2417388665763232,
+      "approx_ratio": 1.0,
+      "tre": 1.4677510998971095,
+      "tre_uncorrected": 19.49929438406335,
+      "tre_oracle": 1.67426074870417,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 4.78
+    },
+    "anneal_shallow": {
+     "label": "Digitized anneal p=2",
+     "layers": 2,
+     "params": [
+      0.7,
+      0.35,
+      -0.35,
+      -0.7
+     ],
+     "two_qubit_gates": 186,
+     "depth": 341,
+     "ideal": {
+      "p_feasible": 0.6505,
+      "p_optimal": 0.0035,
+      "expected_ratio": 0.3528224295578896,
+      "approx_ratio": 1.0,
+      "tre": 1.4677510998971095,
+      "tre_uncorrected": 19.49929438406335,
+      "tre_oracle": 1.67426074870417,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.502,
+      "p_optimal": 0.0035,
+      "expected_ratio": 0.27527610938903824,
+      "approx_ratio": 1.0,
+      "tre": 1.4677510998971095,
+      "tre_uncorrected": 19.49929438406335,
+      "tre_oracle": 1.67426074870417,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 4.33
+    },
+    "anneal_deep": {
+     "label": "Digitized anneal p=5",
+     "layers": 5,
+     "params": [
+      1.0,
+      0.8,
+      0.6,
+      0.4,
+      0.2,
+      -0.2,
+      -0.4,
+      -0.6,
+      -0.8,
+      -1.0
+     ],
+     "two_qubit_gates": 515,
+     "depth": 869,
+     "ideal": {
+      "p_feasible": 0.727,
+      "p_optimal": 0.018,
+      "expected_ratio": 0.46748410062585805,
+      "approx_ratio": 1.0,
+      "tre": 1.4677510998971095,
+      "tre_uncorrected": 19.49929438406335,
+      "tre_oracle": 1.67426074870417,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.3855,
+      "p_optimal": 0.0055,
+      "expected_ratio": 0.24986991402782116,
+      "approx_ratio": 1.0,
+      "tre": 1.4677510998971095,
+      "tre_uncorrected": 19.49929438406335,
+      "tre_oracle": 1.67426074870417,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 5.8
+    }
+   },
+   "random": {
+    "p_feasible": 0.0625,
+    "p_optimal": 0.001,
+    "expected_ratio": 0.05445996598207705,
+    "approx_ratio": 1.0,
+    "tre": 1.4677510998971095,
+    "tre_uncorrected": 19.49929438406335,
+    "tre_oracle": 1.67426074870417,
+    "precision": 1.0
+   }
+  },
+  {
+   "case_id": "Case12",
+   "n_used": 6,
+   "seed": 9,
+   "qubits": 12,
+   "methods": {
+    "qaoa_p1": {
+     "label": "QAOA p=1",
+     "layers": 1,
+     "params": [
+      0.53071,
+      -0.63846
+     ],
+     "two_qubit_gates": 155,
+     "depth": 284,
+     "ideal": {
+      "p_feasible": 0.4235,
+      "p_optimal": 0.0,
+      "expected_ratio": 0.21955649097057814,
+      "approx_ratio": 0.8342589788134102,
+      "tre": 1.488603777616936,
+      "tre_uncorrected": 19.56420251731958,
+      "tre_oracle": 1.868532507212961,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.336,
+      "p_optimal": 0.0025,
+      "expected_ratio": 0.17608329497676034,
+      "approx_ratio": 1.0,
+      "tre": 1.6050407974784555,
+      "tre_uncorrected": 19.56420251731958,
+      "tre_oracle": 1.868532507212961,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 47.06
+    },
+    "anneal_shallow": {
+     "label": "Digitized anneal p=2",
+     "layers": 2,
+     "params": [
+      0.7,
+      0.35,
+      -0.35,
+      -0.7
+     ],
+     "two_qubit_gates": 379,
+     "depth": 594,
+     "ideal": {
+      "p_feasible": 0.519,
+      "p_optimal": 0.003,
+      "expected_ratio": 0.25803280840480325,
+      "approx_ratio": 1.0,
+      "tre": 1.6050407974784555,
+      "tre_uncorrected": 19.56420251731958,
+      "tre_oracle": 1.868532507212961,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.2895,
+      "p_optimal": 0.0005,
+      "expected_ratio": 0.15298687026110677,
+      "approx_ratio": 1.0,
+      "tre": 1.6050407974784555,
+      "tre_uncorrected": 19.56420251731958,
+      "tre_oracle": 1.868532507212961,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 92.63
+    },
+    "anneal_deep": {
+     "label": "Digitized anneal p=5",
+     "layers": 5,
+     "params": [
+      1.0,
+      0.8,
+      0.6,
+      0.4,
+      0.2,
+      -0.2,
+      -0.4,
+      -0.6,
+      -0.8,
+      -1.0
+     ],
+     "two_qubit_gates": 1026,
+     "depth": 1398,
+     "ideal": {
+      "p_feasible": 0.6145,
+      "p_optimal": 0.007,
+      "expected_ratio": 0.3489584079314598,
+      "approx_ratio": 1.0,
+      "tre": 1.6050407974784555,
+      "tre_uncorrected": 19.56420251731958,
+      "tre_oracle": 1.868532507212961,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.1265,
+      "p_optimal": 0.0,
+      "expected_ratio": 0.08489061955448235,
+      "approx_ratio": 0.8337548369127692,
+      "tre": 2.028823493812806,
+      "tre_uncorrected": 19.56420251731958,
+      "tre_oracle": 1.868532507212961,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 237.8
+    }
+   },
+   "random": {
+    "p_feasible": 0.02,
+    "p_optimal": 0.0,
+    "expected_ratio": 0.019736925671806172,
+    "approx_ratio": 0.8342589788134102,
+    "tre": 1.488603777616936,
+    "tre_uncorrected": 19.56420251731958,
+    "tre_oracle": 1.868532507212961,
+    "precision": 1.0
+   }
+  },
+  {
+   "case_id": "Case2",
+   "n_used": 3,
+   "seed": 2,
+   "qubits": 6,
+   "methods": {
+    "qaoa_p1": {
+     "label": "QAOA p=1",
+     "layers": 1,
+     "params": [
+      1.20324,
+      -0.99043
+     ],
+     "two_qubit_gates": 35,
+     "depth": 95,
+     "ideal": {
+      "p_feasible": 0.538,
+      "p_optimal": 0.0005,
+      "expected_ratio": 0.17821772160417157,
+      "approx_ratio": 1.0,
+      "tre": 3.6932553591135164,
+      "tre_uncorrected": 5.853103449540703,
+      "tre_oracle": 3.5541222755125634,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.522,
+      "p_optimal": 0.0015,
+      "expected_ratio": 0.17623507674126704,
+      "approx_ratio": 1.0,
+      "tre": 3.6932553591135164,
+      "tre_uncorrected": 5.853103449540703,
+      "tre_oracle": 3.5541222755125634,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 3.7
+    },
+    "anneal_shallow": {
+     "label": "Digitized anneal p=2",
+     "layers": 2,
+     "params": [
+      0.7,
+      0.35,
+      -0.35,
+      -0.7
+     ],
+     "two_qubit_gates": 69,
+     "depth": 158,
+     "ideal": {
+      "p_feasible": 0.829,
+      "p_optimal": 0.051,
+      "expected_ratio": 0.31196975593327725,
+      "approx_ratio": 1.0,
+      "tre": 3.6932553591135164,
+      "tre_uncorrected": 5.853103449540703,
+      "tre_oracle": 3.5541222755125634,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.775,
+      "p_optimal": 0.0425,
+      "expected_ratio": 0.2935679683002356,
+      "approx_ratio": 1.0,
+      "tre": 3.6932553591135164,
+      "tre_uncorrected": 5.853103449540703,
+      "tre_oracle": 3.5541222755125634,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 3.28
+    },
+    "anneal_deep": {
+     "label": "Digitized anneal p=5",
+     "layers": 5,
+     "params": [
+      1.0,
+      0.8,
+      0.6,
+      0.4,
+      0.2,
+      -0.2,
+      -0.4,
+      -0.6,
+      -0.8,
+      -1.0
+     ],
+     "two_qubit_gates": 185,
+     "depth": 416,
+     "ideal": {
+      "p_feasible": 0.886,
+      "p_optimal": 0.1415,
+      "expected_ratio": 0.44795238375880087,
+      "approx_ratio": 1.0,
+      "tre": 3.6932553591135164,
+      "tre_uncorrected": 5.853103449540703,
+      "tre_oracle": 3.5541222755125634,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.743,
+      "p_optimal": 0.1055,
+      "expected_ratio": 0.3607335685018554,
+      "approx_ratio": 1.0,
+      "tre": 3.6932553591135164,
+      "tre_uncorrected": 5.853103449540703,
+      "tre_oracle": 3.5541222755125634,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 3.27
+    }
+   },
+   "random": {
+    "p_feasible": 0.1665,
+    "p_optimal": 0.017,
+    "expected_ratio": 0.07619322200771789,
+    "approx_ratio": 1.0,
+    "tre": 3.6932553591135164,
+    "tre_uncorrected": 5.853103449540703,
+    "tre_oracle": 3.5541222755125634,
+    "precision": 1.0
+   }
+  },
+  {
+   "case_id": "Case2",
+   "n_used": 4,
+   "seed": 2,
+   "qubits": 8,
+   "methods": {
+    "qaoa_p1": {
+     "label": "QAOA p=1",
+     "layers": 1,
+     "params": [
+      1.05191,
+      -1.00063
+     ],
+     "two_qubit_gates": 76,
+     "depth": 161,
+     "ideal": {
+      "p_feasible": 0.594,
+      "p_optimal": 0.0,
+      "expected_ratio": 0.13035602623922027,
+      "approx_ratio": 0.7523764842133054,
+      "tre": 3.574640310667526,
+      "tre_uncorrected": 5.567557386310797,
+      "tre_oracle": 2.9751988752386036,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.533,
+      "p_optimal": 0.0,
+      "expected_ratio": 0.1184542296018322,
+      "approx_ratio": 0.7523764842133054,
+      "tre": 3.574640310667526,
+      "tre_uncorrected": 5.567557386310797,
+      "tre_oracle": 2.9751988752386036,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 3.66
+    },
+    "anneal_shallow": {
+     "label": "Digitized anneal p=2",
+     "layers": 2,
+     "params": [
+      0.7,
+      0.35,
+      -0.35,
+      -0.7
+     ],
+     "two_qubit_gates": 170,
+     "depth": 302,
+     "ideal": {
+      "p_feasible": 0.754,
+      "p_optimal": 0.0165,
+      "expected_ratio": 0.27852726711168857,
+      "approx_ratio": 1.0,
+      "tre": 3.143383929254331,
+      "tre_uncorrected": 5.567557386310797,
+      "tre_oracle": 2.9751988752386036,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.625,
+      "p_optimal": 0.01,
+      "expected_ratio": 0.23119767631199595,
+      "approx_ratio": 1.0,
+      "tre": 3.143383929254331,
+      "tre_uncorrected": 5.567557386310797,
+      "tre_oracle": 2.9751988752386036,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 3.26
+    },
+    "anneal_deep": {
+     "label": "Digitized anneal p=5",
+     "layers": 5,
+     "params": [
+      1.0,
+      0.8,
+      0.6,
+      0.4,
+      0.2,
+      -0.2,
+      -0.4,
+      -0.6,
+      -0.8,
+      -1.0
+     ],
+     "two_qubit_gates": 477,
+     "depth": 910,
+     "ideal": {
+      "p_feasible": 0.828,
+      "p_optimal": 0.047,
+      "expected_ratio": 0.3821537846819125,
+      "approx_ratio": 1.0,
+      "tre": 3.143383929254331,
+      "tre_uncorrected": 5.567557386310797,
+      "tre_oracle": 2.9751988752386036,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.4625,
+      "p_optimal": 0.0255,
+      "expected_ratio": 0.20710342164976484,
+      "approx_ratio": 1.0,
+      "tre": 3.143383929254331,
+      "tre_uncorrected": 5.567557386310797,
+      "tre_oracle": 2.9751988752386036,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 3.35
+    }
+   },
+   "random": {
+    "p_feasible": 0.0845,
+    "p_optimal": 0.006,
+    "expected_ratio": 0.04275545148069989,
+    "approx_ratio": 1.0,
+    "tre": 3.143383929254331,
+    "tre_uncorrected": 5.567557386310797,
+    "tre_oracle": 2.9751988752386036,
+    "precision": 1.0
+   }
+  },
+  {
+   "case_id": "Case2",
+   "n_used": 5,
+   "seed": 2,
+   "qubits": 10,
+   "methods": {
+    "qaoa_p1": {
+     "label": "QAOA p=1",
+     "layers": 1,
+     "params": [
+      1.03063,
+      -1.00395
+     ],
+     "two_qubit_gates": 125,
+     "depth": 196,
+     "ideal": {
+      "p_feasible": 0.5975,
+      "p_optimal": 0.0,
+      "expected_ratio": 0.13761177747588885,
+      "approx_ratio": 0.7498747073173022,
+      "tre": 3.880773927135041,
+      "tre_uncorrected": 5.652973258325039,
+      "tre_oracle": 3.2204668154994267,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.464,
+      "p_optimal": 0.0,
+      "expected_ratio": 0.10865089481058665,
+      "approx_ratio": 0.7498747073173022,
+      "tre": 3.880773927135041,
+      "tre_uncorrected": 5.652973258325039,
+      "tre_oracle": 3.2204668154994267,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 4.92
+    },
+    "anneal_shallow": {
+     "label": "Digitized anneal p=2",
+     "layers": 2,
+     "params": [
+      0.7,
+      0.35,
+      -0.35,
+      -0.7
+     ],
+     "two_qubit_gates": 275,
+     "depth": 469,
+     "ideal": {
+      "p_feasible": 0.63,
+      "p_optimal": 0.005,
+      "expected_ratio": 0.2398272586724431,
+      "approx_ratio": 1.0,
+      "tre": 3.4214736319131624,
+      "tre_uncorrected": 5.652973258325039,
+      "tre_oracle": 3.2204668154994267,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.4085,
+      "p_optimal": 0.001,
+      "expected_ratio": 0.16016841066930795,
+      "approx_ratio": 1.0,
+      "tre": 3.4214736319131624,
+      "tre_uncorrected": 5.652973258325039,
+      "tre_oracle": 3.2204668154994267,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 5.27
+    },
+    "anneal_deep": {
+     "label": "Digitized anneal p=5",
+     "layers": 5,
+     "params": [
+      1.0,
+      0.8,
+      0.6,
+      0.4,
+      0.2,
+      -0.2,
+      -0.4,
+      -0.6,
+      -0.8,
+      -1.0
+     ],
+     "two_qubit_gates": 802,
+     "depth": 1176,
+     "ideal": {
+      "p_feasible": 0.7205,
+      "p_optimal": 0.0165,
+      "expected_ratio": 0.32344679341322063,
+      "approx_ratio": 1.0,
+      "tre": 3.4214736319131624,
+      "tre_uncorrected": 5.652973258325039,
+      "tre_oracle": 3.2204668154994267,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.317,
+      "p_optimal": 0.012,
+      "expected_ratio": 0.15656685871596004,
+      "approx_ratio": 1.0,
+      "tre": 3.4214736319131624,
+      "tre_uncorrected": 5.652973258325039,
+      "tre_oracle": 3.2204668154994267,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 7.78
+    }
+   },
+   "random": {
+    "p_feasible": 0.0265,
+    "p_optimal": 0.0,
+    "expected_ratio": 0.019797411106200404,
+    "approx_ratio": 0.7498747073173022,
+    "tre": 3.880773927135041,
+    "tre_uncorrected": 5.652973258325039,
+    "tre_oracle": 3.2204668154994267,
+    "precision": 1.0
+   }
+  },
+  {
+   "case_id": "Case2",
+   "n_used": 6,
+   "seed": 2,
+   "qubits": 12,
+   "methods": {
+    "qaoa_p1": {
+     "label": "QAOA p=1",
+     "layers": 1,
+     "params": [
+      0.54229,
+      -0.63537
+     ],
+     "two_qubit_gates": 185,
+     "depth": 292,
+     "ideal": {
+      "p_feasible": 0.4985,
+      "p_optimal": 0.0,
+      "expected_ratio": 0.18829230220094076,
+      "approx_ratio": 0.8350076548351152,
+      "tre": 3.463361715463822,
+      "tre_uncorrected": 5.720518037590648,
+      "tre_oracle": 1.5486156108291498,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.339,
+      "p_optimal": 0.0005,
+      "expected_ratio": 0.1357517852643274,
+      "approx_ratio": 1.0000000000000002,
+      "tre": 1.7731076749035302,
+      "tre_uncorrected": 5.720518037590648,
+      "tre_oracle": 1.5486156108291498,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 54.99
+    },
+    "anneal_shallow": {
+     "label": "Digitized anneal p=2",
+     "layers": 2,
+     "params": [
+      0.7,
+      0.35,
+      -0.35,
+      -0.7
+     ],
+     "two_qubit_gates": 383,
+     "depth": 546,
+     "ideal": {
+      "p_feasible": 0.5705,
+      "p_optimal": 0.0,
+      "expected_ratio": 0.2189538179266482,
+      "approx_ratio": 0.8350076548351152,
+      "tre": 3.463361715463822,
+      "tre_uncorrected": 5.720518037590648,
+      "tre_oracle": 1.5486156108291498,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.3085,
+      "p_optimal": 0.0015,
+      "expected_ratio": 0.12881354059484368,
+      "approx_ratio": 1.0000000000000002,
+      "tre": 1.7731076749035302,
+      "tre_uncorrected": 5.720518037590648,
+      "tre_oracle": 1.5486156108291498,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 98.41
+    },
+    "anneal_deep": {
+     "label": "Digitized anneal p=5",
+     "layers": 5,
+     "params": [
+      1.0,
+      0.8,
+      0.6,
+      0.4,
+      0.2,
+      -0.2,
+      -0.4,
+      -0.6,
+      -0.8,
+      -1.0
+     ],
+     "two_qubit_gates": 1168,
+     "depth": 1547,
+     "ideal": {
+      "p_feasible": 0.6995,
+      "p_optimal": 0.0075,
+      "expected_ratio": 0.31644395272995596,
+      "approx_ratio": 1.0000000000000002,
+      "tre": 1.7731076749035302,
+      "tre_uncorrected": 5.720518037590648,
+      "tre_oracle": 1.5486156108291498,
+      "precision": 1.0
+     },
+     "noisy": {
+      "p_feasible": 0.1355,
+      "p_optimal": 0.0005,
+      "expected_ratio": 0.06536593174938694,
+      "approx_ratio": 1.0000000000000002,
+      "tre": 1.7731076749035302,
+      "tre_uncorrected": 5.720518037590648,
+      "tre_oracle": 1.5486156108291498,
+      "precision": 1.0
+     },
+     "noisy_sim_seconds": 1024.25
+    }
+   },
+   "random": {
+    "p_feasible": 0.0205,
+    "p_optimal": 0.001,
+    "expected_ratio": 0.01429034359985283,
+    "approx_ratio": 1.0000000000000002,
+    "tre": 1.7731076749035302,
+    "tre_uncorrected": 5.720518037590648,
+    "tre_oracle": 1.5486156108291498,
+    "precision": 1.0
+   }
+  }
+ ]
+}

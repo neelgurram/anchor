@@ -120,7 +120,7 @@ def style():
         "xtick.color": MUTED, "ytick.color": MUTED, "grid.color": GRID, "grid.linewidth": 0.8,
         "axes.grid": True, "axes.axisbelow": True, "axes.spines.top": False, "axes.spines.right": False,
         "font.family": ["Segoe UI", "DejaVu Sans"], "font.size": 11, "axes.titlesize": 13,
-        "axes.titleweight": "semibold", "axes.titlelocation": "left", "legend.frameon": False,
+        "axes.titleweight": "bold", "axes.titlelocation": "left", "legend.frameon": False,
         "lines.linewidth": 2, "lines.markersize": 7,
     })
     return plt

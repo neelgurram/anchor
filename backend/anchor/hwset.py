@@ -30,3 +30,22 @@ def gate_set():
 
 def anneal_set():
     return [(c, n, s) for c, s in CASES for n in ANNEAL_SIZES]
+
+
+def gate_modes(inst, seed: int) -> dict:
+    """Circuits sent to IBM, all fixed on the IDEAL simulator before any hardware or noise run:
+    QAOA p=1 (optimised angles), and the linear-ramp anneal at a shallow (p=2) and a deep
+    (best of p=3,5) schedule — the noise study showed depth is the deciding factor on Heron."""
+    import numpy as np
+    from .solvers.quantum import lr_params, solve_qaoa, tune_anneal
+    q1 = solve_qaoa(inst, p=1, shots=2048, maxiter=60, seed=seed, with_device_stats=False)
+    _, d_sh = tune_anneal(inst.Q, ps=(2,), seed=seed)
+    p_dp, d_dp = tune_anneal(inst.Q, ps=(3, 5), seed=seed)
+    return {
+        "qaoa_p1": {"label": "QAOA p=1", "layers": 1, "params": np.array(q1.provenance["params"]),
+                    "family": "variational"},
+        "anneal_shallow": {"label": "Digitized anneal p=2", "layers": 2, "params": lr_params(2, d_sh),
+                           "delta": d_sh, "family": "linear-ramp (LR-QAOA)"},
+        "anneal_deep": {"label": f"Digitized anneal p={p_dp}", "layers": p_dp, "params": lr_params(p_dp, d_dp),
+                        "delta": d_dp, "family": "linear-ramp (LR-QAOA)"},
+    }

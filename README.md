@@ -25,7 +25,14 @@ Every answer is scored the same way: map error in mm at expert landmarks the sol
 The table covers 264 paired instances: 8–16 qubits, 20–40% bad matches, 95% bootstrap CIs.
 
 - **Quantum vs exact:** QAOA and digitized annealing match exact max clique (paired difference −0.02 ± 0.06 mm). Per shot they are far behind simulated annealing: at 16 qubits, QAOA hits the optimum on 0.07% of shots against 79% for simulated annealing.
-- **RANSAC beats the clique formulation** by 0.18 ± 0.12 mm. Its global rigid check is stricter than pairwise distance agreement. We report this as found (CHARTER.md).
+- **RANSAC beats the clique formulation** by 0.17 ± 0.12 mm. Its global rigid check is stricter than pairwise distance agreement. We report this as found (CHARTER.md).
+- **Noise decides the schedule** (`results/noise`, IBM Heron noise model, the same 6–12-qubit instances the hardware run uses):
+  - On the ideal simulator, the deep annealing schedule is best.
+  - Under noise it collapses to 13% consistent shots at 12 qubits.
+  - The shallow p = 2 schedule and QAOA p = 1 hold 29–34%.
+  - Every variant stays well above random guessing (2%).
+
+  The hardware run therefore sends all three variants.
 - **No quantum advantage is claimed.** Exact classical max clique takes about 1 ms here and about 50 ms at 160 candidates. See `revisit_trigger` in the summary for the hardware error rates at which this would change.
 
 ## What's here

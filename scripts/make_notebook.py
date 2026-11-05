@@ -95,7 +95,7 @@ for s, t, p, a, po, w in rows:
 md("""
 The naive matcher trusts every top-scored candidate. One wrong match is enough to bend the map, and its error ends up close to doing nothing at all.
 
-Every consistency-based solver brings the error down near the best possible. On this instance the quantum solvers reach the optimum only because we keep the best of 2,048 shots and repair it. **Per shot**, simulated annealing is far ahead.
+Every consistency-based solver brings the error down near the best possible. Each quantum answer is the best of 2,048 shots, repaired to a consistent set, so it can land just short of the optimum (see "vs optimum"). **Per shot**, simulated annealing is far ahead (see "shots optimal").
 """)
 md("## 5. What the circuit costs on real hardware")
 code("""

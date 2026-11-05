@@ -37,16 +37,13 @@ def job(task):
     from qiskit_aer import AerSimulator
     from qiskit_ibm_runtime.fake_provider import FakeMarrakesh
     from anchor import hwset
-    from anchor.solvers.quantum import build_circuit, counts_to_arrays, lr_params, run_local, solve_qaoa, tune_anneal
+    from anchor.solvers.quantum import build_circuit, counts_to_arrays, run_local
 
     cid, n, seed = task
     case, prob, inst = hwset.build(cid, n, seed)
     Q = inst.Q
-    # angles fixed on the ideal simulator, then transferred unchanged (what the hardware run does)
-    q1 = solve_qaoa(inst, p=1, shots=2048, maxiter=60, seed=seed, with_device_stats=False)
-    qaoa_params = np.array(q1.provenance["params"])
-    p_lr, d_lr = tune_anneal(Q, ps=(2, 3, 5), seed=seed)
-    methods = {"qaoa_p1": (1, qaoa_params), f"lr_p{p_lr}": (p_lr, lr_params(p_lr, d_lr))}
+    # schedules fixed on the ideal simulator, then transferred unchanged (what the hardware run does)
+    methods = {k: (m["layers"], m["params"], m["label"]) for k, m in hwset.gate_modes(inst, seed).items()}
 
     fake = FakeMarrakesh()
     noisy = AerSimulator.from_backend(fake)
@@ -54,7 +51,7 @@ def job(task):
     rng = np.random.default_rng(seed)
     Xr = rng.random((SHOTS, inst.m)) < 0.5
     out["random"] = score(case, prob, inst, Xr, np.ones(SHOTS))
-    for name, (p, params) in methods.items():
+    for name, (p, params, label) in methods.items():
         ideal = run_local(Q, p, params, shots=SHOTS, seed=seed + 7)
         qc = build_circuit(Q, p).assign_parameters(params)
         tqc = transpile(qc, fake, optimization_level=3, seed_transpiler=7)
@@ -62,7 +59,7 @@ def job(task):
         nc = noisy.run(tqc, shots=SHOTS, seed_simulator=seed + 7).result().get_counts()
         ops = tqc.count_ops()
         out["methods"][name] = {
-            "layers": p, "params": [round(float(v), 5) for v in params],
+            "label": label, "layers": p, "params": [round(float(v), 5) for v in params],
             "two_qubit_gates": int(sum(v for k, v in ops.items() if k in ("cz", "ecr", "cx"))),
             "depth": int(tqc.depth()),
             "ideal": score(case, prob, inst, *counts_to_arrays(ideal)),
@@ -78,32 +75,30 @@ def figure(rows, path):
     from run_benchmark import BG, COLOR, INK, MUTED, end_labels, style
     plt = style()
     sizes = sorted({r["qubits"] for r in rows})
-    fig, axes = plt.subplots(1, 2, figsize=(10.4, 4.3), sharey=True)
-    labs = {0: [], 1: []}
-    for ai, (ax, meth_prefix, title) in enumerate( [(axes[0], "qaoa_p1", "QAOA, p = 1 (angles from simulator)"),
-                                   (axes[1], "lr_", "Digitized anneal (linear ramp)")]):
-        series = [("ideal", "Ideal simulator", COLOR["exact"]), ("noisy", "Heron noise model", COLOR["danneal"])]
-        for key, lab, colr in series:
-            ys = []
-            for n in sizes:
-                v = [m[key]["p_feasible"] for r in rows if r["qubits"] == n
-                     for k, m in r["methods"].items() if k.startswith(meth_prefix)]
-                ys.append(np.mean(v))
+    panels = [("qaoa_p1", "QAOA, p = 1"), ("anneal_shallow", "Digitized anneal, p = 2"),
+              ("anneal_deep", "Digitized anneal, deep (p = 3–5)")]
+    fig, axes = plt.subplots(1, 3, figsize=(13, 4.3), sharey=True)
+    rnd = [np.mean([r["random"]["p_feasible"] for r in rows if r["qubits"] == n]) for n in sizes]
+    for ax, (key, title) in zip(axes, panels):
+        labs = []
+        for k2, lab, colr in [("ideal", "Ideal simulator", COLOR["exact"]), ("noisy", "Heron noise model", COLOR["danneal"])]:
+            ys = [np.mean([r["methods"][key][k2]["p_feasible"] for r in rows if r["qubits"] == n]) for n in sizes]
             ax.plot(sizes, ys, color=colr, marker="o", markeredgecolor=BG, markeredgewidth=2, label=lab)
-            labs[ai].append((sizes[-1], ys[-1], lab, INK))
-        rnd = [np.mean([r["random"]["p_feasible"] for r in rows if r["qubits"] == n]) for n in sizes]
+            labs.append((sizes[-1], ys[-1], lab.split()[0], INK))
         ax.plot(sizes, rnd, color=MUTED, ls=(0, (4, 3)), lw=1.4, label="Random guessing")
-        labs[ai].append((sizes[-1], rnd[-1], "Random", MUTED))
-        ax.set_title(title)
+        labs.append((sizes[-1], rnd[-1], "Random", MUTED))
+        g = np.mean([r["methods"][key]["two_qubit_gates"] for r in rows if r["qubits"] == sizes[-1]])
+        ax.set_title(title + "\n" + f"{g:.0f} two-qubit gates at {sizes[-1]} qubits", fontsize=11.5)
         ax.set_xticks(sizes)
-        ax.set_xlim(sizes[0] - 0.5, sizes[-1] + 3.2)
+        ax.set_xlim(sizes[0] - 0.5, sizes[-1] + 2.6)
         ax.set_xlabel("Qubits")
         ax.set_yscale("log")
+        ax._labs = labs
     axes[0].set_ylabel("Shots that are a consistent set")
     axes[0].legend(loc="lower left", fontsize=9)
     fig.tight_layout()
-    for ai, ax in enumerate(axes):
-        end_labels(ax, labs[ai])
+    for ax in axes:
+        end_labels(ax, ax._labs)
     fig.savefig(path, dpi=160)
     plt.close(fig)
 

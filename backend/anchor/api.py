@@ -52,6 +52,7 @@ class Session:
 
 _SESSIONS: dict[str, Session] = {}
 _SOLVES: dict[tuple, dict] = {}
+_CIRCUITS: dict[tuple, dict] = {}
 _LOCK = threading.Lock()
 
 
@@ -207,19 +208,26 @@ def solve(req: SolveRequest):
 def circuit(problem_id: str, p: int = 1):
     """Logical QAOA circuit (one layer by default) as SVG, plus Heron-transpiled stats."""
     s = _session(problem_id)
+    if (problem_id, p) in _CIRCUITS:
+        return _CIRCUITS[(problem_id, p)]
     from .solvers.quantum import build_circuit, device_stats
     import io
     import matplotlib
     matplotlib.use("Agg")
-    qc = build_circuit(s.inst.Q, p).decompose()
+    from qiskit import transpile
+    qc = build_circuit(s.inst.Q, p)
+    qc.remove_final_measurements()
+    # explicit gates (H, ZZ couplings, RZ, RX mixer) instead of opaque evolution boxes
+    qc = transpile(qc, basis_gates=["h", "rz", "rx", "rzz"], optimization_level=0)
     buf = io.StringIO()
-    fig = qc.draw("mpl", fold=60, idle_wires=False, style={"backgroundcolor": "#0b0f14",
-                                                            "textcolor": "#d8e1ea", "linecolor": "#7f8b99",
-                                                            "gatetextcolor": "#0b0f14"})
+    fig = qc.draw("mpl", fold=-1, idle_wires=False, scale=0.7,
+                  style={"name": "iqp-dark", "backgroundcolor": "#0b0f14"})
     fig.savefig(buf, format="svg", bbox_inches="tight", facecolor="#0b0f14")
     import matplotlib.pyplot as plt
     plt.close(fig)
-    return {"svg": buf.getvalue(), "stats": device_stats(s.inst.Q, p)}
+    out = {"svg": buf.getvalue(), "stats": device_stats(s.inst.Q, p)}
+    _CIRCUITS[(problem_id, p)] = out
+    return out
 
 
 @app.get("/api/benchmark")

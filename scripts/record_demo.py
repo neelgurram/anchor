@@ -19,8 +19,32 @@ URL = "http://localhost:5180/"
 W, H = 1600, 900
 
 
+API = "http://localhost:8030"
+DEMO_PROBLEM = {"case_id": "Case12", "n_used": 8, "k": 2, "outlier_rate": 0.3, "seed": 9}
+
+
+def warm_cache():
+    """Solve the demo patient once BEFORE recording, without the browser's software renderer
+    competing for CPU. The app then shows these real results and their real compute times."""
+    import json
+    import urllib.request
+
+    def post(path, body):
+        req = urllib.request.Request(API + path, json.dumps(body).encode(), {"Content-Type": "application/json"})
+        with urllib.request.urlopen(req, timeout=300) as r:
+            return json.loads(r.read())
+
+    pid = post("/api/problem", DEMO_PROBLEM)["problem_id"]
+    with urllib.request.urlopen(f"{API}/api/circuit/{pid}?p=1", timeout=300) as r:
+        r.read()
+    for s in ["naive", "qaoa", "danneal"]:
+        r = post("/api/solve", {"problem_id": pid, "solver": s, "params": {}})
+        print(f"warm {s}: map error {r['evaluation']['tre']:.2f} mm, {r['result']['wall_time']:.1f} s")
+
+
 def main():
     DEMO.mkdir(exist_ok=True)
+    warm_cache()
     shutil.rmtree(RAW, ignore_errors=True)
     with sync_playwright() as p:
         b = p.chromium.launch(args=["--use-gl=angle", "--use-angle=swiftshader", "--enable-unsafe-swiftshader"])
@@ -30,8 +54,6 @@ def main():
         click = lambda name: page.get_by_role("button", name=name, exact=False).first.click()
         wait = lambda s: page.wait_for_timeout(int(s * 1000))
 
-        # warm the solver cache so QAOA's live run isn't the slow part of the take
-        page.request.post("http://localhost:8030/api/health")
         page.goto(URL)
         wait(4)                                            # beat 1: title, the problem
         click("Load patient"); wait(6)                     # beat 2: real patient, MRI landmarks
@@ -44,7 +66,9 @@ def main():
         click("Digitized anneal"); wait(10)
         click("Correct the map"); wait(6)                  # beat 8: annealing-style schedule agrees
         page.get_by_role("button", name="Solver lab").click(); wait(2)
-        click("Show circuit"); wait(9)                     # beat 9: the circuit and what it costs on Heron
+        click("Show circuit"); wait(3)                     # beat 9: the circuit and what it costs on Heron
+        for _ in range(4):
+            page.locator(".circuit").evaluate("el => el.scrollBy({left: 600, behavior: 'smooth'})"); wait(1.6)
         page.get_by_role("button", name="Results").click(); wait(5)
         for _ in range(6):                                 # beat 10: the honest benchmark
             page.mouse.wheel(0, 520); wait(3)

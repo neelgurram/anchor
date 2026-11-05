@@ -92,6 +92,8 @@ export default function App() {
   }), [brain, problem, target, scale, colorMode, cur, step, lineStates]);
 
   const mapError = !problem ? null : step < 2 ? 0 : cur ? cur.evaluation.tre : problem.metrics.tre_uncorrected;
+  // green only for a real correction: within 2x of the best possible (or under 3 mm)
+  const fixed = !!cur && cur.evaluation.tre <= Math.max(3, 2 * cur.evaluation.tre_oracle);
 
   return (
     <div className="app">
@@ -200,9 +202,9 @@ export default function App() {
                   Correct the map{act ? ` with ${act.meta.label}` : ""}
                 </button>
                 {cur && problem && (
-                  <div className="stat big good">
+                  <div className={`stat big ${fixed ? "good" : "warn"}`}>
                     {fmt(problem.metrics.tre_uncorrected)} mm <span className="arrow">→</span> <b>{fmt(cur.evaluation.tre)} mm</b>
-                    <small>{cur.meta.label} · best possible with these landmarks: {fmt(cur.evaluation.tre_oracle)} mm</small>
+                    <small>{cur.meta.label}{fixed ? "" : " · still off: some trusted matches are wrong"} · best possible: {fmt(cur.evaluation.tre_oracle)} mm</small>
                   </div>
                 )}
                 {step >= 5 && (
@@ -242,7 +244,7 @@ export default function App() {
 
       <footer className="strip">
         <Metric label="Patient's real brain shift" value={problem ? `${fmt(problem.case.mean_shift_mm)} mm` : "–"} sub={problem ? `max ${fmt(problem.case.max_shift_mm)} mm` : ""} />
-        <Metric label="Navigation map error" value={mapError === null ? "–" : `${fmt(mapError)} mm`} sub={cur ? `after ${cur.meta.label}` : step >= 2 ? "uncorrected" : ""} tone={cur ? "good" : step >= 2 ? "warn" : undefined} />
+        <Metric label="Navigation map error" value={mapError === null ? "–" : `${fmt(mapError)} mm`} sub={cur ? `after ${cur.meta.label}` : step >= 2 ? "uncorrected" : ""} tone={cur ? (fixed ? "good" : "warn") : step >= 2 ? "warn" : undefined} />
         <Metric label="Best possible" value={problem ? `${fmt(problem.metrics.tre_oracle)} mm` : "–"} sub="true matches only" />
         <Metric label="Qubits" value={problem ? `${problem.qubo.qubits}` : "–"} sub={problem ? `${problem.qubo.quadratic} couplings` : ""} />
         <Metric label="Solver" value={act ? act.meta.label ?? act.solver : "–"} sub={act ? (act.result.replay ? "recorded QPU run" : "computed live") : ""} />

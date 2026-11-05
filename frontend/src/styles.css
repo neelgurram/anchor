@@ -106,8 +106,8 @@ tr.on td { color: var(--accent); }
 .panel { padding: 4px; font-size: 13px; }
 .panel h3 { font-size: 13px; margin: 16px 0 8px; }
 .muted { color: var(--muted); font-size: 12px; line-height: 1.5; }
-.circuit { margin-top: 8px; max-height: 260px; overflow: auto; border: 1px solid var(--line); border-radius: 8px; background: #0b0f14; }
-.circuit svg { height: 240px; width: auto; }
+.circuit { margin-top: 8px; max-height: 330px; overflow-x: auto; overflow-y: hidden; border: 1px solid var(--line); border-radius: 8px; background: #0b0f14; }
+.circuit svg { height: 310px; width: auto; display: block; }
 .samples { display: flex; flex-direction: column; gap: 3px; }
 .sample { display: grid; grid-template-columns: auto 1fr 40px 64px; gap: 8px; align-items: center; font-size: 11px; }
 .sample code { font-size: 10px; color: var(--muted); }
@@ -126,3 +126,4 @@ figcaption { margin-top: 4px; }
 .body.results-wide .rail { padding: 16px 28px; }
 .body.results-wide .lab { max-width: 980px; }
 .body.results-wide .lab table { font-size: 13px; }
+.body.results-wide .overlay.bl, .body.results-wide .overlay.br, .body.results-wide .overlay.tl { display: none; }

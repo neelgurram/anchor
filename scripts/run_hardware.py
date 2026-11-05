@@ -28,8 +28,7 @@ sys.path.insert(0, str(ROOT / "backend"))
 import numpy as np  # noqa: E402
 
 from anchor import hwset  # noqa: E402
-from anchor.solvers.quantum import (build_circuit, bits_to_x, lr_params, solve_qaoa,  # noqa: E402
-                                    tune_anneal)
+from anchor.solvers.quantum import bits_to_x, build_circuit  # noqa: E402
 
 OUT = ROOT / "results" / "hardware"
 
@@ -37,17 +36,6 @@ OUT = ROOT / "results" / "hardware"
 def secret(env: str, prompt: str) -> str:
     v = os.environ.get(env)
     return v if v else getpass(prompt)
-
-
-def gate_modes(inst, seed):
-    """Schedules fixed on the ideal simulator before anything is sent to hardware."""
-    q1 = solve_qaoa(inst, p=1, shots=2048, maxiter=60, seed=seed, with_device_stats=False)
-    p_lr, d_lr = tune_anneal(inst.Q, ps=(2, 3, 5), seed=seed)
-    return {
-        "QAOA p=1": {"layers": 1, "params": np.array(q1.provenance["params"]), "family": "variational"},
-        f"Digitized anneal p={p_lr}": {"layers": p_lr, "params": lr_params(p_lr, d_lr), "delta": d_lr,
-                                       "family": "linear-ramp (LR-QAOA)"},
-    }
 
 
 def backend_snapshot(backend) -> dict:
@@ -73,8 +61,8 @@ def run_ibm(shots: int, dry: bool, backend_name: str | None):
     items = []
     for cid, n, seed in hwset.gate_set():
         case, prob, inst = hwset.build(cid, n, seed)
-        for label, mode in gate_modes(inst, seed).items():
-            items.append({"problem": hwset.problem_params(cid, n, seed), "inst": inst, "label": label, **mode})
+        for key, mode in hwset.gate_modes(inst, seed).items():
+            items.append({"problem": hwset.problem_params(cid, n, seed), "inst": inst, "mode": key, **mode})
     print(f"IBM plan: {len(items)} circuits x 2 (raw, mitigated) x {shots} shots "
           f"= {2 * len(items) * shots:,} shots, in 2 jobs")
 
@@ -133,7 +121,7 @@ def run_ibm(shots: int, dry: bool, backend_name: str | None):
                 "samples": {"bits": [[int(b) for b in bits_to_x(k)] for k in keys], "counts": [counts[k] for k in keys]},
                 "backend": backend.name, "job_id": job.job_id(), "qpu_time": qsec, "wall_time": wall,
                 "circuit": it["circuit"],
-                "provenance": {"family": it["family"], "layers": it["layers"],
+                "provenance": {"mode": it["mode"], "family": it["family"], "layers": it["layers"],
                                "params": [round(float(v), 5) for v in it["params"]],
                                "params_source": "ideal Aer simulator (transferred unchanged)",
                                "mitigation": "XY4 dynamical decoupling + gate/measure twirling" if mitigated else "none",
