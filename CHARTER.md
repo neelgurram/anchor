@@ -18,4 +18,11 @@ Fixed on 2026-11-05, before any QAOA, digitized-anneal, IBM or D-Wave result was
 | **Evidence that would stop the work** | If the consistency step did not beat naive matching on real data, the problem would not be worth solving with any solver, classical or quantum. Checked: it does (5.5 mm → 2.0 mm mean TRE at 30% outliers, n_used = 8). |
 
 ## Changes after the charter date
-(none yet)
+
+Each change applies identically to every solver. None changes which solver wins.
+
+| Date | Change | Reason |
+|---|---|---|
+| 2026-11-05 | Thin-plate-spline warp now uses smoothing = 100 (was 0, exact interpolation). | With exact interpolation, one wrong match bent the surface by up to 148 mm. Smoothing lowers TRE for all solvers, including the oracle (exact max clique: 2.0 mm at both settings; naive improves the most). Chosen on the classical solvers before the quantum benchmark. |
+| 2026-11-05 | QAOA settings set to p = 3, CVaR α = 0.5, starting from a linear-ramp schedule (Δ = 1.0). First tried: p = 2, α = 0.25. | The first settings were tuning choices, not fixed in the charter. They were weak on 16-qubit instances, and the final ones are standard published defaults (CVaR-QAOA, linear-ramp start). The benchmark reports the final settings for every instance. |
+| 2026-11-05 | The 3D view caps on-screen movement at 30 mm after the ×2 exaggeration. | Display only. Metrics are computed on the uncapped warp in patient space. The UI states the cap. |

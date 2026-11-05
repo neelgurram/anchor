@@ -230,6 +230,17 @@ def benchmark():
     return json.loads(f.read_text())
 
 
+@app.get("/api/figure/{name}")
+def figure(name: str):
+    import re
+    if not re.fullmatch(r"[\w.-]+\.(png|svg)", name):
+        raise HTTPException(400, "bad figure name")
+    f = RESULTS / "figures" / name
+    if not f.exists():
+        raise HTTPException(404, f"no figure {name}")
+    return FileResponse(f)
+
+
 @app.get("/api/hardware")
 def hardware():
     return _hardware_index()
