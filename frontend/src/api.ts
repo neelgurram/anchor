@@ -96,4 +96,5 @@ export const api = {
   circuit: (problem_id: string) => call<{ svg: string; stats: Record<string, unknown> }>(`/api/circuit/${problem_id}`),
   benchmark: () => call<any>("/api/benchmark"),
   hardware: () => call<any[]>("/api/hardware"),
+  noise: () => call<any>("/api/noise"),
 };

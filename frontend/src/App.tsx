@@ -106,7 +106,7 @@ export default function App() {
         </nav>
       </header>
 
-      <main className="body">
+      <main className={`body ${tab === "results" ? "results-wide" : tab === "lab" ? "lab-wide" : ""}`}>
         <section className="viewport">
           <BrainView s={view} />
           <div className="overlay tl">

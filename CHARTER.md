@@ -23,6 +23,13 @@ Each change applies identically to every solver. None changes which solver wins.
 
 | Date | Change | Reason |
 |---|---|---|
-| 2026-11-05 | Thin-plate-spline warp now uses smoothing = 100 (was 0, exact interpolation). | With exact interpolation, one wrong match bent the surface by up to 148 mm. Smoothing lowers TRE for all solvers, including the oracle (exact max clique: 2.0 mm at both settings; naive improves the most). Chosen on the classical solvers before the quantum benchmark. |
+| 2026-11-05 | Thin-plate-spline warp now uses smoothing = 100 (was 0, exact interpolation). | With exact interpolation, one wrong match bent the surface by up to 148 mm. Measured at n_used = 8 with 30% outliers across 22 patients × 3 seeds (`summary.json → smoothing_check`), smoothing 0 → 100 moved TRE: naive 5.45 → 5.10 mm, exact max clique 2.02 → 1.87 mm, oracle 1.69 → 1.57 mm. Every method improves and the ranking is unchanged. Chosen on the classical solvers before the quantum benchmark. |
 | 2026-11-05 | QAOA settings set to p = 3, CVaR α = 0.5, starting from a linear-ramp schedule (Δ = 1.0). First tried: p = 2, α = 0.25. | The first settings were tuning choices, not fixed in the charter. They were weak on 16-qubit instances, and the final ones are standard published defaults (CVaR-QAOA, linear-ramp start). The benchmark reports the final settings for every instance. |
 | 2026-11-05 | The 3D view caps on-screen movement at 30 mm after the ×2 exaggeration. | Display only. Metrics are computed on the uncapped warp in patient space. The UI states the cap. |
+
+## Result against the charter (2026-11-05 benchmark)
+- **Criteria 1 and 2 are met.** On 264 paired instances, held-out TRE goes from 5.36 mm uncorrected and 5.57 mm naive to 2.19 mm exact max clique.
+- **Criterion 3 is met on the simulator.** QAOA and digitized anneal reach the same TRE as exact (paired difference −0.02 ± 0.06 mm).
+- **Criterion 4 is pending.** It needs the hardware run.
+- **A finding we did not expect, and report as-is:** RANSAC (rigid-fit inlier test) beats exact max clique by 0.18 ± 0.12 mm (paired). The reason is that pairwise-distance consistency is looser than a global rigid check, so the largest consistent set sometimes admits a decoy that happens to fit. The QUBO solves its problem optimally; the problem definition is what leaves this gap. The obvious next step is adding triplet or rigid-fit terms, which turns the QUBO into a higher-order (HUBO) problem.
+

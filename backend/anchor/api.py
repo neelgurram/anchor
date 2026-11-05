@@ -230,6 +230,14 @@ def benchmark():
     return json.loads(f.read_text())
 
 
+@app.get("/api/noise")
+def noise():
+    f = RESULTS / "noise" / "summary.json"
+    if not f.exists():
+        raise HTTPException(404, "noise study not run yet (scripts/run_noise.py)")
+    return json.loads(f.read_text())
+
+
 @app.get("/api/figure/{name}")
 def figure(name: str):
     import re

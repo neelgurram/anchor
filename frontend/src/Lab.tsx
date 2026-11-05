@@ -59,27 +59,77 @@ function Samples({ s }: { s: SolveData }) {
   );
 }
 
+const CAPTION: Record<string, string> = {
+  "tre_by_solver.png": "Map error on hidden expert landmarks, same 264 instances for every solver.",
+  "tre_vs_outlier.png": "1,650 classical instances: trusting the top match fails as soon as some matches are wrong.",
+  "quality_vs_qubits.png": "After keeping the best shot, quantum solvers reach the optimum; per shot they are far behind simulated annealing.",
+  "device_cost.png": "Why hardware struggles: circuit size grows fast, and every two-qubit gate can fail.",
+  "classical_time.png": "Exact classical max clique stays far under a second at realistic sizes.",
+  "noise.png": "Same circuits, ideal simulator vs IBM Heron noise model vs random guessing.",
+};
+
+const pct = (v: number | null | undefined, d = 0) => (v == null ? "n/a" : `${(v * 100).toFixed(d)}%`);
+
 function Results() {
   const [bench, setBench] = useState<any | null>(null);
+  const [noise, setNoise] = useState<any | null>(null);
   const [hw, setHw] = useState<any[] | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
   useEffect(() => {
     api.benchmark().then(setBench).catch(e => setMsg(e.message));
+    api.noise().then(setNoise).catch(() => setNoise(null));
     api.hardware().then(setHw).catch(() => setHw([]));
   }, []);
+  const pd = bench?.paired_tre_difference;
   return (
     <div className="panel lab">
       <h3>Benchmark across all 22 patients</h3>
       {!bench && <p className="muted">{msg ?? "Loading…"}</p>}
       {bench?.headline && (
-        <table>
-          <thead><tr><th>Solver</th><th>Map error</th><th>Correct kept</th><th>vs optimum</th></tr></thead>
-          <tbody>{bench.headline.map((r: any) => (
-            <tr key={r.solver}><td>{r.label}</td><td>{r.tre.toFixed(2)} ± {r.tre_ci.toFixed(2)} mm</td><td>{Math.round(r.precision * 100)}%</td><td>{r.approx_ratio === null ? "n/a" : `${Math.round(r.approx_ratio * 100)}%`}</td></tr>
-          ))}</tbody>
-        </table>
+        <>
+          <table>
+            <thead><tr><th>Solver</th><th>Map error</th><th>Correct kept</th><th>vs optimum</th><th>Shots optimal</th><th>Time</th></tr></thead>
+            <tbody>{bench.headline.map((r: any) => (
+              <tr key={r.solver}><td>{r.label}</td><td>{r.tre.toFixed(2)} ± {r.tre_ci.toFixed(2)} mm</td>
+                <td>{pct(r.precision)}</td><td>{pct(r.approx_ratio)}</td><td>{pct(r.p_optimal, 1)}</td>
+                <td>{r.wall_time_s < 1 ? `${Math.round(r.wall_time_s * 1000)} ms` : `${r.wall_time_s.toFixed(1)} s`}</td></tr>
+            ))}</tbody>
+          </table>
+          <p className="muted">{bench.headline[0].n} instances (8–16 qubits, 20–40% bad matches), simulated live on Aer. ± is a 95% bootstrap interval.</p>
+        </>
       )}
-      {bench?.figures?.map((f: string) => <img key={f} className="fig" src={`/api/figure/${f}`} alt={f} />)}
+      {pd && (
+        <div className="findings">
+          <div className="kv"><span>Consistency check vs naive</span><b>{Math.abs(pd["exact-naive"].mean_mm).toFixed(2)} mm better</b></div>
+          <div className="kv"><span>QAOA vs exact (paired)</span><b>{pd["qaoa-exact"].mean_mm.toFixed(2)} ± {pd["qaoa-exact"].ci95_mm.toFixed(2)} mm</b></div>
+          <div className="kv"><span>Digitized anneal vs exact</span><b>{pd["danneal-exact"].mean_mm.toFixed(2)} ± {pd["danneal-exact"].ci95_mm.toFixed(2)} mm</b></div>
+          <div className="kv"><span>Exact max clique vs RANSAC</span><b>+{pd["exact-ransac"].mean_mm.toFixed(2)} ± {pd["exact-ransac"].ci95_mm.toFixed(2)} mm</b></div>
+          <p className="muted">RANSAC's global rigid check is stricter than pairwise distance agreement, so it beats the clique formulation slightly. We report it as found.</p>
+        </div>
+      )}
+      {bench?.figures?.map((f: string) => (
+        <figure key={f}><img className="fig" src={`/api/figure/${f}`} alt={CAPTION[f] ?? f} /><figcaption className="muted">{CAPTION[f]}</figcaption></figure>
+      ))}
+      {bench?.revisit_trigger && (
+        <>
+          <h3>When would quantum hardware be worth revisiting?</h3>
+          <table>
+            <thead><tr><th>Qubits</th><th>2q gates (p = 1)</th><th>Error-free runs today</th><th>2q error needed for 50%</th></tr></thead>
+            <tbody>{bench.revisit_trigger.filter((r: any) => r.p === 1).map((r: any) => (
+              <tr key={r.qubits}><td>{r.qubits}</td><td>{r.two_qubit_gates}</td><td>{pct(r.error_free_now, 1)}</td><td>{r.eps_needed_for_50pct.toExponential(1)}</td></tr>
+            ))}</tbody>
+          </table>
+          <p className="muted">Heron median two-qubit error today: {bench.heron_median_2q_error.toExponential(1)}. A clinical case needs 50–200 qubits.</p>
+        </>
+      )}
+      <h3>Noise analysis</h3>
+      {!noise && <p className="muted">Noise-model study not run yet.</p>}
+      {noise && (
+        <>
+          <img className="fig" src="/api/figure/noise.png" alt={CAPTION["noise.png"]} />
+          <figcaption className="muted">{CAPTION["noise.png"]}</figcaption>
+        </>
+      )}
       <h3>Recorded quantum hardware runs</h3>
       {hw && hw.length === 0 && <p className="muted">No hardware runs recorded yet.</p>}
       {hw && hw.length > 0 && (

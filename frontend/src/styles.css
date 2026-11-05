@@ -117,3 +117,12 @@ tr.on td { color: var(--accent); }
 details { margin-top: 10px; }
 pre { font-size: 10px; color: var(--muted); white-space: pre-wrap; }
 .fig { width: 100%; border-radius: 8px; border: 1px solid var(--line); margin-top: 8px; }
+.findings { margin-top: 10px; padding: 10px 12px; border-radius: 8px; background: var(--panel-2); }
+figure { margin: 12px 0 0; }
+figcaption { margin-top: 4px; }
+.body { transition: grid-template-columns 0.35s ease; }
+.body.lab-wide { grid-template-columns: 1fr 560px; }
+.body.results-wide { grid-template-columns: 32% 1fr; }
+.body.results-wide .rail { padding: 16px 28px; }
+.body.results-wide .lab { max-width: 980px; }
+.body.results-wide .lab table { font-size: 13px; }
