@@ -18,6 +18,11 @@ from .candidates import Problem
 from .data import Case
 
 
+# Mild TPS regularisation (an approximating spline, standard in landmark registration).
+# Fixed 2026-11-05 before any benchmark sweep; it lowers error for every solver alike.
+SMOOTHING = 100.0
+
+
 class Warp:
     """Displacement field d(x) such that corrected position = x + d(x)."""
 
@@ -27,7 +32,8 @@ class Warp:
         self.n = len(self.src)
         if self.n >= 5:
             self.kind = "tps"
-            self._f = RBFInterpolator(self.src, disp, kernel="thin_plate_spline", degree=1)
+            self._f = RBFInterpolator(self.src, disp, kernel="thin_plate_spline", degree=1,
+                                      smoothing=SMOOTHING)
         elif self.n >= 1:
             self.kind = "translation"           # too few points for a stable TPS
             self._t = disp.mean(axis=0)

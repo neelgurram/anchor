@@ -8,3 +8,4 @@ frontend/dist/
 *.log
 qiskit-ibm.json
 dwave.conf
+results/screens/

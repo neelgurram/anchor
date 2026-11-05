@@ -1,0 +1,58 @@
+{
+ "source": "fsaverage6 pial surface (FreeSurfer template, MRI-derived), via Continuum backend/data/seg.npz",
+ "frame": "scene: x = patient left, y = superior, z = anterior; mm",
+ "regions": [
+  {
+   "id": 1,
+   "name": "Primary Motor (M1)",
+   "key": "motor",
+   "clinical_weight": 1.0,
+   "color": "#ff5a5a",
+   "n_nodes": 1854,
+   "centroid": [
+    -1.715516209602356,
+    38.94959259033203,
+    -8.12828540802002
+   ]
+  },
+  {
+   "id": 2,
+   "name": "Somatosensory (S1)",
+   "key": "somatosensory",
+   "clinical_weight": 0.8,
+   "color": "#ffc850",
+   "n_nodes": 1629,
+   "centroid": [
+    -3.516716480255127,
+    39.449073791503906,
+    6.173245429992676
+   ]
+  },
+  {
+   "id": 3,
+   "name": "Speech (Broca)",
+   "key": "speech",
+   "clinical_weight": 1.0,
+   "color": "#5aa0ff",
+   "n_nodes": 721,
+   "centroid": [
+    -52.63373947143555,
+    -9.964265823364258,
+    -36.93891525268555
+   ]
+  },
+  {
+   "id": 4,
+   "name": "Visual (V1)",
+   "key": "visual",
+   "clinical_weight": 0.7,
+   "color": "#5ae0a0",
+   "n_nodes": 3410,
+   "centroid": [
+    -0.4931245446205139,
+    -11.600019454956055,
+    55.54466247558594
+   ]
+  }
+ ]
+}

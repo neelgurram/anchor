@@ -1,0 +1,25 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "anchor-api",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": [
+        "/c",
+        "cd /d C:\\Users\\gurra\\Projects\\anchor\\backend && ..\\.venv\\Scripts\\python.exe -m uvicorn anchor.api:app --host 127.0.0.1 --port 8030"
+      ],
+      "port": 8030,
+      "autoPort": false
+    },
+    {
+      "name": "anchor-web",
+      "runtimeExecutable": "cmd.exe",
+      "runtimeArgs": [
+        "/c",
+        "set PATH=C:\\Program Files\\nodejs;%PATH% && cd /d C:\\Users\\gurra\\Projects\\anchor\\frontend && npx vite --port 5180 --strictPort"
+      ],
+      "port": 5180,
+      "autoPort": false
+    }
+  ]
+}
