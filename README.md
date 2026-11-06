@@ -33,14 +33,21 @@ The table covers 264 paired instances: 8–16 qubits, 20–40% bad matches, 95% 
   - Every variant stays well above random guessing (2%).
 
   The hardware run therefore sends all three variants.
+- **Confidence map and alarm** (`results/confidence`, 3,344 corrected maps):
+  - Anchor checks its own correction without seeing the truth. It hides each trusted match, predicts it from the others, and colours the brain by how far the map could move.
+  - The alarm threshold was set on even-numbered patients. On the odd-numbered ones it caught **66% of bad maps** (real error > 3 mm) and left **84% of good maps** alone. It caught **93% of bad naive maps**.
+  - Where the map is blue, the real error at hidden expert landmarks is 1.3 mm (median). Where it is red, it is 3.5 mm.
+  - Limits: it misses maps that are bad because too few landmarks cover a region. Adding the solver's other near-best answers to the map did not make it more accurate (Spearman 0.47 vs 0.48 with the hide-one check alone), and we report that as found.
 - **No quantum advantage is claimed.** Exact classical max clique takes about 1 ms here and about 50 ms at 160 candidates. See `revisit_trigger` in the summary for the hardware error rates at which this would change.
 
 ## What's here
 | Path | What it is |
 |---|---|
 | `backend/anchor/` | The pipeline. L0 data (`data.py`) → L1 candidate matches → L2 consistency graph → L3 QUBO → L4 solvers (`solvers/`) → L5 thin-plate-spline warp and TRE → L6 template-brain mesh → L9 FastAPI (`api.py`) |
-| `frontend/` | React + react-three-fiber app: the five-step surgery flow, solver lab and results |
+| `frontend/` | React + react-three-fiber app: the five-step surgery flow with the confidence heatmap and alarm, solver lab and results |
 | `scripts/run_benchmark.py` | The full benchmark and figures (`results/benchmark`, `results/figures`) |
+| `backend/anchor/confidence.py` | Confidence map and alarm: hide-one check, per-vertex spread, alarm rule |
+| `scripts/run_confidence.py` | Checks the confidence map and alarm against the truth (`results/confidence`) |
 | `scripts/run_noise.py` | Noise study: ideal simulator vs IBM Heron noise model vs random (`results/noise`) |
 | `scripts/run_hardware.py` | IBM Heron and D-Wave runs (credentials typed in at run time and never stored); raw bitstrings go to `results/hardware` |
 | `notebooks/Anchor_walkthrough.ipynb` | End-to-end walkthrough for judges, with outputs |
@@ -54,7 +61,7 @@ python -m venv .venv && .venv/Scripts/pip install -r requirements.txt
 cd backend && ../.venv/Scripts/python -m uvicorn anchor.api:app --port 8030
 cd frontend && npm install && npx vite --port 5180      # open http://localhost:5180
 ```
-Tests: `cd backend && ../.venv/Scripts/python -m pytest -q` (32 tests: QUBO-vs-max-clique penalty check, endianness, TRE math, API contract, replay).
+Tests: `cd backend && ../.venv/Scripts/python -m pytest -q` (39 tests: QUBO-vs-max-clique penalty check, endianness, TRE math, API contract, replay, confidence engine).
 
 ## Data
 RESECT: Xiao et al., *Medical Physics* 2017, DOI 10.11582/2017.00004, CC BY 4.0. Only the landmark tag files are used.

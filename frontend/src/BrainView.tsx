@@ -6,14 +6,17 @@ import type { Brain, ProblemData, Vec3 } from "./api";
 import { COLORS, errorColor } from "./theme";
 
 export type LineState = "hidden" | "pending" | "kept" | "rejected";
+export type ColorMode = "tissue" | "confidence" | "error";
 
 export interface ViewState {
   brain: Brain | null;
   problem: ProblemData | null;
   target: Float32Array | null;     // displacement the surface should animate to (scene mm)
   scale: number;                   // display exaggeration factor (shown in the UI)
-  colorMode: "tissue" | "error";
-  error: Float32Array | null;
+  colorMode: ColorMode;
+  error: Float32Array | null;      // real error vs expert shift (study only)
+  spread: Float32Array | null;     // confidence map: how far the map could move here (mm)
+  suspect: Vec3 | null;            // most suspicious trusted match, ringed when the alarm is on
   showMri: boolean;
   showCandidates: boolean;
   lineStates: LineState[];         // per candidate
@@ -67,14 +70,15 @@ function BrainMesh({ s }: { s: ViewState }) {
     for (let i = 0; i < brain.n_vertices; i++) {
       const wi = w ? w[i] : 0;
       c.copy(TISSUE).lerp(TISSUE_SITE, wi * 0.6);
-      if (s.colorMode === "error" && s.error && wi > 0.005) {
+      const field = s.colorMode === "error" ? s.error : s.colorMode === "confidence" ? s.spread : null;
+      if (field && wi > 0.005) {
         const f = Math.min(1, wi / 0.12);                       // full colour across the corrected region, soft rim
-        c.lerp(errorColor(s.error[i]), f * f * (3 - 2 * f));
+        c.lerp(errorColor(field[i]), f * f * (3 - 2 * f));
       }
       arr[3 * i] = c.r; arr[3 * i + 1] = c.g; arr[3 * i + 2] = c.b;
     }
     col.needsUpdate = true;
-  }, [geo, brain, s.problem, s.colorMode, s.error]);
+  }, [geo, brain, s.problem, s.colorMode, s.error, s.spread]);
 
   useFrame((_, dt) => {
     const a = anim.current;
@@ -117,6 +121,21 @@ function Dots({ pts, color, r = 1.7, opacity = 1 }: { pts: Vec3[]; color: string
         </mesh>
       ))}
     </group>
+  );
+}
+
+function SuspectRing({ at }: { at: Vec3 }) {
+  const ref = useRef<THREE.Mesh>(null);
+  useFrame(({ clock }) => {
+    if (!ref.current) return;
+    const k = 1 + 0.18 * Math.sin(clock.elapsedTime * 4);
+    ref.current.scale.setScalar(k);
+  });
+  return (
+    <mesh ref={ref} position={at} renderOrder={11}>
+      <sphereGeometry args={[4.2, 24, 16]} />
+      <meshBasicMaterial color={COLORS.warn} transparent opacity={0.38} depthTest={false} />
+    </mesh>
   );
 }
 
@@ -186,7 +205,8 @@ export default function BrainView({ s }: { s: ViewState }) {
           })}
         </>
       )}
-      {p && s.showHeld && <Dots pts={p.landmarks.us_held} color={COLORS.held} r={1.2} opacity={0.9} />}
+      {p && s.suspect && <SuspectRing at={s.suspect} />}
+      {p && s.showHeld &&<Dots pts={p.landmarks.us_held} color={COLORS.held} r={1.2} opacity={0.9} />}
       <OrbitControls makeDefault enableDamping dampingFactor={0.08} minDistance={60} maxDistance={900} />
       <CameraRig problem={p} />
     </Canvas>

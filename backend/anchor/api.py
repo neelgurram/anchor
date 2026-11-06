@@ -21,7 +21,7 @@ from fastapi.responses import FileResponse, Response
 from fastapi.staticfiles import StaticFiles
 from pydantic import BaseModel, Field
 
-from . import mesh
+from . import confidence, mesh
 from .candidates import Problem, make_problem
 from .data import ROOT, Case, list_cases, load_case
 from .graph import TAU_MM, TAU_REL
@@ -195,7 +195,15 @@ def solve(req: SolveRequest):
     disp = mesh.surface_displacement(s.case, s.placement, warp_from_selection(s.problem, res.selection), s.weight)
     err = np.linalg.norm(disp - s.ref_disp, axis=1)
     shown, clipped = mesh.clip_for_display(disp)
+    # confidence: computed from the matches alone (no ground truth), see confidence.py
+    alts = [np.asarray(a, bool) for a in res.alternatives]
+    cf = confidence.assess(s.problem, res.selection, len(alts))
+    spread = confidence.spread(s.problem, res.selection, confidence.members(res.selection, alts),
+                               lambda w: mesh.surface_displacement(s.case, s.placement, w, s.weight))
     out = {"result": res.as_dict(), "evaluation": ev.as_dict(), "meta": META.get(req.solver, {}),
+           "confidence": {**cf.as_dict(), "spread_max_mm": round(float(spread.max()), 2),
+                          "spread_median_mm": round(float(np.median(spread[s.weight > 0.5])), 2)},
+           "spread": mesh.b64(spread),
            "displacement": mesh.b64(shown), "error": mesh.b64(err),
            "surface_error_max_mm": round(float(err.max()), 2),
            "surface_displacement_max_mm": round(float(np.linalg.norm(disp, axis=1).max()), 2),
@@ -235,6 +243,14 @@ def benchmark():
     f = RESULTS / "benchmark" / "summary.json"
     if not f.exists():
         raise HTTPException(404, "benchmark not run yet (scripts/run_benchmark.py)")
+    return json.loads(f.read_text())
+
+
+@app.get("/api/confidence")
+def confidence_study():
+    f = RESULTS / "confidence" / "summary.json"
+    if not f.exists():
+        raise HTTPException(404, "confidence study not run yet (scripts/run_confidence.py)")
     return json.loads(f.read_text())
 
 

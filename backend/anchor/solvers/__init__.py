@@ -53,6 +53,7 @@ class SolveResult:
     wall_time: float
     qpu_time: float | None = None
     samples: list = field(default_factory=list)   # top samples: {"bits": [...], "count": n, "energy": e}
+    alternatives: list = field(default_factory=list)  # other near-best consistent sets (bool arrays)
     circuit: dict | None = None
     provenance: dict = field(default_factory=dict)
     replay: bool = False
@@ -61,6 +62,7 @@ class SolveResult:
         d = dict(self.__dict__)
         for k in ("selection", "raw_best"):
             d[k] = [int(v) for v in np.asarray(d[k]).astype(int)]
+        d["alternatives"] = [[int(v) for v in np.asarray(a).astype(int)] for a in d["alternatives"]]
         return d
 
 
@@ -76,13 +78,19 @@ def summarise_samples(inst: Instance, X: np.ndarray, counts: np.ndarray, solver:
     best_i = int(E.argmin())
     raw = X[best_i]
     sel = repair_to_clique(inst.adj, raw, inst.w)
-    order = np.argsort(E)[:top]
-    samples = [{"bits": [int(b) for b in X[i]], "count": int(counts[i]), "energy": round(float(E[i]), 4)}
+    # distinct bitstrings (samplers like SA return one row per read, with repeats)
+    U, inv = np.unique(X, axis=0, return_inverse=True)
+    Uc = np.bincount(inv.ravel(), weights=counts, minlength=len(U))
+    UE = energies(inst.Q, U)
+    order = np.argsort(UE)[:top]
+    samples = [{"bits": [int(b) for b in U[i]], "count": int(Uc[i]), "energy": round(float(UE[i]), 4)}
                for i in order]
+    from ..confidence import alternatives
+    alts = alternatives(inst.adj, inst.w, sel, U, UE)
     return SolveResult(
         solver=solver, selection=sel, raw_best=raw, repaired=bool((sel != raw).any()),
         best_energy=float(E[best_i]), approx_ratio=float(inst.w[sel].sum() / inst.opt_weight),
         p_optimal=float(counts[opt].sum() / total), p_feasible=float(counts[feas].sum() / total),
         expected_ratio=float((np.maximum(0, -E) * counts).sum() / total / inst.opt_weight),
-        wall_time=wall_time, samples=samples, **extra,
+        wall_time=wall_time, samples=samples, alternatives=alts, **extra,
     )

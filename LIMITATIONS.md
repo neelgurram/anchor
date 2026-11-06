@@ -33,11 +33,20 @@ A cloud QPU call takes seconds to minutes in the queue. An intra-operative updat
 ## Data and regulation
 RESECT is public and anonymized (CC BY 4.0), so sending it to a cloud QPU is fine. Real patient data could not go to a third-party cloud without a privacy and security review. Any clinical use would need regulatory clearance, for example FDA 510(k) for navigation software.
 
+## The confidence map is a check, not a guarantee
+The confidence map and alarm (`backend/anchor/confidence.py`) are computed from the matches alone, by hiding each trusted match and predicting it from the others. Measured on patients the alarm was not tuned on (`results/confidence`):
+- it caught 66% of bad maps overall and 93% of bad naive maps, and left 84% of good maps alone;
+- it rarely catches maps from the clique solvers that are bad. Most of those are bad because only 6 landmarks cover the region, not because a match is wrong, and no check on the matches can see shift where there are no landmarks;
+- the solver's other near-best answers (from SA, QAOA or QPU samples) did not make the map more accurate than the hide-one check alone. The colours are not a quantum feature.
+
+A product would need a much larger validation before a surgeon relied on it.
+
 ## Choices made after the charter date
 Listed with reasons in CHARTER.md:
 - TPS smoothing;
 - the final QAOA settings;
-- the on-screen movement cap.
+- the on-screen movement cap;
+- the confidence map and alarm, added after the benchmark.
 
 Each applies identically to every solver.
 

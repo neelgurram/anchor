@@ -74,10 +74,12 @@ function Results() {
   const [bench, setBench] = useState<any | null>(null);
   const [noise, setNoise] = useState<any | null>(null);
   const [hw, setHw] = useState<any[] | null>(null);
+  const [conf, setConf] = useState<any | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
   useEffect(() => {
     api.benchmark().then(setBench).catch(e => setMsg(e.message));
     api.noise().then(setNoise).catch(() => setNoise(null));
+    api.confidence().then(setConf).catch(() => setConf(null));
     api.hardware().then(setHw).catch(() => setHw([]));
   }, []);
   const pd = bench?.paired_tre_difference;
@@ -120,6 +122,27 @@ function Results() {
             ))}</tbody>
           </table>
           <p className="muted">Heron median two-qubit error today: {bench.heron_median_2q_error.toExponential(1)}. A clinical case needs 50–200 qubits.</p>
+        </>
+      )}
+      <h3>Does the confidence map tell the truth?</h3>
+      {!conf && <p className="muted">Confidence study not run yet.</p>}
+      {conf && (
+        <>
+          <div className="findings">
+            <div className="kv"><span>Bad maps the alarm caught (patients it was not tuned on)</span><b>{pct(conf.alarm.test.sensitivity)}</b></div>
+            <div className="kv"><span>Good maps it left alone</span><b>{pct(conf.alarm.test.specificity)}</b></div>
+            <div className="kv"><span>Naive maps caught</span><b>{pct(conf.by_solver.naive.test.sensitivity)}</b></div>
+            <div className="kv"><span>Real error where the map is blue vs red</span>
+              <b>{conf.points_red_vs_blue.real_error_median_where_spread_lt_1mm.toFixed(1)} vs {conf.points_red_vs_blue.real_error_median_where_spread_gt_5mm.toFixed(1)} mm</b></div>
+            <p className="muted">
+              The alarm threshold ({conf.alarm.threshold_mm} mm) was chosen on even-numbered patients and tested on odd-numbered ones.
+              It catches wrong matches well. It misses maps that are bad because too few landmarks cover the region, a failure no
+              check on the matches can see. Adding the solver's other near-best answers did not sharpen the map
+              (ρ {conf.spread_vs_real_spearman.toFixed(2)} vs {conf.spread_vs_real_spearman_hide_one_only.toFixed(2)} with the hide-one check alone).
+            </p>
+          </div>
+          <figure><img className="fig" src="/api/figure/confidence.png" alt="Confidence validation" />
+            <figcaption className="muted">{conf.n_maps.toLocaleString()} corrected maps, 22 patients. Nothing in the confidence engine sees the truth.</figcaption></figure>
         </>
       )}
       <h3>Noise analysis</h3>

@@ -8,6 +8,7 @@ export const COLORS = {
   kept: "#3ddc97",
   rejected: "#ff5d6c",
   held: "#f4f6f8",
+  warn: "#ffb547",
 };
 
 // Error colormap (mm), same anchors as Continuum: blue < 1 mm, cyan, yellow 3 mm, red > 5 mm.

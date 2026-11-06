@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import BrainView, { DISPLAY_CAP_MM, type LineState, type ViewState } from "./BrainView";
+import BrainView, { DISPLAY_CAP_MM, type ColorMode, type LineState, type ViewState } from "./BrainView";
 import { api, type Brain, type CaseInfo, type ProblemData, type SolveData, type SolverInfo } from "./api";
 import { COLORS, ERROR_STOPS } from "./theme";
 import Lab from "./Lab";
@@ -24,7 +24,7 @@ export default function App() {
   const [busy, setBusy] = useState<string | null>(null);
   const [lineStates, setLineStates] = useState<LineState[]>([]);
   const [flashNote, setFlashNote] = useState<string | null>(null);
-  const [colorMode, setColorMode] = useState<"tissue" | "error">("tissue");
+  const [colorMode, setColorMode] = useState<ColorMode>("tissue");
   const [scale, setScale] = useState(2);
   const [tab, setTab] = useState<Tab>("surgery");
   const [err, setErr] = useState<string | null>(null);
@@ -78,18 +78,21 @@ export default function App() {
 
   const correct = () => {
     if (!active || !solves[active]) return;
-    setTarget(solves[active].displacement); setApplied(active); setStep(5); setColorMode("error");
+    setTarget(solves[active].displacement); setApplied(active); setStep(5); setColorMode("confidence");
   };
 
   const cur = applied ? solves[applied] : null;
   const act = active ? solves[active] : null;
+  const conf = cur?.confidence ?? null;
+  const suspect = problem && conf?.alarm && conf.worst_candidate !== null
+    ? problem.candidates[conf.worst_candidate].pos : null;
 
   const view: ViewState = useMemo(() => ({
     brain, problem, target, scale, colorMode,
-    error: cur ? cur.error : null,
+    error: cur ? cur.error : null, spread: cur ? cur.spread : null, suspect,
     showMri: step >= 1, showCandidates: step >= 3,
     lineStates, showHeld: step >= 5, animMs: 1800,
-  }), [brain, problem, target, scale, colorMode, cur, step, lineStates]);
+  }), [brain, problem, target, scale, colorMode, cur, suspect, step, lineStates]);
 
   const mapError = !problem ? null : step < 2 ? 0 : cur ? cur.evaluation.tre : problem.metrics.tre_uncorrected;
   // green only for a real correction: within 2x of the best possible (or under 3 mm)
@@ -122,11 +125,18 @@ export default function App() {
             {step >= 4 && <span><i style={{ background: COLORS.rejected }} /> Rejected</span>}
             {step >= 5 && <span><i style={{ background: COLORS.held }} /> Hidden check point</span>}
           </div>
-          {colorMode === "error" && cur && (
+          {colorMode !== "tissue" && cur && (
             <div className="overlay br heat">
               <div className="heat-bar" style={{ background: `linear-gradient(90deg, ${ERROR_STOPS.map(s => `${s.hex} ${(s.mm / 5) * 100}%`).join(", ")})` }} />
               <div className="heat-ticks"><span>0</span><span>1</span><span>3</span><span>5+ mm</span></div>
-              <div className="heat-label">Map error vs expert-landmark shift</div>
+              <div className="heat-label">{colorMode === "confidence"
+                ? "Confidence: how far the map could move here. Blue = trust it"
+                : "Real error vs expert landmarks (known only in this study)"}</div>
+            </div>
+          )}
+          {conf?.alarm && step >= 5 && (
+            <div className="overlay tc alarm">
+              <b>Do not trust this update.</b> {conf.reasons[0][0].toUpperCase() + conf.reasons[0].slice(1)}.
             </div>
           )}
           {flashNote && <div className="overlay tc flash">{flashNote}</div>}
@@ -197,7 +207,7 @@ export default function App() {
               </Step>
 
               <Step n={5} title={STEPS[4]} done={step >= 5} current={step === 4 || step === 5} locked={step < 4}>
-                <p>Warp the map onto the trusted matches, then check it against expert points the solver never saw.</p>
+                <p>Warp the map onto the trusted matches. Then Anchor checks its own work: it hides each trusted match, predicts it from the others, and colours the brain by how sure it is.</p>
                 <button className="primary" disabled={step < 4 || !act} onClick={correct}>
                   Correct the map{act ? ` with ${act.meta.label}` : ""}
                 </button>
@@ -207,9 +217,13 @@ export default function App() {
                     <small>{cur.meta.label}{fixed ? "" : " · still off: some trusted matches are wrong"} · best possible: {fmt(cur.evaluation.tre_oracle)} mm</small>
                   </div>
                 )}
+                {conf && step >= 5 && <TrustBox c={conf} realTre={cur!.evaluation.tre} />}
                 {step >= 5 && (
                   <div className="toggles">
-                    <button className={colorMode === "error" ? "chip on" : "chip"} onClick={() => setColorMode(colorMode === "error" ? "tissue" : "error")}>Error heatmap</button>
+                    {([["confidence", "Confidence"], ["error", "Real error"], ["tissue", "Off"]] as [ColorMode, string][]).map(([m, l]) => (
+                      <button key={m} className={colorMode === m ? "chip on" : "chip"} onClick={() => setColorMode(m)}>{l}</button>
+                    ))}
+                    <span className="sep" />
                     {[1, 2, 3].map(v => <button key={v} className={scale === v ? "chip on" : "chip"} onClick={() => setScale(v)}>×{v}</button>)}
                   </div>
                 )}
@@ -219,20 +233,20 @@ export default function App() {
                 <div className="compare">
                   <div className="compare-title">Compared on this patient</div>
                   <table>
-                    <thead><tr><th>Solver</th><th>Map error</th><th>Correct kept</th><th>vs optimum</th><th>Time</th></tr></thead>
+                    <thead><tr><th>Solver</th><th>Real error</th><th>Anchor's estimate</th><th>vs optimum</th><th>Time</th></tr></thead>
                     <tbody>
                       {Object.values(solves).map(r => (
                         <tr key={r.solver} className={r.solver === applied ? "on" : ""}>
                           <td>{r.meta.label}{r.result.replay ? " *" : ""}</td>
                           <td>{fmt(r.evaluation.tre)} mm</td>
-                          <td>{Math.round(r.evaluation.precision * 100)}%</td>
+                          <td className={r.confidence.alarm ? "alarm-cell" : ""}>{r.confidence.alarm ? "alarm" : `${fmt(r.confidence.est_error_mm)} mm`}</td>
                           <td>{r.result.approx_ratio === null ? "n/a" : `${Math.round(r.result.approx_ratio * 100)}%`}</td>
                           <td>{r.result.wall_time < 1 ? `${Math.round(r.result.wall_time * 1000)} ms` : `${r.result.wall_time.toFixed(1)} s`}</td>
                         </tr>
                       ))}
                     </tbody>
                   </table>
-                  <div className="foot">Unchanged map: {fmt(problem.metrics.tre_uncorrected)} mm. * recorded hardware run.</div>
+                  <div className="foot">Unchanged map: {fmt(problem.metrics.tre_uncorrected)} mm. The estimate uses the matches only; the real error uses hidden expert landmarks. * recorded hardware run.</div>
                 </div>
               )}
             </>
@@ -245,6 +259,8 @@ export default function App() {
       <footer className="strip">
         <Metric label="Patient's real brain shift" value={problem ? `${fmt(problem.case.mean_shift_mm)} mm` : "–"} sub={problem ? `max ${fmt(problem.case.max_shift_mm)} mm` : ""} />
         <Metric label="Navigation map error" value={mapError === null ? "–" : `${fmt(mapError)} mm`} sub={cur ? `after ${cur.meta.label}` : step >= 2 ? "uncorrected" : ""} tone={cur ? (fixed ? "good" : "warn") : step >= 2 ? "warn" : undefined} />
+        <Metric label="Map confidence" value={conf ? (conf.alarm ? "Alarm" : "Trusted") : "–"}
+                sub={conf ? `estimated error ${fmt(conf.est_error_mm)} mm` : ""} tone={conf ? (conf.alarm ? "bad" : "good") : undefined} />
         <Metric label="Best possible" value={problem ? `${fmt(problem.metrics.tre_oracle)} mm` : "–"} sub="true matches only" />
         <Metric label="Qubits" value={problem ? `${problem.qubo.qubits}` : "–"} sub={problem ? `${problem.qubo.quadratic} couplings` : ""} />
         <Metric label="Solver" value={act ? act.meta.label ?? act.solver : "–"} sub={act ? (act.result.replay ? "recorded QPU run" : "computed live") : ""} />
@@ -262,7 +278,30 @@ function Step({ n, title, done, current, locked, children }: { n: number; title:
   );
 }
 
-function Metric({ label, value, sub, tone }: { label: string; value: string; sub?: string; tone?: "good" | "warn" }) {
+function TrustBox({ c, realTre }: { c: SolveData["confidence"]; realTre: number }) {
+  if (c.alarm) {
+    return (
+      <div className="trust bad">
+        <div className="trust-title">Do not trust this update</div>
+        {c.reasons.map(r => <div key={r} className="trust-line">{r[0].toUpperCase() + r.slice(1)}.</div>)}
+        {c.worst_candidate !== null && (
+          <div className="trust-line">Most suspicious match (ringed in amber): misses its prediction by {c.worst_miss_mm.toFixed(1)} mm.</div>
+        )}
+        <div className="trust-foot">Real error, known only in this study: {realTre.toFixed(1)} mm.</div>
+      </div>
+    );
+  }
+  return (
+    <div className="trust good">
+      <div className="trust-title">Map can be trusted · estimated error {c.est_error_mm.toFixed(1)} mm</div>
+      <div className="trust-line">Each of the {c.n_trusted} trusted matches was hidden and predicted from the others. Average miss: {c.est_error_mm.toFixed(1)} mm.</div>
+      {c.n_alternatives > 0 && <div className="trust-line">The colours also include {c.n_alternatives} other near-best answers from this solver's samples.</div>}
+      <div className="trust-foot">Real error, known only in this study: {realTre.toFixed(1)} mm.</div>
+    </div>
+  );
+}
+
+function Metric({ label, value, sub, tone }: { label: string; value: string; sub?: string; tone?: "good" | "warn" | "bad" }) {
   return (
     <div className={`metric ${tone ?? ""}`}>
       <div className="m-label">{label}</div>

@@ -32,6 +32,15 @@ export interface ProblemData {
 
 export interface Sample { bits: number[]; count: number; energy: number }
 
+// Computed from the matches alone (no ground truth): see backend/anchor/confidence.py
+export interface Confidence {
+  loo: { candidate: number; miss_mm: number }[];
+  est_error_mm: number; worst_candidate: number | null; worst_miss_mm: number;
+  n_trusted: number; n_alternatives: number; alarm: boolean; reasons: string[];
+  rule: { min_trusted: number; alarm_mm: number };
+  spread_max_mm: number; spread_median_mm: number;
+}
+
 export interface SolveData {
   solver: string;
   result: {
@@ -47,7 +56,8 @@ export interface SolveData {
     precision: number; recall: number; warp_kind: string;
   };
   meta: { label?: string; family?: string; desc?: string };
-  displacement: Float32Array; error: Float32Array;
+  confidence: Confidence;
+  displacement: Float32Array; error: Float32Array; spread: Float32Array;
   surface_error_max_mm: number; surface_displacement_max_mm: number;
   display_clip_mm: number; display_clipped_fraction: number;
 }
@@ -91,10 +101,11 @@ export const api = {
   },
   async solve(problem_id: string, solver: string): Promise<SolveData> {
     const j = await call<any>("/api/solve", { problem_id, solver, params: {} });
-    return { ...j, solver, displacement: f32(j.displacement), error: f32(j.error) };
+    return { ...j, solver, displacement: f32(j.displacement), error: f32(j.error), spread: f32(j.spread) };
   },
   circuit: (problem_id: string) => call<{ svg: string; stats: Record<string, unknown> }>(`/api/circuit/${problem_id}`),
   benchmark: () => call<any>("/api/benchmark"),
   hardware: () => call<any[]>("/api/hardware"),
   noise: () => call<any>("/api/noise"),
+  confidence: () => call<any>("/api/confidence"),
 };

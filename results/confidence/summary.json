@@ -1,0 +1,168 @@
+{
+ "generated": "2026-11-05 23:02",
+ "bad_map_mm": 3.0,
+ "n_maps": 3344,
+ "n_points": 21632,
+ "estimate_vs_real_spearman": 0.4080934786506017,
+ "alarm": {
+  "calibrated_on": "even-numbered patients",
+  "tested_on": "odd-numbered patients",
+  "threshold_mm": 3.0,
+  "calibration": {
+   "threshold_mm": 3.0,
+   "bad_maps": 230,
+   "good_maps": 1290,
+   "caught": 179,
+   "missed": 51,
+   "false_alarms": 212,
+   "quiet_ok": 1078,
+   "sensitivity": 0.7782608695652173,
+   "specificity": 0.8356589147286821,
+   "balanced_accuracy": 0.8069598921469497
+  },
+  "test": {
+   "threshold_mm": 3.0,
+   "bad_maps": 311,
+   "good_maps": 1513,
+   "caught": 205,
+   "missed": 106,
+   "false_alarms": 241,
+   "quiet_ok": 1272,
+   "sensitivity": 0.6591639871382636,
+   "specificity": 0.8407138136153338,
+   "balanced_accuracy": 0.7499389003767987
+  },
+  "test_at_prefixed_3mm": {
+   "threshold_mm": 3.0,
+   "bad_maps": 311,
+   "good_maps": 1513,
+   "caught": 205,
+   "missed": 106,
+   "false_alarms": 241,
+   "quiet_ok": 1272,
+   "sensitivity": 0.6591639871382636,
+   "specificity": 0.8407138136153338,
+   "balanced_accuracy": 0.7499389003767987
+  }
+ },
+ "spread_vs_real_spearman": 0.47124767163523623,
+ "spread_vs_real_spearman_hide_one_only": 0.4803888039342876,
+ "points_red_vs_blue": {
+  "real_error_median_where_spread_lt_1mm": 1.3389952296246441,
+  "real_error_median_where_spread_gt_5mm": 3.4889355472047425
+ },
+ "worst_match_is_a_wrong_match": {
+  "maps_with_a_wrong_trusted_match": 556,
+  "fraction_flagged_correctly": 0.6420863309352518
+ },
+ "by_solver": {
+  "naive": {
+   "maps": 792,
+   "mean_est_error": 7.372759312471556,
+   "mean_tre": 4.6897303396526935,
+   "alarm_rate": 0.6338383838383839,
+   "test": {
+    "threshold_mm": 3.0,
+    "bad_maps": 196,
+    "good_maps": 236,
+    "caught": 182,
+    "missed": 14,
+    "false_alarms": 91,
+    "quiet_ok": 145,
+    "sensitivity": 0.9285714285714286,
+    "specificity": 0.614406779661017,
+    "balanced_accuracy": 0.7714891041162228
+   }
+  },
+  "ransac": {
+   "maps": 792,
+   "mean_est_error": 2.3045499148460324,
+   "mean_tre": 1.8254343663247043,
+   "alarm_rate": 0.14015151515151514,
+   "test": {
+    "threshold_mm": 3.0,
+    "bad_maps": 31,
+    "good_maps": 401,
+    "caught": 11,
+    "missed": 20,
+    "false_alarms": 47,
+    "quiet_ok": 354,
+    "sensitivity": 0.3548387096774194,
+    "specificity": 0.8827930174563591,
+    "balanced_accuracy": 0.6188158635668892
+   }
+  },
+  "exact": {
+   "maps": 792,
+   "mean_est_error": 2.159521565463664,
+   "mean_tre": 1.8951095846488295,
+   "alarm_rate": 0.11868686868686869,
+   "test": {
+    "threshold_mm": 3.0,
+    "bad_maps": 36,
+    "good_maps": 396,
+    "caught": 6,
+    "missed": 30,
+    "false_alarms": 40,
+    "quiet_ok": 356,
+    "sensitivity": 0.16666666666666666,
+    "specificity": 0.898989898989899,
+    "balanced_accuracy": 0.5328282828282829
+   }
+  },
+  "sa": {
+   "maps": 792,
+   "mean_est_error": 2.159521565463664,
+   "mean_tre": 1.8951095846488295,
+   "alarm_rate": 0.11868686868686869,
+   "test": {
+    "threshold_mm": 3.0,
+    "bad_maps": 36,
+    "good_maps": 396,
+    "caught": 6,
+    "missed": 30,
+    "false_alarms": 40,
+    "quiet_ok": 356,
+    "sensitivity": 0.16666666666666666,
+    "specificity": 0.898989898989899,
+    "balanced_accuracy": 0.5328282828282829
+   }
+  },
+  "danneal": {
+   "maps": 88,
+   "mean_est_error": 2.5553630535440934,
+   "mean_tre": 2.211267763803379,
+   "alarm_rate": 0.19318181818181818,
+   "test": {
+    "threshold_mm": 3.0,
+    "bad_maps": 6,
+    "good_maps": 42,
+    "caught": 0,
+    "missed": 6,
+    "false_alarms": 11,
+    "quiet_ok": 31,
+    "sensitivity": 0.0,
+    "specificity": 0.7380952380952381,
+    "balanced_accuracy": 0.36904761904761907
+   }
+  },
+  "qaoa": {
+   "maps": 88,
+   "mean_est_error": 2.565337130006729,
+   "mean_tre": 2.1520109726688768,
+   "alarm_rate": 0.2159090909090909,
+   "test": {
+    "threshold_mm": 3.0,
+    "bad_maps": 6,
+    "good_maps": 42,
+    "caught": 0,
+    "missed": 6,
+    "false_alarms": 12,
+    "quiet_ok": 30,
+    "sensitivity": 0.0,
+    "specificity": 0.7142857142857143,
+    "balanced_accuracy": 0.35714285714285715
+   }
+  }
+ }
+}
