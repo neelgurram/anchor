@@ -33,6 +33,12 @@ The table covers 264 paired instances: 8–16 qubits, 20–40% bad matches, 95% 
   - Every variant stays well above random guessing (2%).
 
   The hardware run therefore sends all three variants.
+- **Real hardware, IBM ibm_fez (Heron r2), 2026-11-07** (`results/hardware`, 48 runs, jobs `dbnuils4148s7391lgkg` with DD + twirling and `dbnvsu8qtr0c73adohg0` raw, 2,000 shots each):
+  - Same 24 circuits as the noise study, 6–12 qubits. Every number is re-scored from the saved raw bitstrings (`scripts/analyze_hardware.py`).
+  - The hardware got **83% of the consistent shots the noise model predicted**, and 6× more than random guessing. The model is a fair, slightly optimistic guide.
+  - Depth decides, as predicted: at 12 qubits the deep anneal keeps 4–13% consistent shots, QAOA p = 1 keeps 22–33%.
+  - In **42 of 48 runs the best of 2,000 shots was the exact optimum**, and the map error matched the exact solver (2.28 vs 2.21 mm average; uncorrected 12.6 mm). In the other 6, 5 maps came out worse.
+  - Error suppression (XY4 dynamical decoupling + twirling) did not help: 85% as many consistent shots as raw. The two jobs ran hours apart, so calibration drift is part of that gap.
 - **Confidence map and alarm** (`results/confidence`, 3,344 corrected maps):
   - Anchor checks its own correction without seeing the truth. It hides each trusted match, predicts it from the others, and colours the brain by how far the map could move.
   - The alarm threshold was set on even-numbered patients. On the odd-numbered ones it caught **66% of bad maps** (real error > 3 mm) and left **84% of good maps** alone. It caught **93% of bad naive maps**.

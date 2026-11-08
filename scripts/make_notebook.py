@@ -141,7 +141,7 @@ md("## 8. Real hardware (recorded runs, re-scored from raw bitstrings)")
 code("""
 from anchor import hwset
 from anchor.solvers import summarise_samples
-files = sorted((ROOT / "results/hardware").glob("*.json")) if (ROOT / "results/hardware").exists() else []
+files = sorted(f for pat in ("ibm_*.json", "dwave_*.json") for f in (ROOT / "results/hardware").glob(pat)) if (ROOT / "results/hardware").exists() else []
 if not files:
     print("No hardware runs recorded yet (scripts/run_hardware.py, run only with the team's go).")
 for f in files:
@@ -153,6 +153,15 @@ for f in files:
         ev = evaluate(case_h, prob_h, res.selection)
         print(f"{run['backend']:<16}{inst_h.m:>3}q {run['label']:<34} consistent shots {res.p_feasible:.3f}  "
               f"optimal {res.p_optimal:.3f}  map error {ev.tre:.2f} mm  job {run['job_id']}")
+""")
+code("""
+from IPython.display import Image, display
+a = ROOT / "results/hardware/analysis.json"
+if a.exists():
+    s = json.loads(a.read_text())
+    print({k: s[k] for k in ("backend", "same_as_exact", "hardware_over_model", "hardware_over_random", "mitigated_over_raw",
+                             "map_error_exact", "map_error_uncorrected")})
+    display(Image(str(ROOT / "results/figures/hardware.png")))
 """)
 md("""
 ## 9. Where this goes

@@ -14,7 +14,7 @@ export default function App() {
   const [brain, setBrain] = useState<Brain | null>(null);
   const [cases, setCases] = useState<CaseInfo[]>([]);
   const [solvers, setSolvers] = useState<SolverInfo[]>([]);
-  const [cfg, setCfg] = useState({ case_id: "Case12", n_used: 8, k: 2, outlier_rate: 0.3, seed: 9 });
+  const [cfg, setCfg] = useState({ case_id: "Case12", n_used: 6, k: 2, outlier_rate: 0.3, seed: 9 });
   const [problem, setProblem] = useState<ProblemData | null>(null);
   const [step, setStep] = useState(0);              // number of steps completed
   const [target, setTarget] = useState<Float32Array | null>(null);

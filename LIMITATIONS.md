@@ -24,7 +24,8 @@ A clinical case could have 50–200 candidate matches: 20–50 landmarks × 4 ca
 
 ## Hardware runs are few and recorded
 - **Budgets:** the IBM Open Plan gives 10 QPU minutes per 28 days; the D-Wave Leap trial gives 60 seconds.
-- **The runs:** one batched IBM job with mitigation and one without, plus a short series of D-Wave problems.
+- **The runs:** two IBM jobs on ibm_fez (24 circuits each, one with DD + twirling, one raw). They ran about three hours apart, so the raw vs suppressed comparison mixes in calibration drift. Two patient instances at four sizes is a small sample of one device on one night. The D-Wave series has not been run yet.
+- **QPU time:** the runtime did not return per-job usage, so QPU seconds are not recorded in the file.
 - **In the app:** the hardware runs are replayed from saved raw bitstrings and re-scored live. They are labelled "recorded" with job and problem IDs.
 
 ## Latency and the operating room

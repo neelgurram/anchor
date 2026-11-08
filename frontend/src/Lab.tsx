@@ -70,10 +70,16 @@ const CAPTION: Record<string, string> = {
 
 const pct = (v: number | null | undefined, d = 0) => (v == null ? "n/a" : `${(v * 100).toFixed(d)}%`);
 
+function avgHw(a: any): number {
+  const v = Object.values(a.by_mode).flatMap((m: any) => [m.map_error_raw, m.map_error_mitigated]) as number[];
+  return v.reduce((x, y) => x + y, 0) / v.length;
+}
+
 function Results() {
   const [bench, setBench] = useState<any | null>(null);
   const [noise, setNoise] = useState<any | null>(null);
   const [hw, setHw] = useState<any[] | null>(null);
+  const [hwa, setHwa] = useState<any | null>(null);
   const [conf, setConf] = useState<any | null>(null);
   const [msg, setMsg] = useState<string | null>(null);
   useEffect(() => {
@@ -81,6 +87,7 @@ function Results() {
     api.noise().then(setNoise).catch(() => setNoise(null));
     api.confidence().then(setConf).catch(() => setConf(null));
     api.hardware().then(setHw).catch(() => setHw([]));
+    api.hardwareAnalysis().then(setHwa).catch(() => setHwa(null));
   }, []);
   const pd = bench?.paired_tre_difference;
   return (
@@ -153,15 +160,34 @@ function Results() {
           <figcaption className="muted">{CAPTION["noise.png"]}</figcaption>
         </>
       )}
-      <h3>Recorded quantum hardware runs</h3>
+      <h3>What happened on a real quantum computer?</h3>
       {hw && hw.length === 0 && <p className="muted">No hardware runs recorded yet.</p>}
-      {hw && hw.length > 0 && (
-        <table>
-          <thead><tr><th>Device</th><th>Problem</th><th>Job</th></tr></thead>
-          <tbody>{hw.map((r, i) => (
-            <tr key={i}><td>{r.backend}</td><td>{r.params.case_id} · {r.params.n_used * r.params.k}q · {r.label}</td><td><code>{String(r.job_id).slice(0, 14)}</code></td></tr>
-          ))}</tbody>
-        </table>
+      {hwa && (
+        <>
+          <div className="findings">
+            <div className="kv"><span>Best of 2,000 shots was the optimal answer</span><b>{hwa.same_as_exact.replace("/", " of ")} runs</b></div>
+            <div className="kv"><span>Map error, hardware answers vs exact solver</span>
+              <b>{avgHw(hwa).toFixed(2)} vs {hwa.map_error_exact.toFixed(2)} mm</b></div>
+            <div className="kv"><span>Consistent shots, hardware vs noise model</span><b>{pct(hwa.hardware_over_model)} of predicted</b></div>
+            <div className="kv"><span>Consistent shots vs random guessing</span><b>{hwa.hardware_over_random.toFixed(1)}× more</b></div>
+            <div className="kv"><span>Error suppression (DD + twirling) vs raw</span><b>{pct(hwa.mitigated_over_raw)} as many</b></div>
+            <p className="muted">
+              {hwa.n_runs} runs on IBM {hwa.backend} (Heron r2): the same 24 circuits the noise study used, 6–12 qubits, sent once raw and
+              once with error suppression. The hardware lands just below the noise model, so the model is a fair, slightly optimistic
+              guide. Deep circuits lose the most, as predicted. Error suppression did not help here; the two jobs ran hours apart,
+              so calibration drift is part of that gap. In 6 runs no shot found the optimum, and 5 of those maps came out worse.
+              Classical exact solving is instant at this size, so no speed-up is claimed.
+            </p>
+          </div>
+          <figure><img className="fig" src="/api/figure/hardware.png" alt="Hardware vs simulators" />
+            <figcaption className="muted">Every number is re-scored from the raw bitstrings saved in results/hardware/.</figcaption></figure>
+          <table>
+            <thead><tr><th>Job</th><th>Device</th><th>Setting</th><th>Circuits</th></tr></thead>
+            <tbody>{hwa.job_ids.map(([id, kind]: [string, string]) => (
+              <tr key={id}><td><code>{id}</code></td><td>{hwa.backend}</td><td>{kind}</td><td>{hwa.n_runs / hwa.job_ids.length}</td></tr>
+            ))}</tbody>
+          </table>
+        </>
       )}
     </div>
   );

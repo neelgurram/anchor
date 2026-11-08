@@ -31,6 +31,6 @@ Each change applies identically to every solver. None changes which solver wins.
 ## Result against the charter (2026-11-05 benchmark)
 - **Criteria 1 and 2 are met.** On 264 paired instances, held-out TRE goes from 5.36 mm uncorrected and 5.57 mm naive to 2.19 mm exact max clique.
 - **Criterion 3 is met on the simulator.** QAOA and digitized anneal reach the same TRE as exact (paired difference −0.02 ± 0.06 mm).
-- **Criterion 4 is pending.** It needs the hardware run.
+- **Criterion 4 is met (2026-11-08).** The 24 noise-study circuits ran on IBM ibm_fez, raw and with DD + twirling (48 runs). Hardware reached 83% of the noise model's consistent-shot rate and 6× random. In 42 of 48 runs the best shot was the exact optimum, with the same map error as exact. Error suppression did not help (85% of raw); the jobs ran hours apart, so drift is a confound. Details: `results/hardware/analysis.json`, `results/figures/hardware.png`.
 - **A finding we did not expect, and report as-is:** RANSAC (rigid-fit inlier test) beats exact max clique by 0.17 ± 0.12 mm (paired). The reason is that pairwise-distance consistency is looser than a global rigid check, so the largest consistent set sometimes admits a decoy that happens to fit. The QUBO solves its problem optimally; the problem definition is what leaves this gap. The obvious next step is adding triplet or rigid-fit terms, which turns the QUBO into a higher-order (HUBO) problem.
 

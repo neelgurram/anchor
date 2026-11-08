@@ -278,6 +278,16 @@ def hardware():
     return _hardware_index()
 
 
+@app.get("/api/hardware/analysis")
+def hardware_analysis():
+    f = RESULTS / "hardware" / "analysis.json"
+    if not f.exists():
+        raise HTTPException(404, "run scripts/analyze_hardware.py first")
+    d = json.loads(f.read_text())
+    d.pop("rows", None)
+    return d
+
+
 # ---------------------------------------------------------------- replay of recorded QPU runs
 def _hardware_index() -> list[dict]:
     d = RESULTS / "hardware"
