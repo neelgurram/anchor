@@ -20,7 +20,7 @@ W, H = 1600, 900
 
 
 API = "http://localhost:8030"
-DEMO_PROBLEM = {"case_id": "Case12", "n_used": 8, "k": 2, "outlier_rate": 0.3, "seed": 9}
+DEMO_PROBLEM = {"case_id": "Case12", "n_used": 6, "k": 2, "outlier_rate": 0.3, "seed": 9}
 
 
 def warm_cache():
@@ -37,7 +37,7 @@ def warm_cache():
     pid = post("/api/problem", DEMO_PROBLEM)["problem_id"]
     with urllib.request.urlopen(f"{API}/api/circuit/{pid}?p=1", timeout=300) as r:
         r.read()
-    for s in ["naive", "qaoa", "danneal"]:
+    for s in ["naive", "qaoa", "ibm"]:
         r = post("/api/solve", {"problem_id": pid, "solver": s, "params": {}})
         print(f"warm {s}: map error {r['evaluation']['tre']:.2f} mm, {r['result']['wall_time']:.1f} s")
 
@@ -54,25 +54,31 @@ def main():
         click = lambda name: page.get_by_role("button", name=name, exact=False).first.click()
         wait = lambda s: page.wait_for_timeout(int(s * 1000))
 
+        def show(heading, hold):
+            page.get_by_text(heading).first.evaluate("el => el.scrollIntoView({behavior: 'smooth', block: 'start'})")
+            wait(hold)
+
         page.goto(URL)
         wait(4)                                            # beat 1: title, the problem
         click("Load patient"); wait(6)                     # beat 2: real patient, MRI landmarks
         click("Open the skull"); wait(8)                   # beat 3: brain sags; map off by X mm
         click("Take ultrasound"); wait(7)                  # beat 4: candidate matches, some wrong
         click("Naive"); wait(4)
-        click("Correct the map"); wait(8)                  # beat 5: naive bends the map
-        click("QAOA"); wait(18)                            # beat 6: sampled answers flash, settle
-        click("Correct the map"); wait(8)                  # beat 7: map snaps back, error in mm
-        click("Digitized anneal"); wait(10)
-        click("Correct the map"); wait(6)                  # beat 8: annealing-style schedule agrees
+        click("Correct the map"); wait(10)                 # beat 5: naive bends the map; alarm fires
+        click("QAOA"); wait(16)                            # beat 6: sampled answers flash, settle
+        click("Correct the map"); wait(9)                  # beat 7: map snaps back, confidence map, trusted
+        click("Real error"); wait(6)                       # beat 8: confidence vs the real error
+        click("IBM"); wait(5)
+        click("Correct the map"); wait(9)                  # beat 9: same answer from the real IBM chip
         page.get_by_role("button", name="Solver lab").click(); wait(2)
-        click("Show circuit"); wait(3)                     # beat 9: the circuit and what it costs on Heron
-        for _ in range(4):
-            page.locator(".circuit").evaluate("el => el.scrollBy({left: 600, behavior: 'smooth'})"); wait(1.6)
-        page.get_by_role("button", name="Results").click(); wait(5)
-        for _ in range(6):                                 # beat 10: the honest benchmark
-            page.mouse.wheel(0, 520); wait(3)
-        wait(3)
+        click("Show circuit"); wait(3)                     # beat 10: the circuit and what it costs on Heron
+        for _ in range(3):
+            page.locator(".circuit").evaluate("el => el.scrollBy({left: 600, behavior: 'smooth'})"); wait(1.5)
+        page.get_by_role("button", name="Results").click(); wait(2)
+        show("Benchmark across all 22 patients", 9)       # beat 11: the honest benchmark
+        show("When would quantum hardware be worth revisiting?", 8)  # beat 12: revisit trigger
+        show("Does the confidence map tell the truth?", 8) # beat 13: the alarm is validated
+        show("What happened on a real quantum computer?", 12)  # beat 14: hardware vs noise model
         ctx.close()
         b.close()
 
