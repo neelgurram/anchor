@@ -31,11 +31,12 @@ from anchor import hwset  # noqa: E402
 from anchor.solvers.quantum import bits_to_x, build_circuit  # noqa: E402
 
 OUT = ROOT / "results" / "hardware"
+REHEARSAL = ROOT / "results" / "hardware_rehearsal"
 
 
 def secret(env: str, prompt: str) -> str:
     v = os.environ.get(env)
-    return v if v else getpass(prompt)
+    return (v if v else getpass(prompt)).strip()   # pasted keys often carry a stray space or newline
 
 
 def backend_snapshot(backend) -> dict:
@@ -56,7 +57,7 @@ def backend_snapshot(backend) -> dict:
 
 
 # ---------------------------------------------------------------- IBM
-def run_ibm(shots: int, dry: bool, backend_name: str | None):
+def run_ibm(shots: int, dry: bool, backend_name: str | None, rehearse: bool = False):
     from qiskit.transpiler import generate_preset_pass_manager
     items = []
     for cid, n, seed in hwset.gate_set():
@@ -66,9 +67,9 @@ def run_ibm(shots: int, dry: bool, backend_name: str | None):
     print(f"IBM plan: {len(items)} circuits x 2 (raw, mitigated) x {shots} shots "
           f"= {2 * len(items) * shots:,} shots, in 2 jobs")
 
-    if dry:
+    if dry or rehearse:
         from qiskit_ibm_runtime.fake_provider import FakeMarrakesh
-        backend = FakeMarrakesh()
+        backend = FakeMarrakesh()          # rehearse: Sampler runs locally on Aer with this noise model
     else:
         from qiskit_ibm_runtime import QiskitRuntimeService
         service = QiskitRuntimeService(channel="ibm_quantum_platform",
@@ -95,6 +96,7 @@ def run_ibm(shots: int, dry: bool, backend_name: str | None):
     from qiskit_ibm_runtime import SamplerV2 as Sampler
     snap = backend_snapshot(backend)
     runs = []
+    out_file = None
     for mitigated in (True, False):
         s = Sampler(mode=backend)
         s.options.default_shots = shots
@@ -128,7 +130,8 @@ def run_ibm(shots: int, dry: bool, backend_name: str | None):
                                "shots": shots, "transpile": "preset level 3, seed 7",
                                "qpu_seconds_whole_job": qsec},
             })
-    save("ibm", runs, snap)
+        # save after EVERY job, so a failure in the second job never loses the first
+        out_file = save("ibm", runs, snap, rehearse, out_file)
 
 
 # ---------------------------------------------------------------- D-Wave
@@ -164,13 +167,16 @@ def run_dwave(reads: int, dry: bool, solver: str | None):
     save("dwave", runs, {"device": runs[0]["backend"] if runs else None, "qpu_seconds_used": used})
 
 
-def save(kind, runs, snap):
-    OUT.mkdir(parents=True, exist_ok=True)
-    ts = time.strftime("%Y%m%d-%H%M%S")
-    f = OUT / f"{kind}_{ts}.json"
+def save(kind, runs, snap, rehearse: bool = False, f: pathlib.Path | None = None) -> pathlib.Path:
+    # rehearsals go to a separate, git-ignored folder so the app never replays simulated data as hardware
+    d = REHEARSAL if rehearse else OUT
+    d.mkdir(parents=True, exist_ok=True)
+    if f is None:
+        f = d / f"{kind}_{time.strftime('%Y%m%d-%H%M%S')}.json"
     f.write_text(json.dumps({"timestamp": time.strftime("%Y-%m-%d %H:%M:%S"), "backend_snapshot": snap,
-                             "runs": runs}, indent=1))
-    print("saved", f)
+                             "rehearsal": rehearse, "runs": runs}, indent=1))
+    print("saved", f, f"({len(runs)} runs)")
+    return f
 
 
 def main():
@@ -178,6 +184,9 @@ def main():
     ap.add_argument("--ibm", action="store_true")
     ap.add_argument("--dwave", action="store_true")
     ap.add_argument("--dry-run", action="store_true")
+    ap.add_argument("--rehearse", action="store_true",
+                    help="IBM only: run the exact same code path locally on the FakeMarrakesh noise model "
+                         "(no account, no QPU time); output goes to results/hardware_rehearsal/")
     ap.add_argument("--shots", type=int, default=4000)
     ap.add_argument("--reads", type=int, default=1000)
     ap.add_argument("--ibm-backend")
@@ -185,12 +194,12 @@ def main():
     a = ap.parse_args()
     if not (a.ibm or a.dwave):
         ap.error("choose --ibm and/or --dwave (add --dry-run to only print the plan)")
-    if not a.dry_run:
+    if not (a.dry_run or a.rehearse):
         ok = input("This spends real QPU time. Has Neel approved this run? Type YES: ")
         if ok.strip() != "YES":
             sys.exit("aborted")
     if a.ibm:
-        run_ibm(a.shots, a.dry_run, a.ibm_backend)
+        run_ibm(a.shots, a.dry_run, a.ibm_backend, a.rehearse)
     if a.dwave:
         run_dwave(a.reads, a.dry_run, a.dwave_solver)
 

@@ -10,3 +10,4 @@ qiskit-ibm.json
 dwave.conf
 results/screens/
 demo/_raw/
+results/hardware_rehearsal/
