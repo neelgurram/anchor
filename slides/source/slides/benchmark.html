@@ -1,0 +1,15 @@
+<section id="benchmark" data-transition="fade" style="background:#06080B;color:#E8EDF1;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">05 · Results vs classical baselines</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">Checking agreement cuts map error by 60%.</h2>
+<div style="display:grid;grid-template-columns:1000px 1fr;gap:56px;align-items:center;flex:1">
+<img src="/_blob/47c6a71fd6285be244a143f7586dbbd5" alt="Bar chart of map error by method: naive 5.57 mm, RANSAC 2.02, exact max clique 2.19, simulated annealing 2.19, digitized anneal 2.19, QAOA 2.17, best possible 1.78" style="width:1000px;height:524px;object-fit:contain">
+<div data-text style="display:flex;flex-direction:column;gap:24px">
+<p style="font-size:32px;line-height:1.5;color:#A7B3BD">264 cases from 22 real patients, scored on expert points the solver never saw, with 95% confidence intervals.</p>
+<p style="font-size:32px;line-height:1.5;color:#E8EDF1">Naive: 5.6 mm. Quantum QAOA: 2.2 mm, the same as the exact classical answer.</p>
+<p style="font-size:32px;line-height:1.5;color:#A7B3BD">Surprise: the classical RANSAC method beat us by 0.17 mm, and we report it.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#7D8A95">Anchor · Qiskit Fall Fest 2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">9 / 17</p>
+<aside>Rubric 04. Baselines: no correction (5.36 mm), naive (5.57), RANSAC (2.02), exact max clique (2.19), simulated annealing (2.19). Quantum runs here are on the Aer simulator, 8–16 qubits, 20–40% bad matches. QAOA vs exact, paired: −0.02 ± 0.06 mm, so a tie. RANSAC wins because it checks a rigid fit of the whole set, which is stricter than checking pairs.</aside>
+</section>

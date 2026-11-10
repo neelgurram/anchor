@@ -1,0 +1,25 @@
+<section id="shape" data-transition="fade" style="background:#0D1218;color:#E8EDF1;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">03 · The quantum shape</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">“Which matches agree?” is a max-clique problem.</h2>
+<div data-text style="display:flex;flex-direction:column;gap:24px">
+<p style="font-size:32px;line-height:1.5;color:#A7B3BD">Think of a party: find the biggest group of guests who all know each other.</p>
+<p style="font-size:32px;line-height:1.5;color:#A7B3BD">Here each possible match is one qubit, and every pair of matches that disagree gets a penalty. The lowest-energy answer is the largest group that all agree, written as a QUBO that quantum hardware runs natively.</p>
+</div>
+<div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;flex:1;align-items:stretch">
+<div style="display:flex;flex-direction:column;gap:12px;background:#141C26;border:1px solid #233140;border-radius:16px;padding:40px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:44px;font-weight:600;color:#2FC27A">1 match = 1 qubit</p>
+<p style="font-size:24px;line-height:1.4;color:#A7B3BD">1 means trust it, 0 means drop it</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#141C26;border:1px solid #233140;border-radius:16px;padding:40px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:44px;font-weight:600;color:#E8EDF1">−Σ x<span style="color:#A7B3BD">ᵢ</span> + P·Σ x<span style="color:#A7B3BD">ᵢ</span>x<span style="color:#A7B3BD">ⱼ</span></p>
+<p style="font-size:24px;line-height:1.4;color:#A7B3BD">reward each match kept; penalty P for every disagreeing pair kept</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#141C26;border:1px solid #233140;border-radius:16px;padding:40px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:44px;font-weight:600;color:#E8EDF1">6–16 qubits</p>
+<p style="font-size:24px;line-height:1.4;color:#A7B3BD">per case in our tests; 12 in the demo</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#7D8A95">Anchor · Qiskit Fall Fest 2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">5 / 17</p>
+<aside>Rubric 02. A clique is a group where everyone is connected. Two matches are “connected” when the distance between them in the MRI equals the distance in the ultrasound, within a tolerance we fixed before any quantum run. P = 2 so breaking a rule never pays; a test brute-forces every small case to prove the QUBO’s best answer is the true max clique.</aside>
+</section>

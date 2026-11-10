@@ -1,0 +1,22 @@
+{
+  "v": 4,
+  "createdOnFiles": {"v": 1, "at": "2026-11-09T15:00:00Z"},
+  "lists": "css",
+  "title": "Anchor — Qiskit Fall Fest 2026",
+  "cover": "cover",
+  "order": ["cover", "problem", "hard", "solution", "shape", "why", "build", "demo", "benchmark", "confidence", "hardware", "noise", "revisit", "new", "limits", "team", "close"],
+  "sections": {
+    "s1": {"description": "The problem: brain shift makes the surgeon’s map wrong, and noisy ultrasound makes it hard to fix.", "start": "cover"},
+    "s2": {"description": "The solution: keep only the matches that agree, then check the result.", "start": "solution"},
+    "s3": {"description": "Quantum rationale: the trust decision is a max-clique QUBO; honest about today’s limits.", "start": "shape"},
+    "s4": {"description": "Technical implementation in Qiskit, and the live app.", "start": "build"},
+    "s5": {"description": "Results: benchmark on 22 patients, the confidence alarm, and real IBM hardware with noise analysis.", "start": "benchmark"},
+    "s6": {"description": "Outlook: when quantum would win, what is new, and the limits.", "start": "revisit"},
+    "s7": {"description": "Team, learning journey and close.", "start": "team"}
+  },
+  "faces": {
+    "space-grotesk": {"family": "Space Grotesk", "href": "https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300..700&display=swap"},
+    "inter": {"family": "Inter", "href": "https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap"}
+  },
+  "designSystems": []
+}
