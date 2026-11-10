@@ -16,10 +16,10 @@ Weights come from the official statewide rubric (scored 1–5, plus a hardware b
 | 03 Technical implementation (Qiskit) | 20% | 7 Built in Qiskit (circuits, hybrid loop, transpiler, primitives, error suppression, tests) · 8 The app |
 | 04 Results & validation | 10% | 9 Benchmark vs classical baselines with 95% CIs · 10 Confidence alarm tested on held-out patients · 11–12 simulator vs noise model vs hardware · 13 classical vs logic gates vs annealing on the same instances |
 | 05 Innovation & creativity | 10% | 15 What makes Anchor different · 10 the self-check |
-| 06 Presentation & communication | 15% | One idea per slide, party analogy (5), one-sentence close (17), the demo video |
-| 07 Q&A, teamwork & learning journey | 10% | 16 Who did what, biggest lesson, next month · likely questions in the notes on 18 |
+| 06 Presentation & communication | 15% | One idea per slide, party analogy (5), one-sentence close (18), the demo video |
+| 07 Q&A, teamwork & learning journey | 10% | 17 Who did what, biggest lesson, next month · likely questions in the notes on 18 |
 | Hardware bonus, top tier (+5) | +5 | 11 Real IBM hardware · 12 Noise analysis (compared to the simulator, noise analysed, error suppression applied) |
-| Required limitations | — | 15 Limitations (full list in LIMITATIONS.md) |
+| Required limitations | — | 16 Limitations (full list in LIMITATIONS.md) |
 
 ## Before presenting
 - Fill in the team name and member names on slide 1, and the roles on slide 17.
