@@ -1,14 +1,15 @@
-"""Cut demo/anchor_demo.mp4 down to the moments where something happens -> demo/anchor_demo_short.mp4.
+"""Cut demo/anchor_demo.mp4 down to the moments where something happens.
 
-    python scripts/cut_demo.py      (needs ffmpeg; run after scripts/record_demo.py)
+    python scripts/cut_demo.py            -> demo/anchor_demo_short.mp4  (45 s, the submitted demo)
+    python scripts/cut_demo.py slides     -> demo/anchor_demo_slide.mp4  (about 20 s, plays inside slide 8)
 
 Segment times are in seconds of the full recording; re-check them if the recording changes.
 """
-import pathlib, shutil, subprocess
+import pathlib, shutil, subprocess, sys
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
-SRC, OUT = ROOT / "demo" / "anchor_demo.mp4", ROOT / "demo" / "anchor_demo_short.mp4"
-SEGMENTS = [            # (start, end, what happens)
+SRC = ROOT / "demo" / "anchor_demo.mp4"
+SHORT = [            # (start, end, what happens)
     (7.0, 12.0, "brain loads, camera flies in, MRI landmarks"),
     (13.0, 18.0, "skull opens, brain sags, map 19.6 mm off"),
     (20.5, 25.0, "ultrasound candidates appear"),
@@ -18,6 +19,16 @@ SEGMENTS = [            # (start, end, what happens)
     (67.5, 71.5, "real error on hidden expert points"),
     (74.5, 84.0, "IBM ibm_fez answers replayed: same map, job ID"),
 ]
+SLIDE = [               # the bare story: stale map, bad fix + alarm, quantum fix, real hardware
+    (13.0, 16.5, "skull opens, map 19.6 mm off"),
+    (32.5, 36.5, "trust every match: map bends red, alarm fires"),
+    (42.5, 45.5, "QAOA: sampled answers flash"),
+    (58.5, 63.0, "map snaps back: 1.6 mm, trusted"),
+    (75.0, 81.5, "IBM ibm_fez answers replayed: same map"),
+]
+slides = len(sys.argv) > 1 and sys.argv[1] == "slides"
+SEGMENTS = SLIDE if slides else SHORT
+OUT = ROOT / "demo" / ("anchor_demo_slide.mp4" if slides else "anchor_demo_short.mp4")
 FADE = 0.3
 
 parts, chains, offset, prev = [], [], 0.0, "v0"

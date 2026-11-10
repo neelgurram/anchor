@@ -24,4 +24,4 @@ Weights come from the official statewide rubric (scored 1–5, plus a hardware b
 ## Before presenting
 - Fill in the team name and member names on slide 1, and the roles on slide 16.
 - If the D-Wave run happens, update slides 15 and 16.
-- On slide 8, play `demo/anchor_demo_short.mp4` (45 s). Submit the full 2:23 video separately.
+- Slide 8 plays `demo/anchor_demo_slide.mp4` (20 s) by itself, looping. Submit `demo/anchor_demo_short.mp4` (45 s) as the demo video.
