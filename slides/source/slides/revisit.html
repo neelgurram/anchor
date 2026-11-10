@@ -1,10 +1,10 @@
 <section id="revisit" data-transition="fade" style="background:#0D1218;color:#E8EDF1;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
-<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">07 · When would quantum win?</p>
-<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">Quantum chips need about 8× fewer mistakes.</h2>
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">5 · What’s next</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">Quantum ties today. Here’s what it needs.</h2>
 <div style="display:grid;grid-template-columns:1fr 900px;gap:64px;flex:1;align-items:start">
 <div data-text style="display:flex;flex-direction:column;gap:24px">
-<p style="font-size:32px;line-height:1.5;color:#A7B3BD">A real surgery needs 80–200 qubits; we used up to 16. Today, each step on the chip goes wrong about 1 time in 300.</p>
-<p style="font-size:32px;line-height:1.5;color:#E8EDF1">To handle 30 qubits it must be about 1 in 2,600, and far better (or self-correcting) for a full surgery, while answering in under a second.</p>
+<p style="font-size:32px;line-height:1.5;color:#A7B3BD">Today a normal computer solves our puzzle in a thousandth of a second. Quantum gets the same answer, but not faster.</p>
+<p style="font-size:32px;line-height:1.5;color:#E8EDF1">Real surgery needs 80–200 qubits. To get there, chips must make far fewer mistakes, and answer in under a second.</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:16px">
 <table style="font-family:Inter, Arial, sans-serif;font-size:28px;color:#E8EDF1">
@@ -17,7 +17,7 @@
 <p style="font-size:24px;line-height:1.4;color:#A7B3BD">Clean runs drop from 79% at 8 qubits to 0.3% at 30, because bigger puzzles need far more steps. For quantum to handle real surgery sizes, chips need to make about 8× fewer mistakes than today.</p>
 </div>
 </div>
-<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#7D8A95">One-layer circuit on IBM Heron; today’s error rate is about 1 in 300 (3.3 × 10⁻³)</p>
-<p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">14 / 18</p>
-<aside>Rubric 02, top band: near-term vs future, and what scale and hardware would be needed. Exact needed error rates: 9.6e-3, 3.9e-3, 1.2e-3, 3.9e-4. Other conditions: the puzzle must also beat RANSAC, which needs rigid-fit terms; the computer must sit in or near the hospital (our cloud queue took hours); patient data must stay inside privacy rules. A normal computer still solves 160 candidates in about 50 ms.</aside>
+<p style="position:absolute;left:128px;bottom:64px;width:1300px;font-size:24px;color:#7D8A95">One-layer circuit on IBM Heron; today’s error rate is about 1 in 300 steps</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">15 / 18</p>
+<aside>Rubric 02, top band: near-term vs future, and the scale and hardware needed. Steps = two-qubit operations; clean runs = how often today’s chip (about 1 error in 300 steps, 3.3 × 10⁻³) finishes with zero errors; error rate needed = for a clean run half the time. Exact needed rates: 9.6e-3, 3.9e-3, 1.2e-3, 3.9e-4. Other conditions: the puzzle must also beat RANSAC (needs rigid-fit terms); the computer must sit in or near the hospital (our cloud queue took hours); patient data must stay within privacy rules. Per try, QAOA hit the exact best answer far less often than a normal computer (0.07% vs 79% at 16 qubits), but keeping its best try still gave the same final map.</aside>
 </section>

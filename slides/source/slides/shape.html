@@ -1,25 +1,25 @@
 <section id="shape" data-transition="fade" style="background:#0D1218;color:#E8EDF1;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
-<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">03 · Turning it into a quantum puzzle</p>
-<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">It’s like finding a group of friends at a party.</h2>
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">3 · How it works</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">Finding that group is a quantum puzzle.</h2>
 <div data-text style="display:flex;flex-direction:column;gap:24px">
-<p style="font-size:32px;line-height:1.5;color:#A7B3BD">At a party, find the biggest group where everyone knows everyone else. Our clues work the same way: we want the biggest group where every clue agrees with every other clue.</p>
-<p style="font-size:32px;line-height:1.5;color:#E8EDF1">We turn that into a scoring game: keeping a clue earns a point, keeping two clues that disagree costs points. A quantum computer searches for the best score.</p>
+<p style="font-size:32px;line-height:1.5;color:#A7B3BD">It’s like finding the biggest group of friends at a party where everyone knows everyone else.</p>
+<p style="font-size:32px;line-height:1.5;color:#E8EDF1">Each match becomes a qubit, a quantum on/off switch: keep the match or drop it. The quantum computer searches for the switch settings that keep the biggest group that all agree.</p>
 </div>
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;flex:1;align-items:stretch">
 <div style="display:flex;flex-direction:column;gap:12px;background:#141C26;border:1px solid #233140;border-radius:16px;padding:40px">
-<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:44px;font-weight:600;line-height:1.15;color:#2FC27A">1 clue = 1 qubit</p>
-<p style="font-size:24px;line-height:1.4;color:#A7B3BD">A qubit is a quantum on/off switch: keep the clue, or drop it.</p>
-</div>
-<div style="display:flex;flex-direction:column;gap:12px;background:#141C26;border:1px solid #233140;border-radius:16px;padding:40px">
-<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:44px;font-weight:600;line-height:1.15;color:#E8EDF1">Best score wins</p>
-<p style="font-size:24px;line-height:1.4;color:#A7B3BD">The best score is always the biggest group of clues that all agree.</p>
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:44px;font-weight:600;line-height:1.15;color:#2FC27A">1 match = 1 qubit</p>
+<p style="font-size:24px;line-height:1.4;color:#A7B3BD">Keeping a match earns a point; keeping two that disagree costs points.</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:12px;background:#141C26;border:1px solid #233140;border-radius:16px;padding:40px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:44px;font-weight:600;line-height:1.15;color:#E8EDF1">12 qubits</p>
-<p style="font-size:24px;line-height:1.4;color:#A7B3BD">for the demo patient: 6 spots, 2 possible matches each</p>
+<p style="font-size:24px;line-height:1.4;color:#A7B3BD">for the demo patient: 6 landmarks, 2 possible matches each</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:12px;background:#141C26;border:1px solid #233140;border-radius:16px;padding:40px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:44px;font-weight:600;line-height:1.15;color:#E8EDF1">Why quantum?</p>
+<p style="font-size:24px;line-height:1.4;color:#A7B3BD">Puzzles like this get much harder as they grow. That is where future quantum computers could help.</p>
 </div>
 </div>
-<p style="position:absolute;left:128px;bottom:64px;width:1400px;font-size:24px;color:#7D8A95">Scientists call this a maximum-clique problem, written as a QUBO</p>
-<p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">5 / 18</p>
-<aside>Rubric 02. For judges: minimise −Σxᵢ + P·Σxᵢxⱼ over pairs that disagree, with P = 2 so breaking a rule never pays. Two clues “agree” when the distance between them in the MRI equals the distance in the ultrasound, within a tolerance we fixed before any quantum run. A test checks every small case by brute force to prove the best score is always the true biggest group.</aside>
+<p style="position:absolute;left:128px;bottom:64px;width:1300px;font-size:24px;color:#7D8A95">Scientists call this a maximum-clique problem, written as a QUBO</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">8 / 18</p>
+<aside>For judges: this is a maximum-clique problem written as a QUBO: minimise −Σxᵢ + P·Σxᵢxⱼ over pairs that disagree, with P = 2 so breaking a rule never pays. A test checks every small case by brute force to prove the best score is always the true biggest group. Max clique is NP-hard in general. Quantum ideas used: superposition (all selections at once), interference steered by the circuit settings, and sampling.</aside>
 </section>

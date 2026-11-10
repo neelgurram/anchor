@@ -20,51 +20,47 @@
   "lists": "css",
   "order": [
     "cover",
+    "map",
     "problem",
+    "ultrasound",
     "hard",
     "solution",
+    "agree",
     "shape",
-    "why",
     "build",
     "demo",
     "benchmark",
     "confidence",
     "hardware",
-    "noise",
     "paradigms",
     "revisit",
-    "new",
     "limits",
     "team",
     "close"
   ],
   "sections": {
     "s1": {
-      "description": "The problem: brain shift makes the surgeon’s map wrong, and noisy ultrasound makes it hard to fix.",
+      "description": "The problem: the surgeon’s MRI map goes wrong when the brain moves, and ultrasound matches can be wrong.",
       "start": "cover"
     },
     "s2": {
-      "description": "The solution: keep only the matches that agree, then check the result.",
+      "description": "Our solution: throw out the wrong matches, fix the map, check the fix.",
       "start": "solution"
     },
     "s3": {
-      "description": "Quantum rationale: the trust decision is a max-clique QUBO; honest about today’s limits.",
-      "start": "shape"
+      "description": "How it works: correct matches agree; finding them is a quantum puzzle built in Qiskit; the app.",
+      "start": "agree"
     },
     "s4": {
-      "description": "Technical implementation in Qiskit, and the live app.",
-      "start": "build"
-    },
-    "s5": {
-      "description": "Results: benchmark on 22 patients, the confidence alarm, real IBM hardware with noise analysis, and classical vs gate vs annealing.",
+      "description": "Results: 22 real patients, the self-check, real IBM hardware, three kinds of solver.",
       "start": "benchmark"
     },
-    "s6": {
-      "description": "Outlook: when quantum would win, what is new, and the limits.",
+    "s5": {
+      "description": "What’s next: what quantum needs to win, what’s new and what’s missing.",
       "start": "revisit"
     },
-    "s7": {
-      "description": "Team, learning journey and close.",
+    "s6": {
+      "description": "About me and close.",
       "start": "team"
     }
   },
