@@ -20,3 +20,18 @@ The numbers are what the app shows live for RESECT Case12 (seed 9, 6 landmarks =
 | 14 (131–143) | What happened on a real quantum computer? | "On the real IBM chip, 42 of 48 runs found the best answer, close to what our noise model predicted. When better quantum hardware arrives, Anchor swaps it in." |
 
 **Things not to say:** "predict the shift" (Anchor measures it), "quantum advantage" or "quantum beat classical" (it tied), or that the colours are a quantum feature (they come from the hide-one check, which works with any solver). D-Wave has not run yet; only mention it once `scripts/run_hardware.py --dwave` has.
+
+## Short cut (45 s): `demo/anchor_demo_short.mp4`
+
+Made by `scripts/cut_demo.py` from the full recording. Use this one inside the 5-minute talk (slide 8). Each line fits its window at a normal pace.
+
+| Time (s) | On screen | Line |
+|---|---|---|
+| 0–5 | Brain loads, MRI landmarks | "A real patient's brain, with landmarks from the MRI taken before surgery." |
+| 5–9 | Skull opens, map 19.6 mm off | "The skull opens, the brain sags, and the map is now 2 centimetres off." |
+| 9–14 | Ultrasound candidates | "Ultrasound gives possible matches, and some are wrong." |
+| 14–22 | Red map, "Do not trust this update" | "Trust them all and the map bends. Anchor catches it and raises an alarm." |
+| 22–26 | QAOA answers flash | "So a quantum circuit picks the matches that agree." |
+| 26–32 | Map snaps back, 1.6 mm, Trusted | "The map comes back to 1.6 millimetres, and Anchor says trust it." |
+| 32–35 | Real error view | "The real error confirms it." |
+| 35–45 | IBM hardware replay | "And here are the answers from a real IBM quantum computer: same matches, same map." |
