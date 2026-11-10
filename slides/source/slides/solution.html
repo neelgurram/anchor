@@ -1,25 +1,25 @@
 <section id="solution" data-transition="fade" style="background:#06080B;color:#E8EDF1;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">2 · Our solution</p>
-<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">Anchor throws out the wrong matches.</h2>
-<p style="font-size:32px;line-height:1.5;color:#A7B3BD">Anchor takes the MRI map and the ultrasound matches. It finds the wrong matches, fixes the map with the rest, and tells the surgeon how much to trust it.</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">Anchor keeps only the matches that agree.</h2>
+<p style="font-size:32px;line-height:1.5;color:#A7B3BD">Anchor sits between the ultrasound and the navigation system. It takes in the MRI map and the ultrasound matches, and gives back a fixed map the surgeon can trust.</p>
 <div style="display:flex;gap:24px;flex:1;align-items:stretch">
 <div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#0F2A1E;border:1px solid #2FC27A;border-radius:16px;padding:40px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;color:#2FC27A">Step 1 · quantum</p>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:44px;font-weight:600;line-height:1.15;color:#E8EDF1">Check the matches</h3>
-<p style="font-size:28px;line-height:1.4;color:#A7B3BD">Keep the matches that agree with each other. Throw out the rest.</p>
+<p style="font-size:28px;line-height:1.4;color:#A7B3BD">Keep the biggest group of matches that all agree with each other. Throw out the rest.</p>
 </div>
 <div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:40px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;color:#7D8A95">Step 2</p>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:44px;font-weight:600;line-height:1.15;color:#E8EDF1">Fix the map</h3>
-<p style="font-size:28px;line-height:1.4;color:#A7B3BD">Move the MRI map to where the brain really is now, using only the kept matches.</p>
+<p style="font-size:28px;line-height:1.4;color:#A7B3BD">Bend the MRI so each landmark lands on its kept match. The brain around them moves smoothly along.</p>
 </div>
 <div style="flex:1;display:flex;flex-direction:column;gap:16px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:40px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;color:#7D8A95">Step 3</p>
 <h3 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:44px;font-weight:600;line-height:1.15;color:#E8EDF1">Check the fix</h3>
-<p style="font-size:28px;line-height:1.4;color:#A7B3BD">Colour the map by how much to trust it, and sound an alarm if the fix looks bad.</p>
+<p style="font-size:28px;line-height:1.4;color:#A7B3BD">Colour every area by how much to trust it, and sound an alarm if the fix looks bad.</p>
 </div>
 </div>
 <p style="position:absolute;left:128px;bottom:64px;width:1300px;font-size:24px;color:#7D8A95">Anchor · Qiskit Fall Fest 2026</p>
-<p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">6 / 18</p>
-<aside>Be precise: Anchor checks matches; it does not find them or read ultrasound images. It measures how far the brain moved using only the matches it trusts. Only step 1 runs on the quantum computer; step 3 (the self-check) works with any method.</aside>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">4 / 17</p>
+<aside>Be precise: Anchor checks matches; it does not find them or read ultrasound images. Only step 1 runs on the quantum computer. Steps 2 and 3 are normal-computer steps, and step 3 (the self-check) works with any method. The next two slides explain step 1, then one slide covers steps 2 and 3.</aside>
 </section>

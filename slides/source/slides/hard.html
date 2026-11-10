@@ -1,17 +1,22 @@
 <section id="hard" data-transition="fade" style="background:#06080B;color:#E8EDF1;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">1 · The problem</p>
-<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">One wrong match ruins the fix.</h2>
-<div style="display:grid;grid-template-columns:1fr 720px;gap:64px;align-items:center;flex:1">
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">One wrong ultrasound match ruins the fix.</h2>
+<div style="display:grid;grid-template-columns:1fr 500px 500px;gap:48px;align-items:start;flex:1">
 <div data-text style="display:flex;flex-direction:column;gap:28px">
-<p style="font-size:32px;line-height:1.5;color:#A7B3BD">To fix the map, the computer bends it so each MRI landmark lands on its ultrasound match.</p>
-<p style="font-size:32px;line-height:1.5;color:#E8EDF1">If even one match is wrong, the bend pulls the whole map out of shape.</p>
+<p style="font-size:30px;line-height:1.45;color:#A7B3BD">During surgery, doctors can take a quick, live ultrasound scan.</p>
+<p style="font-size:30px;line-height:1.45;color:#A7B3BD">Find the same landmarks on the MRI and on the ultrasound, and you can measure how far each spot moved, then bend the map to match.</p>
+<p style="font-size:30px;line-height:1.45;color:#E8EDF1">But ultrasound is blurry, so some matches are wrong, and one wrong match pulls the whole map out of shape.</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:16px">
-<img src="/_blob/62a9ea4ed8a1f29b7f91ae5d36f2bd9d" alt="Map fixed by trusting every match: a large red region and an alarm saying do not trust this update" style="width:720px;height:540px;object-fit:cover;border-radius:16px;border:1px solid #1E2933">
-<p style="font-size:24px;line-height:1.4;color:#A7B3BD">Trusting every match leaves this map 16.5 mm off; red marks where it is wrong. One bad match is enough to ruin the whole fix.</p>
+<img src="/_blob/9fe3db72129261c3217c647ef16013d2" alt="Purple MRI landmarks, each joined by grey lines to two possible blue ultrasound matches" style="width:500px;height:375px;object-fit:cover;border-radius:16px;border:1px solid #1E2933">
+<p style="font-size:24px;line-height:1.4;color:#A7B3BD">Each purple MRI landmark has two possible blue ultrasound matches. Only one is right.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<img src="/_blob/62a9ea4ed8a1f29b7f91ae5d36f2bd9d" alt="Map fixed by trusting every match: a large red region and an alarm saying do not trust this update" style="width:500px;height:375px;object-fit:cover;border-radius:16px;border:1px solid #1E2933">
+<p style="font-size:24px;line-height:1.4;color:#A7B3BD">Trusting every match leaves this map 16.5 mm off. Red shows where it’s wrong.</p>
 </div>
 </div>
 <p style="position:absolute;left:128px;bottom:64px;width:1300px;font-size:24px;color:#7D8A95">Anchor · Qiskit Fall Fest 2026</p>
-<p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">5 / 18</p>
-<aside>Same real patient as the demo (RESECT Case 12). Before any fix the map was 19.6 mm off; trusting every match only gets it to 16.5 mm. The standard way to throw out bad matches is a method called RANSAC; we compare against it in the results.</aside>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">3 / 17</p>
+<aside>Today’s options: ignore the shift and adjust by eye; buy an operating-room MRI (millions of dollars, few hospitals); or update the map from ultrasound, which is cheap and already in many operating rooms. Right image: same real patient as the demo (RESECT Case 12), 19.6 mm off before any fix, 16.5 mm after trusting every match. In this project the possible matches are generated around real expert-marked landmarks (the right one plus a look-alike decoy); reading real ultrasound images is not built yet. The standard way to throw out bad matches is a method called RANSAC; we compare against it in the results.</aside>
 </section>

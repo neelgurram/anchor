@@ -1,7 +1,7 @@
 <section id="confidence" data-transition="fade" style="background:#06080B;color:#E8EDF1;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">4 · Results</p>
 <h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">Anchor warns the surgeon when its own fix is bad.</h2>
-<p style="font-size:32px;line-height:1.5;color:#A7B3BD">Anchor tests itself: it hides one match at a time and checks whether the others still point to the right place. If they don’t, it sounds an alarm. We tuned it on half the patients and graded it on the other half.</p>
+<p style="font-size:32px;line-height:1.5;color:#A7B3BD">We tested the self-check on 3,344 fixed maps. We tuned the alarm on half the patients and graded it on the other half, so it was scored on patients it had never seen.</p>
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;flex:1">
 <div style="display:flex;flex-direction:column;gap:12px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:48px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:120px;font-weight:600;line-height:1;color:#2FC27A">93%</p>
@@ -17,6 +17,6 @@
 </div>
 </div>
 <p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#7D8A95">Anchor · Qiskit Fall Fest 2026</p>
-<p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">12 / 18</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">11 / 17</p>
 <aside>3,344 corrected maps. Blue areas average 1.3 mm of real error, red areas 3.5 mm. Across all methods the alarm caught 66% of bad maps (over 3 mm off). It misses maps that are bad because too few matches cover a region. This check is a normal-computer step and works with any method; don’t pitch the colours as a quantum feature.</aside>
 </section>

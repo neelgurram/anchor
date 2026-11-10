@@ -1,0 +1,18 @@
+<section id="fixcheck" data-transition="fade" style="background:#0D1218;color:#E8EDF1;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">2 · Our solution</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">Then Anchor fixes the map and checks it.</h2>
+<div style="display:grid;grid-template-columns:1fr 720px;gap:64px;align-items:center;flex:1">
+<div data-text style="display:flex;flex-direction:column;gap:28px">
+<p style="font-size:32px;line-height:1.5;color:#A7B3BD"><span style="color:#E8EDF1;font-weight:600">Fix.</span> Anchor bends the MRI so each landmark lands on its kept match, and the brain between them moves smoothly along.</p>
+<p style="font-size:32px;line-height:1.5;color:#A7B3BD"><span style="color:#E8EDF1;font-weight:600">Check.</span> It hides one kept match at a time and asks whether the others still point to the right place.</p>
+<p style="font-size:32px;line-height:1.5;color:#E8EDF1">Where they don’t, the map turns red. If too much is red, an alarm tells the surgeon not to trust the update.</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:16px">
+<img src="/_blob/62d1374220dc0fc4592d04203ba1678e" alt="Fixed 3D brain map coloured by how much each area can be trusted, with the kept matches drawn as green lines" style="width:720px;height:540px;object-fit:cover;border-radius:16px;border:1px solid #1E2933">
+<p style="font-size:24px;line-height:1.4;color:#A7B3BD">A real patient’s fixed map: green lines are the matches Anchor kept, and colour shows how much to trust each area.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1300px;font-size:24px;color:#7D8A95">Anchor · Qiskit Fall Fest 2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">7 / 17</p>
+<aside>Fix: a thin-plate spline, a smooth stretch that passes exactly through the kept landmark pairs and fades out away from them. Check: leave-one-out. For each kept match, refit without it and measure how far the others predict it should be; large misses colour that area red. The alarm thresholds were tuned on half the patients and graded on the other half (results on slide 11). This is a normal-computer step that works with any method, so don’t pitch the colours as a quantum feature.</aside>
+</section>

@@ -20,13 +20,12 @@
   "lists": "css",
   "order": [
     "cover",
-    "map",
     "problem",
-    "ultrasound",
     "hard",
     "solution",
     "agree",
     "shape",
+    "fixcheck",
     "build",
     "demo",
     "benchmark",
@@ -40,16 +39,16 @@
   ],
   "sections": {
     "s1": {
-      "description": "The problem: the surgeon’s MRI map goes wrong when the brain moves, and ultrasound matches can be wrong.",
+      "description": "The problem: the surgeon’s MRI map goes out of date when the brain moves, and ultrasound matches can be wrong.",
       "start": "cover"
     },
     "s2": {
-      "description": "Our solution: throw out the wrong matches, fix the map, check the fix.",
+      "description": "Our solution: keep the matches that agree (a quantum puzzle), fix the map, check the fix.",
       "start": "solution"
     },
     "s3": {
-      "description": "How it works: correct matches agree; finding them is a quantum puzzle built in Qiskit; the app.",
-      "start": "agree"
+      "description": "How we built it: Qiskit and the app.",
+      "start": "build"
     },
     "s4": {
       "description": "Results: 22 real patients, the self-check, real IBM hardware, three kinds of solver.",
