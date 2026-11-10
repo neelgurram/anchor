@@ -1,22 +1,22 @@
 <section id="confidence" data-transition="fade" style="background:#06080B;color:#E8EDF1;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">05 · Results: the self-check</p>
-<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">Anchor tells the surgeon when not to trust it.</h2>
-<p style="font-size:32px;line-height:1.5;color:#A7B3BD">It hides each trusted match, checks it against the others, and colours the brain by how far the map could move. We tuned the alarm on half the patients and tested it on the other half.</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">Anchor warns the surgeon when its own fix is bad.</h2>
+<p style="font-size:32px;line-height:1.5;color:#A7B3BD">Anchor tests itself: it hides one clue at a time and checks whether the others can still point to where it should be. If they can’t, something is wrong, and it sounds an alarm. We tuned it on half the patients and graded it on the other half.</p>
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;flex:1">
 <div style="display:flex;flex-direction:column;gap:12px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:48px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:120px;font-weight:600;line-height:1;color:#2FC27A">93%</p>
-<p style="font-size:32px;line-height:1.4;color:#E8EDF1">of bad naive maps caught by the alarm</p>
+<p style="font-size:32px;line-height:1.4;color:#E8EDF1">of bad maps caught (the trust-everything kind)</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:12px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:48px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:120px;font-weight:600;line-height:1;color:#2FC27A">84%</p>
-<p style="font-size:32px;line-height:1.4;color:#E8EDF1">of good maps left alone</p>
+<p style="font-size:32px;line-height:1.4;color:#E8EDF1">of good maps correctly left alone</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:12px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:48px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:120px;font-weight:600;line-height:1;color:#F0645A">2.7×</p>
-<p style="font-size:32px;line-height:1.4;color:#E8EDF1">more real error where the map is red (3.5 mm) than blue (1.3 mm)</p>
+<p style="font-size:32px;line-height:1.4;color:#E8EDF1">more error where the map shows red than blue, so the colours tell the truth</p>
 </div>
 </div>
 <p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#7D8A95">Anchor · Qiskit Fall Fest 2026</p>
 <p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">10 / 17</p>
-<aside>3,344 corrected maps. Across all solvers the alarm caught 66% of bad maps (real error over 3 mm). It misses maps that are bad because too few landmarks cover a region. This check is classical and works with any solver; adding the quantum solver’s other near-best answers did not improve it (0.47 vs 0.48 correlation), so do not pitch the colours as a quantum feature.</aside>
+<aside>3,344 corrected maps. Blue areas average 1.3 mm of real error, red areas 3.5 mm. Across all methods the alarm caught 66% of bad maps (over 3 mm off). It misses maps that are bad because too few clues cover a region. This check is a normal-computer step and works with any method; don’t pitch the colours as a quantum feature.</aside>
 </section>

@@ -1,26 +1,26 @@
 <section id="noise" data-transition="fade" style="background:#06080B;color:#E8EDF1;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
-<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">06 · Noise analysis</p>
-<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">What the real chip told us.</h2>
-<p style="font-size:32px;line-height:1.5;color:#A7B3BD">The chip’s best answers gave a map as good as the exact solver: 2.28 vs 2.21 mm, down from 12.6 mm uncorrected.</p>
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">06 · What the noise taught us</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">Noisy, but it still found the answer.</h2>
+<p style="font-size:32px;line-height:1.5;color:#A7B3BD">Quantum chips get small errors (scientists call it noise). Even so, the chip’s best answers fixed the map as well as a normal computer: 2.3 mm vs 2.2 mm.</p>
 <div style="display:grid;grid-template-columns:1fr 1fr;gap:24px;flex:1">
 <div style="display:flex;align-items:center;gap:40px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:40px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1;color:#2FC27A;white-space:nowrap">42/48</p>
-<p style="font-size:32px;line-height:1.4;color:#E8EDF1">runs where the best shot was the true optimum</p>
+<p style="font-size:32px;line-height:1.4;color:#E8EDF1">times the chip’s best try was the perfect answer</p>
 </div>
 <div style="display:flex;align-items:center;gap:40px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:40px">
-<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1;color:#2FC27A;white-space:nowrap">83%</p>
-<p style="font-size:32px;line-height:1.4;color:#E8EDF1">of the valid answers our noise model predicted; 6× random</p>
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1;color:#2FC27A;white-space:nowrap">6×</p>
+<p style="font-size:32px;line-height:1.4;color:#E8EDF1">more good answers than random guessing, close to our prediction</p>
 </div>
 <div style="display:flex;align-items:center;gap:40px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:40px">
-<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1;color:#F5A524;white-space:nowrap">4–13%</p>
-<p style="font-size:32px;line-height:1.4;color:#E8EDF1">valid answers left in the deepest circuit, vs 22–33% in the shortest</p>
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1;color:#F5A524;white-space:nowrap">Longer</p>
+<p style="font-size:32px;line-height:1.4;color:#E8EDF1">circuits made far more mistakes: keep it short</p>
 </div>
 <div style="display:flex;align-items:center;gap:40px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:40px">
-<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1;color:#F5A524;white-space:nowrap">85%</p>
-<p style="font-size:32px;line-height:1.4;color:#E8EDF1">Error suppression didn’t help: 85% as many valid answers as raw</p>
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1;color:#F5A524;white-space:nowrap">No gain</p>
+<p style="font-size:32px;line-height:1.4;color:#E8EDF1">from noise protection this time; the chip may have drifted between runs</p>
 </div>
 </div>
 <p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#7D8A95">Anchor · Qiskit Fall Fest 2026</p>
 <p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">12 / 17</p>
-<aside>Conclusions: the noise model is a fair, slightly optimistic guide. Depth is what kills a circuit: the deep anneal that won on the perfect simulator collapsed on hardware, as the noise study predicted. Error suppression (XY4 dynamical decoupling + twirling) did not help, but the two jobs ran about three hours apart, so calibration drift is part of that gap. In the 6 runs that missed, 5 maps came out worse. Two patient cases at four sizes on one night is a small sample.</aside>
+<aside>Exact numbers: the chip got 83% of the valid answers our noise model predicted, so the model is a fair, slightly optimistic guide. At 12 qubits the deepest circuit kept 4–13% valid answers vs 22–33% for the shortest. With error suppression the chip got 85% as many valid answers as without; the two jobs ran about three hours apart, so calibration drift is part of that gap. Map error 2.28 vs 2.21 mm (exact solver), 12.6 mm uncorrected. In the 6 runs that missed, 5 maps came out worse. Two patient cases on one night is a small sample.</aside>
 </section>

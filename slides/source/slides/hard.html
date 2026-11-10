@@ -1,18 +1,17 @@
 <section id="hard" data-transition="fade" style="background:#06080B;color:#E8EDF1;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
-<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">01 · Why it’s hard</p>
-<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">One wrong match bends the whole map.</h2>
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">01 · Why it’s hard to fix</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">Fixing the map means trusting the right clues.</h2>
 <div style="display:grid;grid-template-columns:1fr 800px;gap:64px;align-items:center;flex:1">
 <div data-text style="display:flex;flex-direction:column;gap:28px">
-<p style="font-size:32px;line-height:1.5;color:#A7B3BD">An operating-room MRI fixes the map, but it costs millions and few hospitals have one.</p>
-<p style="font-size:32px;line-height:1.5;color:#A7B3BD">Ultrasound is cheap and already in the room: match landmarks between the two scans, then warp the map.</p>
-<p style="font-size:32px;line-height:1.5;color:#E8EDF1">But ultrasound is noisy. Some matches are wrong, and each wrong one drags the map with it.</p>
+<p style="font-size:32px;line-height:1.5;color:#A7B3BD">During surgery, doctors can take an ultrasound: a quick, live scan. They match spots on it to the same spots on the old MRI, to see how far everything moved.</p>
+<p style="font-size:32px;line-height:1.5;color:#E8EDF1">But ultrasound is blurry, so some matches are wrong. One wrong match pulls the whole map out of shape, like one tent peg in the wrong place pulls the whole tent crooked.</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:16px">
 <img src="/_blob/62a9ea4ed8a1f29b7f91ae5d36f2bd9d" alt="Brain map corrected by trusting every match: large red region and an alarm saying do not trust this update" style="width:800px;height:600px;object-fit:cover;border-radius:16px">
-<p style="font-size:24px;line-height:1.4;color:#A7B3BD">Trusting every top match: still 16.5 mm off, and the alarm fires.</p>
+<p style="font-size:24px;line-height:1.4;color:#A7B3BD">What happens if you trust every match: the map is still 16.5 mm off. Red marks where it can’t be trusted, and the app warns the surgeon.</p>
 </div>
 </div>
 <p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#7D8A95">Anchor · Qiskit Fall Fest 2026</p>
 <p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">3 / 17</p>
-<aside>Analogy: pegging a tent. One peg in the wrong spot pulls the whole tent crooked. Today’s options: ignore the shift, buy an operating-room MRI, or correct from ultrasound and reject bad matches.</aside>
+<aside>Today’s options: ignore the shift and adjust mentally; buy an operating-room MRI (millions of dollars, few hospitals); or fix the map from ultrasound and throw out bad matches. The standard way to throw them out is a method called RANSAC. We compare against it later.</aside>
 </section>

@@ -1,34 +1,34 @@
 <section id="build" data-transition="fade" style="background:#06080B;color:#E8EDF1;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
-<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">04 · Technical implementation</p>
-<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">Built in Qiskit, end to end.</h2>
-<p style="font-size:32px;line-height:1.5;color:#A7B3BD">Every quantum step is tested Qiskit code that a judge can rerun from one notebook. 39 tests include a brute-force check that the QUBO’s best answer is always the true max clique.</p>
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">04 · How we built it</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">Built with Qiskit, IBM’s quantum toolkit.</h2>
+<p style="font-size:32px;line-height:1.5;color:#A7B3BD">Qiskit is IBM’s free software for programming quantum computers. We used it for every quantum step, and anyone can rerun our work from one notebook.</p>
 <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:24px;flex:1">
 <div style="display:flex;flex-direction:column;gap:8px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:32px">
-<h3 style="font-size:32px;font-weight:600;color:#E8EDF1">Parameterized circuits</h3>
-<p style="font-size:24px;line-height:1.4;color:#A7B3BD">QAOAAnsatz built from our QUBO, 1–3 layers</p>
+<h3 style="font-size:32px;font-weight:600;color:#E8EDF1">Quantum program</h3>
+<p style="font-size:24px;line-height:1.4;color:#A7B3BD">The circuit the chip runs, built from our puzzle (QAOA)</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:8px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:32px">
-<h3 style="font-size:32px;font-weight:600;color:#E8EDF1">Hybrid loop</h3>
-<p style="font-size:24px;line-height:1.4;color:#A7B3BD">COBYLA tunes the angles on a CVaR objective</p>
+<h3 style="font-size:32px;font-weight:600;color:#E8EDF1">Teamwork loop</h3>
+<p style="font-size:24px;line-height:1.4;color:#A7B3BD">A normal computer tunes the quantum circuit’s dials</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:8px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:32px">
-<h3 style="font-size:32px;font-weight:600;color:#E8EDF1">Digitized annealing</h3>
-<p style="font-size:24px;line-height:1.4;color:#A7B3BD">A fixed annealing schedule on gates, no optimizer</p>
+<h3 style="font-size:32px;font-weight:600;color:#E8EDF1">Slow-settle circuit</h3>
+<p style="font-size:24px;line-height:1.4;color:#A7B3BD">A second design that eases into an answer (annealing)</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:8px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:32px">
-<h3 style="font-size:32px;font-weight:600;color:#E8EDF1">Transpiler</h3>
-<p style="font-size:24px;line-height:1.4;color:#A7B3BD">Level 3 onto IBM Heron; depth and gate counts logged</p>
+<h3 style="font-size:32px;font-weight:600;color:#E8EDF1">Translating for the chip</h3>
+<p style="font-size:24px;line-height:1.4;color:#A7B3BD">Rewrites the circuit for IBM’s real hardware (transpiler)</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:8px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:32px">
-<h3 style="font-size:32px;font-weight:600;color:#E8EDF1">Primitives</h3>
-<p style="font-size:24px;line-height:1.4;color:#A7B3BD">SamplerV2 on Aer, the Heron noise model and ibm_fez</p>
+<h3 style="font-size:32px;font-weight:600;color:#E8EDF1">Three test beds</h3>
+<p style="font-size:24px;line-height:1.4;color:#A7B3BD">A perfect simulator, a simulated noisy chip, and the real chip</p>
 </div>
 <div style="display:flex;flex-direction:column;gap:8px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:32px">
-<h3 style="font-size:32px;font-weight:600;color:#E8EDF1">Error suppression</h3>
-<p style="font-size:24px;line-height:1.4;color:#A7B3BD">XY4 dynamical decoupling plus gate and readout twirling</p>
+<h3 style="font-size:32px;font-weight:600;color:#E8EDF1">Noise protection</h3>
+<p style="font-size:24px;line-height:1.4;color:#A7B3BD">Tricks that shield the chip from small errors</p>
 </div>
 </div>
-<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#7D8A95">Anchor · Qiskit Fall Fest 2026</p>
+<p style="position:absolute;left:128px;bottom:64px;width:1400px;font-size:24px;color:#7D8A95">39 automatic tests check the code, including that the puzzle’s best score is always the right answer</p>
 <p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">7 / 17</p>
-<aside>Rubric 03. Built: the whole pipeline (data, matches, graph, QUBO, solvers, map warp, confidence check), the API and the 3D app. Reused: our own Q-Router patterns for the QUBO helpers, RESECT patient landmarks (CC BY 4.0) and a standard brain mesh. Hardest to get working: keeping the hardware runs replayable from raw bitstrings, and the Aer bug where batching circuits of different widths corrupts results.</aside>
+<aside>Rubric 03, technical names for judges: QAOAAnsatz parameterized circuits (p = 1–3); COBYLA optimizer on a CVaR objective (hybrid loop); LR-QAOA digitized annealing; preset transpiler level 3 onto IBM Heron; SamplerV2 primitive on Aer, the FakeMarrakesh noise model and ibm_fez; XY4 dynamical decoupling plus gate and measurement twirling. Built: the whole pipeline, API and 3D app. Reused: our own Q-Router QUBO helpers, RESECT patient data, a standard brain mesh. Hardest part: keeping hardware runs replayable from raw results.</aside>
 </section>
