@@ -1,6 +1,6 @@
 # Slides
 
-11 slides for a 5-minute talk. Each slide shows one idea in one or two short lines plus a picture. Each slide's speaker notes start with **SAY:**, a script of about 50 words (about 4 minutes in total, including the 20-second demo clip). After that, **IF ASKED:** holds the detail and likely judge questions.
+11 slides for a 5-minute talk. Each slide gives the context in two or three short paragraphs plus a picture (pre-operative MRI, navigation system, brain shift, the three steps, what is missing). Each slide's speaker notes start with **SAY:**, a script of about 50 words (about 4 minutes in total, including the 20-second demo clip). After that, **IF ASKED:** holds the detail and likely judge questions.
 
 - **Live deck:** https://claude.ai/artifact/RJCmhfx3aNvt32uLrt2xVM. It is private until it is shared from its Share menu. Export it to PDF or PowerPoint from Share › Export, and put the export in this folder for the submission.
 - **Source:** `source/`, with one HTML file per slide and the order in `deck.json`. PNG renders are in `previews/`.
@@ -40,7 +40,7 @@ Weights come from the official statewide rubric (scored 1–5, plus a hardware b
 | 06 Presentation & communication | 15% | Short slides; one-sentence close (11); within time |
 | 07 Q&A, teamwork & learning journey | 10% | 10 Next month · 11 Built solo by Neel Gurram · lessons in the notes on 11 |
 | Hardware bonus, top tier (+5) | +5 | 9 Real IBM hardware, plus labels for simulator comparison, noise analysis and error suppression (only one is needed). Job IDs are in the footer. |
-| Required limitations | — | 10 (notes) and LIMITATIONS.md |
+| Required limitations | — | 10 What's missing, and LIMITATIONS.md |
 
 ## Before presenting
 - Read the SAY script in each note aloud once with a timer; it should take about 4 minutes.
