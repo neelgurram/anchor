@@ -1,0 +1,484 @@
+{
+ "ibm_file": "ibm_20261107-234545.json",
+ "dwave_file": null,
+ "dwave_status": "not run yet",
+ "methods": {
+  "exact": {
+   "label": "Exact search (classical)",
+   "family": "classical",
+   "instances": 14,
+   "mean_p_optimal": 1.0,
+   "mean_map_error": 1.9051948000991819,
+   "same_as_exact": "14/14",
+   "sizes": [
+    6,
+    8,
+    10,
+    12,
+    16,
+    20,
+    24
+   ]
+  },
+  "sa": {
+   "label": "Simulated annealing (classical)",
+   "family": "classical",
+   "instances": 14,
+   "mean_p_optimal": 0.851642857142857,
+   "mean_map_error": 1.9051948000991819,
+   "same_as_exact": "14/14",
+   "sizes": [
+    6,
+    8,
+    10,
+    12,
+    16,
+    20,
+    24
+   ]
+  },
+  "ibm_qaoa": {
+   "label": "QAOA on IBM (gate)",
+   "family": "gate",
+   "instances": 8,
+   "mean_p_optimal": 0.0025,
+   "mean_map_error": 2.266569997939227,
+   "same_as_exact": "7/8",
+   "sizes": [
+    6,
+    8,
+    10,
+    12
+   ]
+  },
+  "ibm_anneal": {
+   "label": "Digitized anneal on IBM (gate)",
+   "family": "gate",
+   "instances": 8,
+   "mean_p_optimal": 0.0124375,
+   "mean_map_error": 2.21075960155397,
+   "same_as_exact": "8/8",
+   "sizes": [
+    6,
+    8,
+    10,
+    12
+   ]
+  },
+  "dwave": {
+   "label": "D-Wave annealer (quantum anneal)",
+   "family": "anneal",
+   "instances": 0
+  }
+ },
+ "rows": [
+  {
+   "case_id": "Case12",
+   "qubits": 6,
+   "uncorrected": 19.506030964054297,
+   "best_possible": 1.4975001237243504,
+   "exact": {
+    "p_optimal": 1.0,
+    "tre": 1.44598625733824,
+    "seconds": 0.00349680008366704
+   },
+   "sa": {
+    "p_optimal": 0.971,
+    "tre": 1.44598625733824,
+    "seconds": 0.08703739999327809,
+    "same_as_exact": true
+   },
+   "ibm_qaoa": {
+    "p_optimal": 0.005,
+    "p_feasible": 0.434,
+    "tre": 1.44598625733824,
+    "same_as_exact": true,
+    "qpu_seconds": null,
+    "job_id": "dbnuils4148s7391lgkg",
+    "backend": "ibm_fez"
+   },
+   "ibm_anneal": {
+    "p_optimal": 0.034,
+    "p_feasible": 0.6635,
+    "tre": 1.44598625733824,
+    "same_as_exact": true,
+    "qpu_seconds": null,
+    "job_id": "dbnuils4148s7391lgkg",
+    "backend": "ibm_fez"
+   },
+   "dwave": null
+  },
+  {
+   "case_id": "Case12",
+   "qubits": 8,
+   "uncorrected": 19.480714847111397,
+   "best_possible": 1.2688651519170577,
+   "exact": {
+    "p_optimal": 1.0,
+    "tre": 1.1360780625334157,
+    "seconds": 0.002119199954904616
+   },
+   "sa": {
+    "p_optimal": 0.54,
+    "tre": 1.1360780625334157,
+    "seconds": 0.11433929996564984,
+    "same_as_exact": true
+   },
+   "ibm_qaoa": {
+    "p_optimal": 0.008,
+    "p_feasible": 0.4415,
+    "tre": 1.1360780625334157,
+    "same_as_exact": true,
+    "qpu_seconds": null,
+    "job_id": "dbnuils4148s7391lgkg",
+    "backend": "ibm_fez"
+   },
+   "ibm_anneal": {
+    "p_optimal": 0.012,
+    "p_feasible": 0.5125,
+    "tre": 1.1360780625334157,
+    "same_as_exact": true,
+    "qpu_seconds": null,
+    "job_id": "dbnuils4148s7391lgkg",
+    "backend": "ibm_fez"
+   },
+   "dwave": null
+  },
+  {
+   "case_id": "Case12",
+   "qubits": 10,
+   "uncorrected": 19.49929438406335,
+   "best_possible": 1.67426074870417,
+   "exact": {
+    "p_optimal": 1.0,
+    "tre": 1.4677510998971095,
+    "seconds": 0.0026305000064894557
+   },
+   "sa": {
+    "p_optimal": 0.483,
+    "tre": 1.4677510998971095,
+    "seconds": 0.1480183000676334,
+    "same_as_exact": true
+   },
+   "ibm_qaoa": {
+    "p_optimal": 0.0025,
+    "p_feasible": 0.34,
+    "tre": 1.4677510998971095,
+    "same_as_exact": true,
+    "qpu_seconds": null,
+    "job_id": "dbnuils4148s7391lgkg",
+    "backend": "ibm_fez"
+   },
+   "ibm_anneal": {
+    "p_optimal": 0.002,
+    "p_feasible": 0.3605,
+    "tre": 1.4677510998971095,
+    "same_as_exact": true,
+    "qpu_seconds": null,
+    "job_id": "dbnuils4148s7391lgkg",
+    "backend": "ibm_fez"
+   },
+   "dwave": null
+  },
+  {
+   "case_id": "Case12",
+   "qubits": 12,
+   "uncorrected": 19.56420251731958,
+   "best_possible": 1.868532507212961,
+   "exact": {
+    "p_optimal": 1.0,
+    "tre": 1.6050407974784555,
+    "seconds": 0.0024105000775307417
+   },
+   "sa": {
+    "p_optimal": 0.976,
+    "tre": 1.6050407974784555,
+    "seconds": 0.17872040008660406,
+    "same_as_exact": true
+   },
+   "ibm_qaoa": {
+    "p_optimal": 0.0005,
+    "p_feasible": 0.2415,
+    "tre": 1.6050407974784555,
+    "same_as_exact": true,
+    "qpu_seconds": null,
+    "job_id": "dbnuils4148s7391lgkg",
+    "backend": "ibm_fez"
+   },
+   "ibm_anneal": {
+    "p_optimal": 0.0005,
+    "p_feasible": 0.1455,
+    "tre": 1.6050407974784555,
+    "same_as_exact": true,
+    "qpu_seconds": null,
+    "job_id": "dbnuils4148s7391lgkg",
+    "backend": "ibm_fez"
+   },
+   "dwave": null
+  },
+  {
+   "case_id": "Case12",
+   "qubits": 16,
+   "uncorrected": 19.576428028833362,
+   "best_possible": 1.6101503006747624,
+   "exact": {
+    "p_optimal": 1.0,
+    "tre": 1.333582818940433,
+    "seconds": 0.002688899985514581
+   },
+   "sa": {
+    "p_optimal": 0.997,
+    "tre": 1.333582818940433,
+    "seconds": 0.29431769996881485,
+    "same_as_exact": true
+   },
+   "ibm_qaoa": null,
+   "ibm_anneal": null,
+   "dwave": null
+  },
+  {
+   "case_id": "Case12",
+   "qubits": 20,
+   "uncorrected": 19.374360508828655,
+   "best_possible": 1.7148688342338776,
+   "exact": {
+    "p_optimal": 1.0,
+    "tre": 1.7096482564373847,
+    "seconds": 0.0045229000970721245
+   },
+   "sa": {
+    "p_optimal": 0.997,
+    "tre": 1.7096482564373847,
+    "seconds": 0.344528799992986,
+    "same_as_exact": true
+   },
+   "ibm_qaoa": null,
+   "ibm_anneal": null,
+   "dwave": null
+  },
+  {
+   "case_id": "Case12",
+   "qubits": 24,
+   "uncorrected": 19.214717118938136,
+   "best_possible": 1.7563792588071134,
+   "exact": {
+    "p_optimal": 1.0,
+    "tre": 1.3968864299268584,
+    "seconds": 0.00410239992197603
+   },
+   "sa": {
+    "p_optimal": 0.997,
+    "tre": 1.3968864299268584,
+    "seconds": 0.3926997999660671,
+    "same_as_exact": true
+   },
+   "ibm_qaoa": null,
+   "ibm_anneal": null,
+   "dwave": null
+  },
+  {
+   "case_id": "Case2",
+   "qubits": 6,
+   "uncorrected": 5.853103449540703,
+   "best_possible": 3.5541222755125634,
+   "exact": {
+    "p_optimal": 1.0,
+    "tre": 3.6932553591135164,
+    "seconds": 0.002060399972833693
+   },
+   "sa": {
+    "p_optimal": 0.995,
+    "tre": 3.6932553591135164,
+    "seconds": 0.08587239996995777,
+    "same_as_exact": true
+   },
+   "ibm_qaoa": {
+    "p_optimal": 0.0025,
+    "p_feasible": 0.474,
+    "tre": 3.6932553591135164,
+    "same_as_exact": true,
+    "qpu_seconds": null,
+    "job_id": "dbnuils4148s7391lgkg",
+    "backend": "ibm_fez"
+   },
+   "ibm_anneal": {
+    "p_optimal": 0.041,
+    "p_feasible": 0.6965,
+    "tre": 3.6932553591135164,
+    "same_as_exact": true,
+    "qpu_seconds": null,
+    "job_id": "dbnuils4148s7391lgkg",
+    "backend": "ibm_fez"
+   },
+   "dwave": null
+  },
+  {
+   "case_id": "Case2",
+   "qubits": 8,
+   "uncorrected": 5.567557386310797,
+   "best_possible": 2.9751988752386036,
+   "exact": {
+    "p_optimal": 1.0,
+    "tre": 3.143383929254331,
+    "seconds": 0.001976700033992529
+   },
+   "sa": {
+    "p_optimal": 0.993,
+    "tre": 3.143383929254331,
+    "seconds": 0.11764620000030845,
+    "same_as_exact": true
+   },
+   "ibm_qaoa": {
+    "p_optimal": 0.001,
+    "p_feasible": 0.4325,
+    "tre": 3.143383929254331,
+    "same_as_exact": true,
+    "qpu_seconds": null,
+    "job_id": "dbnuils4148s7391lgkg",
+    "backend": "ibm_fez"
+   },
+   "ibm_anneal": {
+    "p_optimal": 0.0045,
+    "p_feasible": 0.4955,
+    "tre": 3.143383929254331,
+    "same_as_exact": true,
+    "qpu_seconds": null,
+    "job_id": "dbnuils4148s7391lgkg",
+    "backend": "ibm_fez"
+   },
+   "dwave": null
+  },
+  {
+   "case_id": "Case2",
+   "qubits": 10,
+   "uncorrected": 5.652973258325039,
+   "best_possible": 3.2204668154994267,
+   "exact": {
+    "p_optimal": 1.0,
+    "tre": 3.4214736319131624,
+    "seconds": 0.002035900019109249
+   },
+   "sa": {
+    "p_optimal": 0.975,
+    "tre": 3.4214736319131624,
+    "seconds": 0.1470293999882415,
+    "same_as_exact": true
+   },
+   "ibm_qaoa": {
+    "p_optimal": 0.0,
+    "p_feasible": 0.363,
+    "tre": 3.8679568029952174,
+    "same_as_exact": false,
+    "qpu_seconds": null,
+    "job_id": "dbnuils4148s7391lgkg",
+    "backend": "ibm_fez"
+   },
+   "ibm_anneal": {
+    "p_optimal": 0.005,
+    "p_feasible": 0.293,
+    "tre": 3.4214736319131624,
+    "same_as_exact": true,
+    "qpu_seconds": null,
+    "job_id": "dbnuils4148s7391lgkg",
+    "backend": "ibm_fez"
+   },
+   "dwave": null
+  },
+  {
+   "case_id": "Case2",
+   "qubits": 12,
+   "uncorrected": 5.720518037590648,
+   "best_possible": 1.5486156108291498,
+   "exact": {
+    "p_optimal": 1.0,
+    "tre": 1.7731076749035302,
+    "seconds": 0.0027520000003278255
+   },
+   "sa": {
+    "p_optimal": 0.995,
+    "tre": 1.7731076749035302,
+    "seconds": 0.17687249998562038,
+    "same_as_exact": true
+   },
+   "ibm_qaoa": {
+    "p_optimal": 0.0005,
+    "p_feasible": 0.2205,
+    "tre": 1.7731076749035302,
+    "same_as_exact": true,
+    "qpu_seconds": null,
+    "job_id": "dbnuils4148s7391lgkg",
+    "backend": "ibm_fez"
+   },
+   "ibm_anneal": {
+    "p_optimal": 0.0005,
+    "p_feasible": 0.1415,
+    "tre": 1.7731076749035302,
+    "same_as_exact": true,
+    "qpu_seconds": null,
+    "job_id": "dbnuils4148s7391lgkg",
+    "backend": "ibm_fez"
+   },
+   "dwave": null
+  },
+  {
+   "case_id": "Case2",
+   "qubits": 16,
+   "uncorrected": 5.669187761744909,
+   "best_possible": 1.1823765028257405,
+   "exact": {
+    "p_optimal": 1.0,
+    "tre": 1.4375303609453165,
+    "seconds": 0.0024498000275343657
+   },
+   "sa": {
+    "p_optimal": 0.995,
+    "tre": 1.4375303609453165,
+    "seconds": 0.25070829992182553,
+    "same_as_exact": true
+   },
+   "ibm_qaoa": null,
+   "ibm_anneal": null,
+   "dwave": null
+  },
+  {
+   "case_id": "Case2",
+   "qubits": 20,
+   "uncorrected": 5.688296447148017,
+   "best_possible": 0.8241420670409226,
+   "exact": {
+    "p_optimal": 1.0,
+    "tre": 1.0859582569224568,
+    "seconds": 0.002562599955126643
+   },
+   "sa": {
+    "p_optimal": 0.509,
+    "tre": 1.0859582569224568,
+    "seconds": 0.426869299961254,
+    "same_as_exact": true
+   },
+   "ibm_qaoa": null,
+   "ibm_anneal": null,
+   "dwave": null
+  },
+  {
+   "case_id": "Case2",
+   "qubits": 24,
+   "uncorrected": 5.858452407082673,
+   "best_possible": 0.8102502600961455,
+   "exact": {
+    "p_optimal": 1.0,
+    "tre": 2.023044265784334,
+    "seconds": 0.003875299938954413
+   },
+   "sa": {
+    "p_optimal": 0.5,
+    "tre": 2.023044265784334,
+    "seconds": 0.4399075999390334,
+    "same_as_exact": true
+   },
+   "ibm_qaoa": null,
+   "ibm_anneal": null,
+   "dwave": null
+  }
+ ]
+}

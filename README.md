@@ -56,6 +56,7 @@ The table covers 264 paired instances: 8–16 qubits, 20–40% bad matches, 95% 
 | `scripts/run_confidence.py` | Checks the confidence map and alarm against the truth (`results/confidence`) |
 | `scripts/run_noise.py` | Noise study: ideal simulator vs IBM Heron noise model vs random (`results/noise`) |
 | `scripts/run_hardware.py` | IBM Heron and D-Wave runs (credentials typed in at run time and never stored); raw bitstrings go to `results/hardware` |
+| `scripts/compare_paradigms.py` | Classical vs gate-based quantum vs quantum annealing on the same fixed instances: exact + simulated annealing, QAOA and digitized anneal on IBM, and the D-Wave annealer once `results/hardware/dwave_*.json` exists; writes `results/paradigms/summary.json` and `results/figures/paradigms.png` |
 | `notebooks/Anchor_walkthrough.ipynb` | End-to-end walkthrough for judges, with outputs |
 | `CHARTER.md` | Benchmark charter written before any quantum run, plus a dated change log |
 | `USE-CASE.md`, `LIMITATIONS.md` | Use-case canvas and honest limits |
