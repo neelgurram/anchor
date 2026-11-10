@@ -17,11 +17,11 @@ Weights come from the official statewide rubric (scored 1–5, plus a hardware b
 | 04 Results & validation | 10% | 9 Benchmark vs classical baselines with 95% CIs · 10 Confidence alarm tested on held-out patients · 11–12 simulator vs noise model vs hardware · 13 classical vs logic gates vs annealing on the same instances |
 | 05 Innovation & creativity | 10% | 15 What makes Anchor different · 10 the self-check |
 | 06 Presentation & communication | 15% | One idea per slide, party analogy (5), one-sentence close (18), the demo video |
-| 07 Q&A, teamwork & learning journey | 10% | 17 Who did what, biggest lesson, next month · likely questions in the notes on 18 |
+| 07 Q&A, teamwork & learning journey | 10% | 17 Built solo by Neel Gurram, biggest lesson, next month · likely questions in the notes on 18 |
 | Hardware bonus, top tier (+5) | +5 | 11 Real IBM hardware · 12 Noise analysis (compared to the simulator, noise analysed, error suppression applied) |
 | Required limitations | — | 16 Limitations (full list in LIMITATIONS.md) |
 
 ## Before presenting
-- Fill in the team name and member names on slide 1, and the roles on slide 17.
+- Solo project: Neel Gurram is on slide 1, and slide 17 lists what he built.
 - D-Wave needs paid or approved access, so it is not in the deck. If it ever runs, `python scripts/compare_paradigms.py` adds it to the comparison; then update slides 13, 16 and 17.
 - Slide 8 plays `demo/anchor_demo_slide.mp4` (20 s) by itself, looping. Submit `demo/anchor_demo_short.mp4` (45 s) as the demo video.
