@@ -35,14 +35,3 @@ Made by `scripts/cut_demo.py` from the full recording. Use this one inside the 5
 | 26–32 | Map snaps back, 1.6 mm, Trusted | "The map comes back to 1.6 millimetres, and Anchor says trust it." |
 | 32–35 | Real error view | "The real error confirms it." |
 | 35–45 | IBM hardware replay | "And here are the answers from a real IBM quantum computer: same matches, same map." |
-
-## Slide clips (film_*.mp4)
-
-Rendered by `scripts/record_film.py` from `frontend/film.html` (same real patient, RESECT Case 12, as the app). Movement is drawn 2× larger so it is visible, and each clip says so on screen.
-
-| Clip | Slide | What it shows |
-|---|---|---|
-| `film_hero.mp4` (12 s loop) | 1 Cover | Model brain turning, scan line sweeping |
-| `film_shift.mp4` (8 s) | 2 Problem | Real brain sinks away from the MRI map; counter reaches 19.6 mm |
-| `film_bad.mp4` (8 s) | 3 Why it's hard | Trusting every clue: one wrong clue bends the map; 16.5 mm off |
-| `film_fix.mp4` (8 s) | 4 Solution | Solver samples flicker, the agreeing clues lock green, map snaps back to 1.6 mm |

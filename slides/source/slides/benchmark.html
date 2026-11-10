@@ -4,7 +4,7 @@
 <div style="display:grid;grid-template-columns:1000px 1fr;gap:56px;align-items:start;flex:1">
 <div style="display:flex;flex-direction:column;gap:16px">
 <img src="/_blob/47c6a71fd6285be244a143f7586dbbd5" alt="Bar chart of map error by method: naive 5.57 mm, RANSAC 2.02, exact max clique 2.19, simulated annealing 2.19, digitized anneal 2.19, QAOA 2.17, best possible 1.78" style="width:1000px;height:460px;object-fit:contain">
-<p style="font-size:24px;line-height:1.4;color:#A7B3BD"><b>What the graph shows:</b> each bar is one method; its length is how far off the fixed map is, on average, in millimetres. Shorter is better. The dashed lines mark no fix at all (right) and the best possible (left).</p>
+<p style="font-size:24px;line-height:1.4;color:#A7B3BD">Trusting every clue leaves the map 5.6 mm off, worse than not fixing it at all (5.4 mm), while every method that keeps only the clues that agree gets it to about 2 mm. Picking the right clues is what fixes the map, and quantum picks them as well as a normal computer does.</p>
 </div>
 <div data-text style="display:flex;flex-direction:column;gap:24px">
 <p style="font-size:32px;line-height:1.5;color:#A7B3BD">We tested on 22 real patients from RESECT (a public brain-surgery dataset), 264 times, and checked against expert-marked spots the computer never saw.</p>

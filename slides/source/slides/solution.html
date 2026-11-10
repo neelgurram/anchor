@@ -1,36 +1,34 @@
 <section id="solution" data-transition="fade" style="background:#06080B;color:#E8EDF1;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">02 · Our solution</p>
 <h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">Anchor keeps only the clues that agree.</h2>
-<div style="display:grid;grid-template-columns:960px 1fr;gap:56px;align-items:start;flex:1">
-<div style="display:flex;flex-direction:column;gap:16px">
-<img src="/_blob/1a30426491898862ad99517b6f9c6524" data-video="/_blob/5dfcc3bdd430aaf2919f339097550250" alt="The quantum solver flickers through possible sets of clues, locks on the ones that agree in green, and the map snaps back from 16.5 mm off to 1.6 mm" style="width:960px;height:540px;object-fit:contain;border-radius:16px;border:1px solid #1E2933">
-<p style="font-size:24px;line-height:1.4;color:#A7B3BD">Same patient: Anchor keeps the clues that agree (green) and the map snaps back to 1.6 mm off.</p>
+<p style="font-size:32px;line-height:1.5;color:#A7B3BD">Correct clues agree with each other: two spots 3 cm apart on the MRI are still about 3 cm apart on the ultrasound. Wrong clues break that pattern. Anchor finds the biggest group that all agree, fixes the map with only those, then double-checks itself.</p>
+<div style="display:flex;align-items:center;gap:12px;flex:1">
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:32px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;color:#7D8A95">1</p>
+<h3 style="font-size:32px;font-weight:600;line-height:1.25;color:#E8EDF1">Old map + live scan</h3>
 </div>
-<div data-text style="display:flex;flex-direction:column;gap:22px">
-<p style="font-size:30px;line-height:1.45;color:#A7B3BD">Correct clues agree: spots 3 cm apart on the MRI are still 3 cm apart on the ultrasound. Wrong clues break that pattern.</p>
-<div style="display:flex;align-items:center;gap:20px">
-<div style="width:52px;height:52px;border-radius:26px;background:#0F151C;border:1px solid #1E2933;display:flex;align-items:center;justify-content:center"><p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;color:#E8EDF1">1</p></div>
-<p style="font-size:30px;line-height:1.3;color:#E8EDF1">Old map + live scan</p>
+<x-connector style="width:32px;color:#2FC27A;border-width:3px"></x-connector>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:32px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;color:#7D8A95">2</p>
+<h3 style="font-size:32px;font-weight:600;line-height:1.25;color:#E8EDF1">List possible matches</h3>
 </div>
-<div style="display:flex;align-items:center;gap:20px">
-<div style="width:52px;height:52px;border-radius:26px;background:#0F151C;border:1px solid #1E2933;display:flex;align-items:center;justify-content:center"><p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;color:#E8EDF1">2</p></div>
-<p style="font-size:30px;line-height:1.3;color:#E8EDF1">List possible matches</p>
+<x-connector style="width:32px;color:#2FC27A;border-width:3px"></x-connector>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#0F2A1E;border:1px solid #2FC27A;border-radius:16px;padding:32px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;color:#2FC27A">3 · quantum</p>
+<h3 style="font-size:32px;font-weight:600;line-height:1.25;color:#E8EDF1">Find the ones that agree</h3>
 </div>
-<div style="display:flex;align-items:center;gap:20px">
-<div style="width:52px;height:52px;border-radius:26px;background:#2FC27A;border:1px solid #2FC27A;display:flex;align-items:center;justify-content:center"><p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;color:#06120C">3</p></div>
-<p style="font-size:30px;line-height:1.3;color:#E8EDF1">Find the ones that agree <span style="color:#2FC27A">(quantum)</span></p>
+<x-connector style="width:32px;color:#2FC27A;border-width:3px"></x-connector>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:32px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;color:#7D8A95">4</p>
+<h3 style="font-size:32px;font-weight:600;line-height:1.25;color:#E8EDF1">Fix the map</h3>
 </div>
-<div style="display:flex;align-items:center;gap:20px">
-<div style="width:52px;height:52px;border-radius:26px;background:#0F151C;border:1px solid #1E2933;display:flex;align-items:center;justify-content:center"><p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;color:#E8EDF1">4</p></div>
-<p style="font-size:30px;line-height:1.3;color:#E8EDF1">Fix the map</p>
-</div>
-<div style="display:flex;align-items:center;gap:20px">
-<div style="width:52px;height:52px;border-radius:26px;background:#0F151C;border:1px solid #1E2933;display:flex;align-items:center;justify-content:center"><p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;color:#E8EDF1">5</p></div>
-<p style="font-size:30px;line-height:1.3;color:#E8EDF1">Show how much to trust it</p>
-</div>
+<x-connector style="width:32px;color:#2FC27A;border-width:3px"></x-connector>
+<div style="flex:1;display:flex;flex-direction:column;gap:12px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:32px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;color:#7D8A95">5</p>
+<h3 style="font-size:32px;font-weight:600;line-height:1.25;color:#E8EDF1">Show how much to trust it</h3>
 </div>
 </div>
 <p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#7D8A95">Anchor · Qiskit Fall Fest 2026</p>
 <p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">4 / 18</p>
-<aside>Anchor checks matches; it does not find them or read ultrasound images. It measures how far the brain moved, using only the matches it trusts. Only step 3 runs on the quantum computer; step 5 (the trust check) works with any method. The flicker is the quantum solver's own sampled answers, worst to best, before it locks on the best set. Clip: real RESECT patient (Case 12), real computed shapes, movement drawn 2× larger so it is visible; it plays and loops by itself.</aside>
+<aside>Anchor checks matches; it does not find them or read ultrasound images. It measures how far the brain moved, using only the matches it trusts. Only step 3 runs on the quantum computer; step 5 (the trust check) works with any method.</aside>
 </section>
