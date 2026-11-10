@@ -1,0 +1,18 @@
+<section id="paradigms" data-transition="fade" style="background:#06080B;color:#E8EDF1;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">06 · Three ways to solve it</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">Classical, logic gates, annealing: same map.</h2>
+<div style="display:grid;grid-template-columns:1240px 1fr;gap:56px;align-items:start;flex:1">
+<div style="display:flex;flex-direction:column;gap:16px">
+<img src="/_blob/1099a01d112ba24efeda12d2a4c9c6d4" alt="Two bar charts. Left, share of tries that find the best answer: normal computer exact search 100%, normal computer annealing 87%, IBM quantum chip with logic gates 0.2%, IBM quantum chip annealing built from gates 1.2%. Right, map error: no fix 12.6 mm, the four methods 2.2, 2.2, 2.3 and 2.2 mm." style="width:1240px;height:461px;object-fit:contain">
+<p style="font-size:24px;line-height:1.4;color:#A7B3BD"><b>What the graphs show:</b> left, how often one try finds the best set of clues. Right, how far off the final map is; shorter is better. Same 8 tests for every method.</p>
+</div>
+<div data-text style="display:flex;flex-direction:column;gap:24px">
+<p style="font-size:32px;line-height:1.45;color:#A7B3BD">We gave the same puzzle to three kinds of solver.</p>
+<p style="font-size:32px;line-height:1.45;color:#E8EDF1">All of them fixed the map equally well: from 12.6 mm off to about 2 mm.</p>
+<p style="font-size:32px;line-height:1.45;color:#A7B3BD">The quantum chip needed thousands of tries to get there.</p>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1200px;font-size:24px;color:#7D8A95">Anchor · Qiskit Fall Fest 2026</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">13 / 18</p>
+<aside>Three computing approaches on the same 8 hardware instances (2 patients, 6–12 qubits). Classical: exact max-clique search, and simulated annealing (the classical algorithm a quantum annealer imitates). Gate-based quantum: QAOA p = 1 on IBM ibm_fez. Annealing: a linear-ramp “digitized anneal” run on the same IBM chip, which builds the annealing process out of logic gates. Each IBM run used 4,000 shots, so even a 1% hit rate finds the best answer about 40 times. A dedicated quantum annealer (D-Wave) needs paid or approved access, so it is not in this comparison; the script adds it automatically if it ever runs. Script: scripts/compare_paradigms.py.</aside>
+</section>

@@ -124,7 +124,8 @@ def main():
         else:
             print(f"{lab:<36}  -  not run yet")
     figure(rows, ROOT / "results" / "figures" / "paradigms.png", dwave_name is not None)
-    print("wrote results/paradigms/summary.json and results/figures/paradigms.png")
+    slide_figure(rows, ROOT / "results" / "figures" / "paradigms_slide.png")
+    print("wrote results/paradigms/summary.json, results/figures/paradigms.png and paradigms_slide.png")
 
 
 def figure(rows, path, have_dwave):
@@ -155,14 +156,51 @@ def figure(rows, path, have_dwave):
         ax.set_xticks(sizes); ax.set_xlim(sizes[0] - 0.5, sizes[-1] + 7)
         ax.set_xlabel("Qubits / variables"); ax.set_ylabel(ylab)
         ax._labs = labs
-    title = "Classical vs gate-based quantum vs quantum annealing, same patients"
-    if not have_dwave:
-        title += "  (D-Wave: not run yet)"
+    title = "Classical vs gate-based quantum vs annealing, same patients"
+    if have_dwave:
+        title = "Classical vs gate-based quantum vs quantum annealing, same patients"
     fig.suptitle(title, x=0.01, ha="left", color=INK, fontsize=13, fontweight="bold")
     fig.tight_layout()
     for ax in axes:
         end_labels(ax, ax._labs)
     fig.savefig(path, dpi=160)
+    plt.close(fig)
+
+
+def slide_figure(rows, path):
+    """Big-type bar version for the deck: only the sizes every method was run on (fair comparison)."""
+    from run_benchmark import BG, COLOR, INK, MUTED, style
+    plt = style()
+    plt.rcParams.update({"font.size": 15, "axes.titlesize": 17})
+    keys = [k for k, *_ in METHODS if all(r[k] is not None for r in rows if r["ibm_qaoa"] is not None)
+            and any(r[k] is not None for r in rows)]
+    fair = [r for r in rows if r["ibm_qaoa"] is not None]
+    plain = {"exact": "Normal computer:\nexact search", "sa": "Normal computer:\nannealing",
+             "ibm_qaoa": "IBM quantum chip:\nlogic gates (QAOA)",
+             "ibm_anneal": "IBM quantum chip:\nannealing, built from gates",
+             "dwave": "D-Wave quantum\nannealer"}
+    col = {k: COLOR[c] for k, _, _, c in METHODS}
+    fig, (a1, a2) = plt.subplots(1, 2, figsize=(14, 5.2), gridspec_kw={"width_ratios": [1.15, 1]})
+    y = np.arange(len(keys))[::-1]
+    p = [100 * np.mean([r[k]["p_optimal"] for r in fair]) for k in keys]
+    a1.barh(y, p, color=[col[k] for k in keys], height=0.6, edgecolor=BG, linewidth=2)
+    a1.set_xscale("log"); a1.set_xlim(0.1, 400)
+    for yi, v in zip(y, p):
+        a1.text(v * 1.15, yi, f"{v:.1f}%" if v < 10 else f"{v:.0f}%", va="center", color=INK, fontsize=15)
+    a1.set_yticks(y); a1.set_yticklabels([plain[k] for k in keys], color=INK, fontsize=14)
+    a1.set_xticks([0.1, 1, 10, 100]); a1.set_xticklabels(["0.1%", "1%", "10%", "100%"])
+    a1.set_title("Tries that land on the best answer"); a1.grid(axis="y", visible=False)
+    unc = np.mean([r["uncorrected"] for r in fair])
+    keys2 = ["uncorrected"] + keys
+    y2 = np.arange(len(keys2))[::-1]
+    e = [unc] + [np.mean([r[k]["tre"] for r in fair]) for k in keys]
+    a2.barh(y2, e, color=[MUTED] + [col[k] for k in keys], height=0.6, edgecolor=BG, linewidth=2)
+    for yi, v in zip(y2, e):
+        a2.text(v + 0.25, yi, f"{v:.1f} mm", va="center", color=INK, fontsize=15)
+    a2.set_yticks(y2); a2.set_yticklabels(["No fix"] + [""] * len(keys), color=INK, fontsize=14)
+    a2.set_xlim(0, unc * 1.25); a2.set_title("How far off the fixed map is (mm)"); a2.grid(axis="y", visible=False)
+    fig.tight_layout()
+    fig.savefig(path, dpi=150)
     plt.close(fig)
 
 
