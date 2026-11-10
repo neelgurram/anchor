@@ -23,44 +23,30 @@
     "problem",
     "hard",
     "solution",
-    "agree",
     "shape",
-    "fixcheck",
-    "build",
+    "result",
     "demo",
     "benchmark",
-    "confidence",
     "hardware",
-    "paradigms",
     "revisit",
-    "limits",
-    "team",
     "close"
   ],
   "sections": {
     "s1": {
-      "description": "The problem: the surgeon’s MRI map goes out of date when the brain moves, and ultrasound matches can be wrong.",
+      "description": "The problem: the surgeon’s MRI map goes out of date, and ultrasound matches can be wrong.",
       "start": "cover"
     },
     "s2": {
-      "description": "Our solution: keep the matches that agree (a quantum puzzle), fix the map, check the fix.",
+      "description": "Our solution: keep the matches that agree, found as a quantum puzzle.",
       "start": "solution"
     },
     "s3": {
-      "description": "How we built it: Qiskit and the app.",
-      "start": "build"
+      "description": "Results: one patient up close, the app, 22 patients, real IBM hardware.",
+      "start": "result"
     },
     "s4": {
-      "description": "Results: 22 real patients, the self-check, real IBM hardware, three kinds of solver.",
-      "start": "benchmark"
-    },
-    "s5": {
-      "description": "What’s next: what quantum needs to win, what’s new and what’s missing.",
+      "description": "What’s next and close.",
       "start": "revisit"
-    },
-    "s6": {
-      "description": "About me and close.",
-      "start": "team"
     }
   },
   "title": "Anchor — Qiskit Fall Fest 2026"

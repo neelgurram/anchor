@@ -1,15 +1,35 @@
-<section id="hardware" data-transition="fade" style="background:#06080B;color:#E8EDF1;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:24px">
-<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">4 · Results</p>
-<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">It runs on a real IBM quantum computer.</h2>
-<p style="font-size:32px;line-height:1.5;color:#A7B3BD">We ran 48 puzzles on IBM’s ibm_fez chip. In 42 of them the chip’s best answer was the perfect one, and the fixed map was as good as a normal computer’s (2.3 vs 2.2 mm).</p>
-<div style="display:flex;gap:24px">
-<div style="flex:1;border:1px solid #2FC27A;background:#0F2A1E;border-radius:12px;padding:16px 24px"><p style="font-size:24px;line-height:1.4;color:#E8EDF1">Compared to a perfect simulator</p></div>
-<div style="flex:1;border:1px solid #2FC27A;background:#0F2A1E;border-radius:12px;padding:16px 24px"><p style="font-size:24px;line-height:1.4;color:#E8EDF1">Noise analysed with a noisy-chip model</p></div>
-<div style="flex:1;border:1px solid #2FC27A;background:#0F2A1E;border-radius:12px;padding:16px 24px"><p style="font-size:24px;line-height:1.4;color:#E8EDF1">Error suppression applied</p></div>
+<section id="hardware" data-transition="fade" style="background:#06080B;color:#E8EDF1;font-family:Inter, Arial, sans-serif;padding:128px 128px 160px;display:flex;flex-direction:column;gap:40px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">Results</p>
+<h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">Built in Qiskit, run on real IBM hardware.</h2>
+<div style="display:grid;grid-template-columns:1fr 760px;gap:64px;flex:1;align-items:start">
+<div style="display:flex;flex-direction:column">
+<div style="display:flex;flex-direction:column;gap:6px;padding:20px 0;border-top:1px solid #233140">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:34px;font-weight:600;color:#E8EDF1">Parameterized QAOA circuit</p>
+<p style="font-size:28px;line-height:1.35;color:#A7B3BD">The quantum puzzle, written in Qiskit</p>
 </div>
-<img src="/_blob/7bae44b8ad93e03313592e0574b46f01" alt="Three line charts, one per circuit design: share of valid answers against puzzle size for the perfect simulation, the noisy-chip prediction, the real chip with and without noise protection, and random guessing. The real chip sits just below the prediction and far above random; longer circuits fall fastest." style="width:1664px;height:350px;object-fit:contain">
-<p style="font-size:24px;line-height:1.4;color:#A7B3BD">The real chip (<span style="color:#2FC27A">green</span>) got 83% of the valid answers our noisy-chip prediction (<span style="color:#F08A4B">orange</span>) expected and 6× more than random guessing (<span style="color:#7D8A95">grey</span>), but fewer as puzzles and circuits got bigger. The chip really solves the puzzle; noise is what limits it today.</p>
-<p style="position:absolute;left:128px;bottom:64px;width:1300px;font-size:24px;color:#7D8A95">IBM jobs dbnuils4148s7391lgkg and dbnvsu8qtr0c73adohg0, 2,000 tries each</p>
-<p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">12 / 17</p>
-<aside>Hardware bonus, top tier (+5): ran on a real device AND compared to the simulator (blue = perfect simulation) AND analysed the noise AND applied error suppression. Same 24 circuits as our noise study, 6–12 qubits, three circuit lengths, sent once raw and once with error suppression (XY4 dynamical decoupling + twirling). Noise protection gave no gain this time (85% as many valid answers as without); the two jobs ran about three hours apart, so calibration drift is part of that. At 12 qubits the longest circuit kept 4–13% valid answers vs 22–33% for the shortest. In the 6 runs that missed, 5 maps came out worse. Two patient cases on one night is a small sample. The up axis is a log scale.</aside>
+<div style="display:flex;flex-direction:column;gap:6px;padding:20px 0;border-top:1px solid #233140">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:34px;font-weight:600;color:#E8EDF1">Hybrid loop</p>
+<p style="font-size:28px;line-height:1.35;color:#A7B3BD">A normal computer tunes the circuit’s dials</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;padding:20px 0;border-top:1px solid #233140">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:34px;font-weight:600;color:#E8EDF1">Sampler primitive and transpiler</p>
+<p style="font-size:28px;line-height:1.35;color:#A7B3BD">Fit and run the circuit on the real chip</p>
+</div>
+<div style="display:flex;flex-direction:column;gap:6px;padding:20px 0;border-top:1px solid #233140">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:34px;font-weight:600;color:#E8EDF1">Error suppression</p>
+<p style="font-size:28px;line-height:1.35;color:#A7B3BD">Dynamical decoupling and twirling</p>
+</div>
+</div>
+<div style="display:flex;flex-direction:column;gap:24px">
+<div style="display:flex;flex-direction:column;gap:12px;background:#0F151C;border:1px solid #1E2933;border-radius:16px;padding:40px">
+<p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:96px;font-weight:600;line-height:1;color:#2FC27A">42 of 48</p>
+<p style="font-size:32px;line-height:1.35;color:#E8EDF1">puzzles on IBM’s ibm_fez chip: its best answer was the perfect one.</p>
+<p style="font-size:30px;line-height:1.35;color:#A7B3BD">Map: 2.3 mm, the same as a normal computer (2.2 mm).</p>
+</div>
+<div style="display:flex;gap:16px"><div style="flex:1;border:1px solid #2FC27A;background:#0F2A1E;border-radius:12px;padding:16px 20px"><p style="font-size:26px;line-height:1.35;color:#E8EDF1">Simulator comparison</p></div><div style="flex:1;border:1px solid #2FC27A;background:#0F2A1E;border-radius:12px;padding:16px 20px"><p style="font-size:26px;line-height:1.35;color:#E8EDF1">Noise analysis</p></div><div style="flex:1;border:1px solid #2FC27A;background:#0F2A1E;border-radius:12px;padding:16px 20px"><p style="font-size:26px;line-height:1.35;color:#E8EDF1">Error suppression</p></div></div>
+</div>
+</div>
+<p style="position:absolute;left:128px;bottom:64px;width:1300px;font-size:24px;color:#7D8A95">IBM jobs dbnuils4148s7391lgkg and dbnvsu8qtr0c73adohg0 · 2,000 tries each</p>
+<p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">9 / 11</p>
+<aside>SAY: I built it in Qiskit: a parameterized QAOA circuit, tuned in a hybrid loop with a normal computer, and run with the Sampler. Then we ran 48 puzzles on IBM’s real ibm_fez chip. In 42 of them the chip’s best answer was perfect, and the map was as good as a normal computer’s. We also compared it with a simulator, modelled the noise, and used error suppression. — IF ASKED: Rubric 03, technical names for judges: QAOAAnsatz parameterized circuits (p = 1–3); COBYLA optimizer on a CVaR objective (hybrid loop); LR-QAOA digitized annealing; preset transpiler level 3 onto IBM Heron; SamplerV2 primitive on Aer, the FakeMarrakesh noise model and ibm_fez; XY4 dynamical decoupling plus gate and measurement twirling. Built: the whole pipeline, API and 3D app. Reused: our own Q-Router QUBO helpers, RESECT patient data, a standard brain mesh. Hardest part: keeping hardware runs replayable from raw results. Hardware bonus, top tier (+5): ran on a real device AND compared to the simulator (blue = perfect simulation) AND analysed the noise AND applied error suppression. Same 24 circuits as our noise study, 6–12 qubits, three circuit lengths, sent once raw and once with error suppression (XY4 dynamical decoupling + twirling). Noise protection gave no gain this time (85% as many valid answers as without); the two jobs ran about three hours apart, so calibration drift is part of that. At 12 qubits the longest circuit kept 4–13% valid answers vs 22–33% for the shortest. In the 6 runs that missed, 5 maps came out worse. Two patient cases on one night is a small sample. The up axis is a log scale.</aside>
 </section>
