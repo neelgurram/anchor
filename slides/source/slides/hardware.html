@@ -2,7 +2,12 @@
 <p style="font-family:'Space Grotesk', Arial, sans-serif;font-size:24px;font-weight:600;letter-spacing:4px;text-transform:uppercase;color:#2FC27A">4 · Results</p>
 <h2 style="font-family:'Space Grotesk', Arial, sans-serif;font-size:72px;font-weight:600;line-height:1.1;color:#E8EDF1">It runs on a real IBM quantum computer.</h2>
 <p style="font-size:32px;line-height:1.5;color:#A7B3BD">We ran 48 puzzles on IBM’s ibm_fez chip. In 42 of them the chip’s best answer was the perfect one, and the fixed map was as good as a normal computer’s (2.3 vs 2.2 mm).</p>
-<img src="/_blob/7bae44b8ad93e03313592e0574b46f01" alt="Three line charts, one per circuit design: share of valid answers against puzzle size for the perfect simulation, the noisy-chip prediction, the real chip with and without noise protection, and random guessing. The real chip sits just below the prediction and far above random; longer circuits fall fastest." style="width:1664px;height:400px;object-fit:contain">
+<div style="display:flex;gap:24px">
+<div style="flex:1;border:1px solid #2FC27A;background:#0F2A1E;border-radius:12px;padding:16px 24px"><p style="font-size:24px;line-height:1.4;color:#E8EDF1">Compared to a perfect simulator</p></div>
+<div style="flex:1;border:1px solid #2FC27A;background:#0F2A1E;border-radius:12px;padding:16px 24px"><p style="font-size:24px;line-height:1.4;color:#E8EDF1">Noise analysed with a noisy-chip model</p></div>
+<div style="flex:1;border:1px solid #2FC27A;background:#0F2A1E;border-radius:12px;padding:16px 24px"><p style="font-size:24px;line-height:1.4;color:#E8EDF1">Error suppression applied</p></div>
+</div>
+<img src="/_blob/7bae44b8ad93e03313592e0574b46f01" alt="Three line charts, one per circuit design: share of valid answers against puzzle size for the perfect simulation, the noisy-chip prediction, the real chip with and without noise protection, and random guessing. The real chip sits just below the prediction and far above random; longer circuits fall fastest." style="width:1664px;height:350px;object-fit:contain">
 <p style="font-size:24px;line-height:1.4;color:#A7B3BD">The real chip (<span style="color:#2FC27A">green</span>) got 83% of the valid answers our noisy-chip prediction (<span style="color:#F08A4B">orange</span>) expected and 6× more than random guessing (<span style="color:#7D8A95">grey</span>), but fewer as puzzles and circuits got bigger. The chip really solves the puzzle; noise is what limits it today.</p>
 <p style="position:absolute;left:128px;bottom:64px;width:1300px;font-size:24px;color:#7D8A95">IBM jobs dbnuils4148s7391lgkg and dbnvsu8qtr0c73adohg0, 2,000 tries each</p>
 <p style="position:absolute;right:128px;bottom:64px;width:200px;text-align:right;font-size:24px;color:#7D8A95">12 / 17</p>

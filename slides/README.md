@@ -21,14 +21,14 @@ Weights come from the official statewide rubric (scored 1–5, plus a hardware b
 
 | Rubric item | Weight | Slides |
 |---|---|---|
-| 01 Problem definition & relevance | 15% | 2 The map goes out of date (pre-op MRI, navigation, 2 cm shift) · 3 One wrong ultrasound match ruins the fix |
-| 02 Quantum rationale & potential | 20% | 4 The three steps · 5 Correct matches agree · 6 Max clique as a QUBO, why quantum · 14 What quantum needs (scale and error rates) |
-| 03 Technical implementation (Qiskit) | 20% | 8 Built in Qiskit (circuits, hybrid loop, transpiler, primitives, error suppression, tests) · 9 The app · 7 the fix and self-check |
-| 04 Results & validation | 10% | 10 Benchmark on 22 RESECT patients vs classical baselines · 11 Confidence alarm · 12 Real IBM hardware vs simulator and noise model · 13 Classical vs logic gates vs annealing |
+| 01 Problem definition & relevance | 15% | 2 The map goes out of date (pre-op MRI, navigation, 2 cm shift; who it hurts: patients, surgeons, hospitals without an operating-room MRI) · 3 One wrong ultrasound match ruins the fix |
+| 02 Quantum rationale & potential | 20% | 4 The three steps · 5 Correct matches agree · 6 Max clique as a QUBO; names superposition and sampling (needed for 3+); says a normal computer is still faster · 14 What quantum needs (scale and error rates) |
+| 03 Technical implementation (Qiskit) | 20% | 8 Built in Qiskit: parameterized circuits, Sampler primitive, transpiler (the 4 descriptor), hybrid workflow and error suppression (the 5 descriptor's examples), 39 tests · 9 The app · 7 the fix and self-check |
+| 04 Results & validation | 10% | 10 Benchmark: 264 tests on 22 RESECT patients vs classical baselines, 95% error bars · 11 Confidence alarm · 12 Real IBM hardware vs simulator and noise model · 13 Classical vs logic gates vs annealing |
 | 05 Innovation & creativity | 10% | 15 What's new · 7 and 11 the self-check |
 | 06 Presentation & communication | 15% | Problem → solution → how we built it → results → next; party analogy (6); one-sentence close (17); the demo video |
 | 07 Q&A, teamwork & learning journey | 10% | 16 Built solo by Neel Gurram, what he learned, what's next · likely questions in the notes on 17 |
-| Hardware bonus, top tier (+5) | +5 | 12 Real IBM hardware, compared to the simulator, noise analysed, error suppression applied (detail in its speaker notes) |
+| Hardware bonus, top tier (+5) | +5 | 12 Real IBM hardware (+3 tier) plus all three +5 conditions shown as labels on the slide: compared to a perfect simulator, noise analysed with a noisy-chip model, error suppression applied (dynamical decoupling and twirling). The rubric needs only one of the three. Have the job IDs ready if a judge asks. |
 | Required limitations | — | 15 What's missing (full list in LIMITATIONS.md) |
 
 ## Before presenting
