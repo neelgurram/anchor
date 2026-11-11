@@ -7,7 +7,7 @@
 - [ ] **Project name:** Anchor
 - [ ] **Description:** paste the text below.
 - [ ] **Video, 5 minutes max, in your own voice** (no robotic AI voice): see "Recording the video" below. Save the submission first, then upload the MP4.
-- [ ] **GitHub repository:** https://github.com/neelgurram/anchor. It is **private** right now, so judges can't open it. Make it public first, or ask in the hackathon chat how to share it.
+- [ ] **GitHub repository:** https://github.com/neelgurram/anchor (public since Nov 10, so judges can open it).
 - [ ] **Files:**
   - the video (MP4)
   - `notebooks/Anchor_walkthrough.ipynb` (already has outputs, including the IBM run)
